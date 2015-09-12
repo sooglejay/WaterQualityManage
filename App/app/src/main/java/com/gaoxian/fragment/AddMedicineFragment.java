@@ -5,15 +5,18 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.gaoxian.Constant.StringConstant;
 import com.gaoxian.R;
+
 import com.gaoxian.widget.TitleBar;
 
 
 public class AddMedicineFragment extends BaseFragment{
 
     private TitleBar titleBar;
+    private Button btn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,6 +31,14 @@ public class AddMedicineFragment extends BaseFragment{
     private void setUp(View view, Bundle savedInstanceState) {
         titleBar = (TitleBar)view.findViewById(R.id.title_bar);
         titleBar.initTitleBarInfo(StringConstant.tabAddMedicine);
+
+        btn=(Button)view.findViewById(R.id.btn_test_location);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                  getActivity().startActivity(new Intent(getActivity(), LocationActivity.class));
+                }
+        });
 
     }
 }

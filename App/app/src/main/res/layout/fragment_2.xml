@@ -15,5 +15,10 @@
         android:textSize="30sp"
         android:textColor="@color/green_color"
         android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="wrap_content"
+        android:id="@+id/btn_test_location"
+        android:text="测试百度地图-定位功能"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
