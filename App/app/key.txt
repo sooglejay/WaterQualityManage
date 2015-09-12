@@ -1,0 +1,38 @@
+
+密钥库类型: JKS
+密钥库提供方: SUN
+
+您的密钥库包含 1 个条目
+
+别名: gaoxian
+创建日期: 2015-9-11
+条目类型: PrivateKeyEntry
+证书链长度: 1
+证书[1]:
+所有者: CN=gaoxian, OU=gaoxian, O=gaoxian, L=gaoxian, ST=gaoxian, C=gaoxian
+发布者: CN=gaoxian, OU=gaoxian, O=gaoxian, L=gaoxian, ST=gaoxian, C=gaoxian
+序列号: 719f17f4
+有效期开始日期: Fri Sep 11 10:15:51 CST 2015, 截止日期: Tue Sep 04 10:15:51 CST 2040
+证书指纹:
+	 MD5: C9:E6:87:65:B3:EA:28:D8:4A:46:53:9B:D4:8F:71:BC
+	 SHA1: D6:67:31:F8:FF:35:0F:B4:AF:CF:7B:21:FA:73:18:BE:E1:69:B6:98
+	 SHA256: EA:7E:50:34:1D:52:12:CF:7A:71:F2:9A:47:B8:52:54:55:1C:D1:37:F7:F2:27:96:3B:64:4A:2D:17:FA:07:45
+	 签名算法名称: SHA256withRSA
+	 版本: 3
+
+扩展: 
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 4B 35 62 B6 A5 03 EA 4A   8D A0 C0 30 A7 DA E7 6B  K5b....J...0...k
+0010: 15 6D F6 D4                                        .m..
+]
+]
+
+
+
+*******************************************
+*******************************************
+
+
