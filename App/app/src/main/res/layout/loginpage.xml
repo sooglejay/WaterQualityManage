@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#666666">
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="200dp"></RelativeLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/username_edittext"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:textSize="18dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_background"
+            android:singleLine="true"
+            android:drawableLeft="@drawable/user_image"
+            android:drawablePadding="10dp"
+            />
+        <EditText
+            android:id="@+id/password_edittext"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:textSize="18dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/edittext_background"
+            android:singleLine="true"
+            android:password="true"/>
+        <CheckBox
+            android:id="@+id/rememberpassword_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="记住密码"
+            android:textSize="18dp"
+            android:layout_alignLeft="@id/password_edittext"
+            android:layout_marginTop="85dp"/>
+        <Button
+            android:id="@+id/login_bn"
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:text="登录"
+            android:textSize="18dp"
+            android:layout_alignLeft="@id/password_edittext"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/loginbn_background"/>
+        </RelativeLayout>
+</LinearLayout>
