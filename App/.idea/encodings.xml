@@ -3,37 +3,11 @@
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/app/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/application/DemoApplication.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/BMapApiDemoMain.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/BaseMapDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/BusLineSearchDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/CloudSearchActivity.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/CloudSearchDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/CustomViewPager.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/FavoriteDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/GeoCoderDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/GeometryDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/HeatMapDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/LayersDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/LocationDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/MapControlDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/MapFragmentDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/MultiMapViewDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/OfflineDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/OpenBaiduMap.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/OpenglDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/OverlayDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/PoiSearchDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/RadarDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/RoutePlanDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/ShareDemo.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/ShareDemoActivity.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/gaoxian/demo/UISettingDemo.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/jniLibs/arm64-v8a" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/jniLibs/armeabi" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/jniLibs/armeabi-v7a" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/jniLibs/x86" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/jniLibs/x86_64" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/location.xml" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
