@@ -58,7 +58,7 @@ public class WelcomePage extends Activity {
         }
         return false;
     }
-
+    //logo动画效果
     private  void logo_animation()
     {
         welcomeLogoImage=(ImageView)findViewById(R.id.imageview);
