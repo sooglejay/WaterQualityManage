@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.gaoxian.ui.Test_interface">
+
+    <EditText
+        android:id="@+id/result_edittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:hint="message"/>
+<Button
+    android:id="@+id/testbutton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="interface_test"
+    android:layout_below="@id/result_edittext"
+    android:layout_alignLeft="@id/result_edittext"/>
+    <CheckBox
+        android:id="@+id/getstations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/testbutton"
+        android:layout_alignLeft="@id/testbutton"
+        android:text="测试Getstations"
+        />
+    <CheckBox
+        android:id="@+id/GetWQInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/getstations"
+        android:layout_alignLeft="@id/getstations"
+        android:text="测试GetWQInfo"
+        />
+</RelativeLayout>

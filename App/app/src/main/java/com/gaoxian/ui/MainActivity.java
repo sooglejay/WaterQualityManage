@@ -72,7 +72,7 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    /**
+    /*
      * 首页viewpager的adapter
      */
     private static final class ViewPagerAdapter extends FragmentStatePagerAdapter {

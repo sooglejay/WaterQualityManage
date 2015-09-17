@@ -1,4 +1,4 @@
-package com.gaoxian.util;
+package com.gaoxian.model;
 
 import android.content.Context;
 

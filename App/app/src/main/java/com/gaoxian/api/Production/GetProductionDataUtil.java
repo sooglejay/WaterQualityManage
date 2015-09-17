@@ -6,7 +6,7 @@ import com.gaoxian.api.callback.NetCallback;
 import com.gaoxian.model.NetWorkResultBean;
 import com.gaoxian.model.ProductionDataPackge;
 import com.gaoxian.model.ProductionStatePackge;
-import com.gaoxian.util.RetrofitUtil;
+import com.gaoxian.model.RetrofitUtil;
 
 import retrofit.RestAdapter;
 

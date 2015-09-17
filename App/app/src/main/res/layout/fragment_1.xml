@@ -8,11 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </com.gaoxian.widget.TitleBar>
-  <TextView
-        android:layout_width="wrap_content"
-        android:text="这个是第一个fragment"
-        android:textSize="30sp"
-        android:textColor="@color/green_color"
-        android:layout_height="wrap_content" />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/productionprocess_background"></LinearLayout>
 
 </LinearLayout>

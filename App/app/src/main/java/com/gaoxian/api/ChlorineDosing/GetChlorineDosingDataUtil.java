@@ -2,14 +2,11 @@ package com.gaoxian.api.ChlorineDosing;
 
 import android.content.Context;
 
-import com.gaoxian.api.WQ.WQApi;
 import com.gaoxian.api.callback.NetCallback;
-import com.gaoxian.model.ChlorineDosingData;
 import com.gaoxian.model.ChlorineDosingDataPackge;
 import com.gaoxian.model.ChlorineDosingStatePackge;
 import com.gaoxian.model.NetWorkResultBean;
-import com.gaoxian.model.WQinfo;
-import com.gaoxian.util.RetrofitUtil;
+import com.gaoxian.model.RetrofitUtil;
 
 import retrofit.RestAdapter;
 
