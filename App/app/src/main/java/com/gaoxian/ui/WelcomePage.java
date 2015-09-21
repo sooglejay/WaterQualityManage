@@ -1,49 +1,64 @@
 package com.gaoxian.ui;
+
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.gaoxian.R;
 
+import java.util.Objects;
+
 /**
  * Created by ll on 2015/9/10.
  */
 public class WelcomePage extends Activity {
-    private Animation animation;
-    ImageView welcomeLogoImage;
+    private ImageView welcomeLogoImage;
+    private AnimatorSet set = new AnimatorSet();//动画集
+    private ObjectAnimator xAnimator;//x轴动画
+    private ObjectAnimator yAnimator;//y轴动画
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcomepage);
-        //LOGO的动态效果
-        logo_animation();
-        // 生成子线程的对象
-        Thread t = new welcomethread();
-        // 执行子线程
-        t.start();
 
-    }
-    // 定义一个内部类创建一个新的线程
-    class welcomethread extends Thread {
-        @Override
-        public void run() {
-            // TODO Auto-generated method stub
-            try {
-                sleep(5000);// 休眠5秒钟
-            } catch (Exception e) {
-                // TODO: handle exception
-                e.printStackTrace();
+        welcomeLogoImage = (ImageView) findViewById(R.id.imageview);
+        xAnimator = ObjectAnimator.ofFloat(welcomeLogoImage, "scaleX", 0f,1f);
+        yAnimator = ObjectAnimator.ofFloat(welcomeLogoImage, "scaleY", 0f,1f);
+        set.setDuration(1000);
+        set.playTogether(xAnimator, yAnimator);
+        set.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                welcomeLogoImage.setVisibility(View.VISIBLE);
             }
-            Intent intent = new Intent();// 生成intent对象
-            intent.setClass(WelcomePage.this, LoginPageActivity.class);// 启动LoginActivity
-            startActivity(intent);
-            WelcomePage.this.finish();// 结束欢迎界面
-        }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                startActivity(new Intent(WelcomePage.this, LoginPageActivity.class));
+                WelcomePage.this.finish();// 结束欢迎界面
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+            }
+        });
+        set.start();
+
     }
 
     // 在欢迎界面屏蔽back键
@@ -53,18 +68,10 @@ public class WelcomePage extends Activity {
         if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_MENU) {
             return false;
         }
-        if(keyCode == KeyEvent.KEYCODE_HOME){
+        if (keyCode == KeyEvent.KEYCODE_HOME) {
             WelcomePage.this.finish();
         }
         return false;
     }
-    //logo动画效果
-    private  void logo_animation()
-    {
-        welcomeLogoImage=(ImageView)findViewById(R.id.imageview);
-        animation = AnimationUtils.loadAnimation(this, R.anim.welcome_logo);// 使用AnimationUtils类的静态方法loadAnimation()来加载XML中的动画XML文件
-        animation.setFillAfter(true);
-        welcomeLogoImage.startAnimation(animation);// 开始动画播出
-    }
 
-    }
+}

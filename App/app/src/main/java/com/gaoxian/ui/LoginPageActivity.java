@@ -11,18 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.gaoxian.R;
-import com.gaoxian.api.User.UserRetrofitUtil;
-import com.gaoxian.api.WM.GetStationsUtil;
-import com.gaoxian.api.callback.NetCallback;
-import com.gaoxian.model.NetWorkResultBean;
-import com.gaoxian.model.StationInfo;
-import com.gaoxian.model.StationInfoPackge;
-import com.gaoxian.model.UserInfo;
-
-import java.util.List;
-
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 public class LoginPageActivity extends Activity {
     private EditText username,password;
@@ -75,7 +63,7 @@ public class LoginPageActivity extends Activity {
 //                        Toast.makeText(getBaseContext(),"登录成功！",Toast.LENGTH_LONG).show();
 //                    }
 //                });
-    
+
                         Intent intent=new Intent(LoginPageActivity.this,MainActivity.class);
                         startActivity(intent);
                         Toast.makeText(getBaseContext(),"登录成功！",Toast.LENGTH_LONG).show();
