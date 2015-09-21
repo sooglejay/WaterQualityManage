@@ -75,21 +75,10 @@ public class LoginPageActivity extends Activity {
 //                        Toast.makeText(getBaseContext(),"登录成功！",Toast.LENGTH_LONG).show();
 //                    }
 //                });
-                GetStationsUtil.getStations(LoginPageActivity.this, "511512", "weiqi", new NetCallback<NetWorkResultBean<StationInfoPackge>>(LoginPageActivity.this) {
-                    @Override
-                    public void onFailure(RetrofitError error) {
-                    }
-                    @Override
-                    public void success(NetWorkResultBean<StationInfoPackge> stationInfoPackgeNetWorkResultBean, Response response) {
-                        StationInfoPackge stationInfoPackge = stationInfoPackgeNetWorkResultBean.getData();
-                        List<StationInfo>listDatas = stationInfoPackge.getStationList();
-                        for(StationInfo s :listDatas)
-                        {
-                            Toast.makeText(LoginPageActivity.this,"\n hello:   "+s.toString(),Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                });
+    
+                        Intent intent=new Intent(LoginPageActivity.this,MainActivity.class);
+                        startActivity(intent);
+                        Toast.makeText(getBaseContext(),"登录成功！",Toast.LENGTH_LONG).show();
             }
         });
     }
