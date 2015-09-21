@@ -17,11 +17,15 @@ public class NetWorkResultBean<T> {
     @Expose
     private String Message;
     @Expose
-    private T data;
+    private T Data;
 
     @Override
     public String toString() {
-        return super.toString();
+        return "NetWorkResultBean{" +
+                "MessageCode=" + MessageCode +
+                ", Message='" + Message + '\'' +
+                ", Data=" + Data +
+                '}';
     }
 
     public int getMessageCode() {
@@ -41,10 +45,10 @@ public class NetWorkResultBean<T> {
     }
 
     public T getData() {
-        return data;
+        return Data;
     }
 
     public void setData(T data) {
-        this.data = data;
+        Data = data;
     }
 }

@@ -11,6 +11,13 @@ import java.util.List;
 public class StationInfoPackge implements Parcelable {
     private List<StationInfo>StationList;
 
+    @Override
+    public String toString() {
+        return "StationInfoPackge{" +
+                "StationList=" + StationList +
+                '}';
+    }
+
     public List<StationInfo> getStationList() {
         return StationList;
     }

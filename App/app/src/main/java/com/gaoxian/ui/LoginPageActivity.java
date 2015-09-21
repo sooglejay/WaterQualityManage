@@ -12,9 +12,14 @@ import android.widget.Toast;
 
 import com.gaoxian.R;
 import com.gaoxian.api.User.UserRetrofitUtil;
+import com.gaoxian.api.WM.GetStationsUtil;
 import com.gaoxian.api.callback.NetCallback;
 import com.gaoxian.model.NetWorkResultBean;
+import com.gaoxian.model.StationInfo;
+import com.gaoxian.model.StationInfoPackge;
 import com.gaoxian.model.UserInfo;
+
+import java.util.List;
 
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -56,19 +61,33 @@ public class LoginPageActivity extends Activity {
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserRetrofitUtil.login(LoginPageActivity.this,usernameString,passwordString,"weiqi",new NetCallback<NetWorkResultBean<UserInfo>>(LoginPageActivity.this
-          ) {
+//                UserRetrofitUtil.login(LoginPageActivity.this,usernameString,passwordString,"weiqi",new NetCallback<NetWorkResultBean<UserInfo>>(LoginPageActivity.this) {
+//                    @Override
+//                    public void onFailure(RetrofitError error) {
+//                        Toast.makeText(getBaseContext(),"登录失败！",Toast.LENGTH_LONG).show();
+//                    }
+//
+//                    @Override
+//                    public void success(NetWorkResultBean<UserInfo> userInfoNetWorkResultBean, Response response) {
+//                       //登录成功则启动主界面
+//                        Intent intent=new Intent(LoginPageActivity.this,MainActivity.class);
+//                        startActivity(intent);
+//                        Toast.makeText(getBaseContext(),"登录成功！",Toast.LENGTH_LONG).show();
+//                    }
+//                });
+                GetStationsUtil.getStations(LoginPageActivity.this, "511512", "weiqi", new NetCallback<NetWorkResultBean<StationInfoPackge>>(LoginPageActivity.this) {
                     @Override
                     public void onFailure(RetrofitError error) {
-                        Toast.makeText(getBaseContext(),"登录失败！",Toast.LENGTH_LONG).show();
                     }
-
                     @Override
-                    public void success(NetWorkResultBean<UserInfo> userInfoNetWorkResultBean, Response response) {
-                       //登录成功则启动主界面
-                        Intent intent=new Intent(LoginPageActivity.this,MainActivity.class);
-                        startActivity(intent);
-                        Toast.makeText(getBaseContext(),"登录成功！",Toast.LENGTH_LONG).show();
+                    public void success(NetWorkResultBean<StationInfoPackge> stationInfoPackgeNetWorkResultBean, Response response) {
+                        StationInfoPackge stationInfoPackge = stationInfoPackgeNetWorkResultBean.getData();
+                        List<StationInfo>listDatas = stationInfoPackge.getStationList();
+                        for(StationInfo s :listDatas)
+                        {
+                            Toast.makeText(LoginPageActivity.this,"\n hello:   "+s.toString(),Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 });
             }

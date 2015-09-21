@@ -378,7 +378,6 @@
                 android:textColor="#000000"
                 />
         </LinearLayout>
-        ///////////
         <LinearLayout
             android:id="@+id/wq_out_layout_1"
             android:layout_width="75dp"
