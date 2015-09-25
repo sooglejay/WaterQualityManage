@@ -115,5 +115,7 @@
     <string name="title_activity_panorama_geo_selector">通过地理坐标进入全景图</string>
     <string name="title_activity_panorama_demo">全景图功能</string>
     <string name="title_activity_test_interface">Test_interface</string>
+    <string name="c_water_level_str">出厂水水质综合评定：</string>
+    <string name="j_water_level_str">进厂水水质综合评定：</string>
 
 </resources>

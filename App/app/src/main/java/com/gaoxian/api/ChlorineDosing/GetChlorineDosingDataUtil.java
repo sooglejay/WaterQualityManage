@@ -35,10 +35,10 @@ public class GetChlorineDosingDataUtil extends RetrofitUtil {
      * @param apikey
      * @param callback
      */
-    public static void postChlorineDosingData(final Context mContext, String stid, String apikey, NetCallback<NetWorkResultBean<ChlorineDosingStatePackge>> callback) {
+    public static void getChlorineDosingState(final Context mContext, String stid, String apikey, NetCallback<NetWorkResultBean<ChlorineDosingStatePackge>> callback) {
         RestAdapter restAdapter = getRestAdapter(mContext);
         GetChlorineDosingDataApi git = restAdapter.create(GetChlorineDosingDataApi.class);
-        git.postChlorineDosingState(stid, apikey, callback);
+        git.getChlorineDosingState(stid, apikey, callback);
     }
 
 }

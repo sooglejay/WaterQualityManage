@@ -13,7 +13,7 @@ import retrofit.RestAdapter;
 /**
  * Created by Administrator on 2015/9/12.
  */
-public class GetProductionDataUtil extends RetrofitUtil {
+public class GetProductionDataRetrofitUtil extends RetrofitUtil {
     /**
      * 生产过程数据信息
      * @param mContext
@@ -34,10 +34,10 @@ public class GetProductionDataUtil extends RetrofitUtil {
      * @param apikey
      * @param callback
      */
-    public static void postProductionData(final Context mContext, String stid, String apikey, NetCallback<NetWorkResultBean<ProductionStatePackge>> callback) {
+    public static void getProductionState(final Context mContext, String stid, String apikey, NetCallback<NetWorkResultBean<ProductionStatePackge>> callback) {
         RestAdapter restAdapter = getRestAdapter(mContext);
         GetProductionDataApi git = restAdapter.create(GetProductionDataApi.class);
-        git.postProductionState(stid, apikey, callback);
+        git.getProductionState(stid, apikey, callback);
     }
 
 

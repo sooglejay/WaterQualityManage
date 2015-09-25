@@ -21,8 +21,7 @@ public interface GetProductionDataApi {
     @GET("/api/Production/GetProductionData")
     public void getProductionData(@Query(NetWorkConstant.stid) String stid,@Query(NetWorkConstant.apikey)String apikey,NetCallback<NetWorkResultBean<ProductionDataPackge>> NetCallback);
 
-    @FormUrlEncoded
-    @POST("/api/Production/GetProductionState/")
-    public void postProductionState(@Field(NetWorkConstant.stid) String stid, @Field(NetWorkConstant.apikey) String apikey, NetCallback<NetWorkResultBean<ProductionStatePackge>> callback);
+    @GET("/api/Production/GetProductionState/")
+    public void getProductionState(@Query(NetWorkConstant.stid) String stid, @Query(NetWorkConstant.apikey) String apikey, NetCallback<NetWorkResultBean<ProductionStatePackge>> callback);
 
 }

@@ -8,15 +8,15 @@ import com.gaoxian.model.WQinfoPackge;
 
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
+import retrofit.http.GET;
 import retrofit.http.POST;
+import retrofit.http.Query;
 
 /**
  * Created by Administrator on 2015/9/12.
  */
 public interface WQApi {
-
-    @FormUrlEncoded
-    @POST("/api/WQ/GetWQInfo/")
-    public void getWQInfo(@Field(NetWorkConstant.stid) String stid, @Field(NetWorkConstant.apikey) String apikey, NetCallback<NetWorkResultBean<WQinfoPackge>> callback);
+    @GET("/api/WQ/GetWQInfo/")
+    public void getWQInfo(@Query(NetWorkConstant.stid) String stid, @Query(NetWorkConstant.apikey) String apikey, NetCallback<NetWorkResultBean<WQinfoPackge>> callback);
 
 }

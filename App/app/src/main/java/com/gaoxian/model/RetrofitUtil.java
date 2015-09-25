@@ -1,6 +1,7 @@
 package com.gaoxian.model;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.gaoxian.Constant.NetWorkConstant;
 

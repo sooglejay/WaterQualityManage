@@ -12,6 +12,7 @@ public class WQinfoPackge implements Parcelable {
     private List<WQinfo> WQJCList;
     private List<WQinfo> WQCCList;
     private String JCInfo;
+    private String CCinfo;
 
     @Override
     public String toString() {
@@ -55,7 +56,6 @@ public class WQinfoPackge implements Parcelable {
         this.JCInfo = JCInfo;
     }
 
-    private String CCinfo;
 
     @Override
     public int describeContents() {

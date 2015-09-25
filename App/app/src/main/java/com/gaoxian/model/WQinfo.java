@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by Administrator on 2015/9/12.
  */
 public class WQinfo implements Parcelable {
-    private int WQMonitorData;
+    private double WQMonitorData;
     private String ParameterName;
     private String ParamterCode;
     private String Unit;
@@ -22,11 +22,11 @@ public class WQinfo implements Parcelable {
                 '}';
     }
 
-    public int getWQMonitorData() {
+    public double getWQMonitorData() {
         return WQMonitorData;
     }
 
-    public void setWQMonitorData(int WQMonitorData) {
+    public void setWQMonitorData(double WQMonitorData) {
         this.WQMonitorData = WQMonitorData;
     }
 
@@ -61,7 +61,7 @@ public class WQinfo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.WQMonitorData);
+        dest.writeDouble(this.WQMonitorData);
         dest.writeString(this.ParameterName);
         dest.writeString(this.ParamterCode);
         dest.writeString(this.Unit);
@@ -71,13 +71,13 @@ public class WQinfo implements Parcelable {
     }
 
     protected WQinfo(Parcel in) {
-        this.WQMonitorData = in.readInt();
+        this.WQMonitorData = in.readDouble();
         this.ParameterName = in.readString();
         this.ParamterCode = in.readString();
         this.Unit = in.readString();
     }
 
-    public static final Parcelable.Creator<WQinfo> CREATOR = new Parcelable.Creator<WQinfo>() {
+    public static final Creator<WQinfo> CREATOR = new Creator<WQinfo>() {
         public WQinfo createFromParcel(Parcel source) {
             return new WQinfo(source);
         }
