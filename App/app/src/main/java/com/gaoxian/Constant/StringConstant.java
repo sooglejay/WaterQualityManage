@@ -15,4 +15,7 @@ public class StringConstant {
     public static final String back  = "back";
 
 
+    public static final String apiKey  = "weiqi";
+
+
 }

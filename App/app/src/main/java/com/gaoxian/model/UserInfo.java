@@ -24,10 +24,6 @@ public class UserInfo implements Parcelable {
         AreaCode = areaCode;
     }
 
-    public static Creator<UserInfo> getCREATOR() {
-        return CREATOR;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -45,7 +41,7 @@ public class UserInfo implements Parcelable {
         this.AreaCode = in.readString();
     }
 
-    public static final Parcelable.Creator<UserInfo> CREATOR = new Parcelable.Creator<UserInfo>() {
+    public static final Creator<UserInfo> CREATOR = new Creator<UserInfo>() {
         public UserInfo createFromParcel(Parcel source) {
             return new UserInfo(source);
         }

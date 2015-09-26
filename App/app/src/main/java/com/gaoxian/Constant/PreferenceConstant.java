@@ -6,4 +6,5 @@ package com.gaoxian.Constant;
 public class PreferenceConstant {
     public static final String USER_NAME = "user_name";
     public static final String USER_PASSWORD = "user_password";
+    public static final String AreaCode = "AreaCode";
 }
