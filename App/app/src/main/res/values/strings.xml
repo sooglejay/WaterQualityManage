@@ -7,6 +7,15 @@
     <string name="tab_water_quality">水质信息</string>
     <string name="tab_map_info">地理信息</string>
 
+    <!-- Test activity -->
+    <string name="settings_activate">Activate magnifying</string>
+    <string name="settings_scale">Scale</string>
+    <string name="settings_radius">Radius</string>
+    <string name="settings_border_width">Border width</string>
+    <string name="settings_border_color">Border color</string>
+    <string name="settings_offset_x">Offset X</string>
+    <string name="settings_offset_y">Offset Y</string>
+
     <string name="startlocation">开启定位</string>
     <string name="stoplocation">停止定位</string>
     <string name="error_code_desc">错误码说明</string>

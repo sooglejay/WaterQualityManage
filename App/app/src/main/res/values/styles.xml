@@ -1,4 +1,5 @@
 <resources>
+    <style name="MagnifyingViewStyle" parent="@android:style/Theme.NoTitleBar" />
 
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
     </style>

@@ -8,6 +8,26 @@
     <color name="black_gray_color">#3b3b3b</color>
     <color name="gray_white_color">#bde5d3</color>
 
+    <!-- Common -->
+    <color name="background">#FFFFFFFF</color>
+    <color name="text_color">#FF000000</color>
+    <color name="red">#FFFF0000</color>
+    <color name="green">#FF00FF00</color>
+    <color name="blue">#FF0000BB</color>
+
+
+
+    <!-- Fake action bar -->
+    <color name="fab_background">#FF000000</color>
+    <color name="fab_separator">#FF990000</color>
+    <color name="fab_action_foreground_pressed">#33FFFFFF</color>
+    <color name="fab_action_foreground_normal">#00000000</color>
+
+    <!-- Settings -->
+    <color name="settings_separator">#88DDDDDD</color>
+    <color name="settings_item_background_normal">#00000000</color>
+    <color name="settings_item_background_pressed">#22000000</color>
+
     <color name="red_color">#FF0000</color>
     <color name="pink_color">#f36c60</color>
     <color name="blue_color">#20a0fa</color>
