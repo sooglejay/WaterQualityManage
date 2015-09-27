@@ -20,6 +20,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.ViewParent;
 import android.widget.FrameLayout;
 
+import com.gaoxian.R;
+
 /**
  * Magnifying view.
  */
@@ -32,7 +34,8 @@ public final class MagnifyingView extends View
     private static final int DEFAULT_CIRCLE_RADIUS = 100;
 
     /** Default border color. */
-    private static final int DEFAULT_BORDER_COLOR = Color.BLACK;
+//    private static final int DEFAULT_BORDER_COLOR = Color.BLACK;
+    private static final int DEFAULT_BORDER_COLOR = R.color.transparent_green_color;
 
     /** Default border width, in dip. */
     private static final int DEFAULT_BORDER_WIDTH = 2;
@@ -263,7 +266,6 @@ public final class MagnifyingView extends View
                             case MotionEvent.ACTION_MOVE:
                                 magnifyRegion((int) event.getX(), (int) event.getY());
                                 return true;
-
                             case MotionEvent.ACTION_UP:
                                 stopMagnifying();
                                 return true;

@@ -9,6 +9,8 @@
         android:layout_height="wrap_content">
     </com.gaoxian.widget.TitleBar>
     <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/layout_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/addmedicine_background"></LinearLayout>

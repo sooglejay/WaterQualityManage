@@ -36,6 +36,7 @@
     <color name="light_orange_color">#fffeda0c</color>
     <color name="light_orange_color_trans">#66feda0c</color>
     <color name="green_color">#ff25ccae</color>
+    <color name="transparent_green_color">#6626d3b4</color>
     <color name="dark_green_color">#32d094</color>
     <color name="more_dark_green_color_mid_transparent">#5525bb83</color>
     <color name="more_dark_green_color">#25bb83</color>

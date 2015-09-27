@@ -1,5 +1,6 @@
 package com.gaoxian.ui;
 
+import android.app.usage.UsageEvents;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,8 @@ import com.gaoxian.fragment.MapInfoFragment;
 import com.gaoxian.fragment.ProductionProcessFragment;
 import com.gaoxian.fragment.WaterQualityInfoFragment;
 import com.gaoxian.widget.TabBar;
+
+import de.greenrobot.event.EventBus;
 
 public class MainActivity extends BaseActivity {
     private ViewPager viewPager = null;
@@ -49,7 +52,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 tabBar.changeImageView(viewPager.getCurrentItem(), position, positionOffset, positionOffsetPixels);
-            }
+                 }
 
             @Override
             public void onPageSelected(int position) {
