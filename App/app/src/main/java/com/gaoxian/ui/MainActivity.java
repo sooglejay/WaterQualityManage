@@ -46,9 +46,10 @@ public class MainActivity extends BaseActivity {
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         viewPager.removeAllViews();
         viewPager.setOffscreenPageLimit(10);
+
         viewPagerAdapter = new ViewPagerAdapter(this, getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 tabBar.changeImageView(viewPager.getCurrentItem(), position, positionOffset, positionOffsetPixels);
