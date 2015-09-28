@@ -1,8 +1,12 @@
 package com.gaoxian.widget.ScaleView;
 
+import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.Toast;
+
+import java.util.Calendar;
 
 public class MultiTouchListener implements OnTouchListener {
 
@@ -16,7 +20,6 @@ public class MultiTouchListener implements OnTouchListener {
     private float mPrevX;
     private float mPrevY;
     private ScaleGestureDetector mScaleGestureDetector;
-
     public MultiTouchListener() {
         mScaleGestureDetector = new ScaleGestureDetector(new ScaleGestureListener());
     }
@@ -40,6 +43,7 @@ public class MultiTouchListener implements OnTouchListener {
         scale = Math.max(info.minimumScale, Math.min(info.maximumScale, scale));
         view.setScaleX(scale);
         view.setScaleY(scale);
+
 
         float rotation = adjustAngle(view.getRotation() + info.deltaAngle);
         view.setRotation(rotation);
@@ -72,10 +76,7 @@ public class MultiTouchListener implements OnTouchListener {
         view.setTranslationX(view.getTranslationX() - offsetX);
         view.setTranslationY(view.getTranslationY() - offsetY);
     }
-    public void  reset()
-    {
-        mScaleGestureDetector.reset();
-    }
+
     @Override
     public boolean onTouch(View view, MotionEvent event) {
         mScaleGestureDetector.onTouchEvent(view, event);
@@ -92,6 +93,7 @@ public class MultiTouchListener implements OnTouchListener {
 
                 // Save the ID of this pointer.
                 mActivePointerId = event.getPointerId(0);
+
                 break;
             }
 
@@ -136,8 +138,7 @@ public class MultiTouchListener implements OnTouchListener {
                 break;
             }
         }
-
-        return true;
+        return false;
     }
 
     private class ScaleGestureListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
@@ -152,6 +153,11 @@ public class MultiTouchListener implements OnTouchListener {
             mPivotY = detector.getFocusY();
             mPrevSpanVector.set(detector.getCurrentSpanVector());
             return true;
+        }
+
+        @Override
+        public void onScaleEnd(View view, ScaleGestureDetector detector) {
+            super.onScaleEnd(view, detector);
         }
 
         @Override

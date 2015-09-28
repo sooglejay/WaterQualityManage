@@ -58,6 +58,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onPageSelected(int position) {
                 tabBar.selectTab(position);
+                EventBus.getDefault().post(new IntEvent(IntEvent.Msg_ViewPager_Scroll));
             }
 
             @Override

@@ -7,6 +7,7 @@ public class IntEvent {
 
     //点击地图上的水厂“点击进入”按钮
     public static final int Msg_Enter_Water_Station = 1000;
+    public static final int Msg_ViewPager_Scroll = 1001;
     private int msg = 0;
 
     public IntEvent(int msg) {

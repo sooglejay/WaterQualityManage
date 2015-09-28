@@ -34,6 +34,8 @@ public class BaseActivity extends FragmentActivity {
         super.onPause();
     }
 
+    public void onEvent(Object object){
+    }
 
 
 }
