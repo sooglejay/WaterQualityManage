@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.gaoxian.Constant.PreferenceConstant;
 import com.gaoxian.Constant.StringConstant;
 import com.gaoxian.R;
+import com.gaoxian.util.PreferenceUtil;
 import com.gaoxian.widget.TitleBar;
 
 public class ProductionProcessFragment extends BaseFragment {
@@ -28,7 +30,8 @@ public class ProductionProcessFragment extends BaseFragment {
 
     private void setUp(View view, Bundle savedInstanceState) {
         titleBar = (TitleBar)view.findViewById(R.id.title_bar);
-        titleBar.initTitleBarInfo(StringConstant.tabProductionProcess);
+        titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(), PreferenceConstant.StationName, StringConstant.defaultStationName),
+                StringConstant.tabProductionProcess);
         layout_view = (LinearLayout)view.findViewById(R.id.layout_view);
 
     }

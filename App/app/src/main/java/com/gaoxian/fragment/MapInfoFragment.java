@@ -2,7 +2,6 @@ package com.gaoxian.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -88,7 +87,9 @@ public class MapInfoFragment extends BaseFragment {
 
     private void setUp(View view, Bundle savedInstanceState) {
         titleBar = (TitleBar) view.findViewById(R.id.title_bar);
-        titleBar.initTitleBarInfo(StringConstant.tabMapInfo);
+        titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(), PreferenceConstant.StationName,StringConstant.defaultStationName),
+                StringConstant.tabMapInfo);
+
         initMapView(view);
         getWMGetStation();
     }
@@ -167,12 +168,10 @@ public class MapInfoFragment extends BaseFragment {
                         String tag = (String) v.getTag();
                         if (tag.equals(StringConstant.enter)) {
                             marker.setIcon(mMarkerUnSelected);
-                            Toast.makeText(getActivity(), "你点击的是enter", Toast.LENGTH_SHORT).show();
                             mBaiduMap.hideInfoWindow();
                             EventBus.getDefault().post(new IntEvent(IntEvent.Msg_Enter_Water_Station));
                         } else if (tag.equals(StringConstant.back)) {
                             marker.setIcon(mMarkerUnSelected);
-                            Toast.makeText(getActivity(), "你点击的是back", Toast.LENGTH_SHORT).show();
                             mBaiduMap.hideInfoWindow();
                         }
                     }
@@ -181,13 +180,14 @@ public class MapInfoFragment extends BaseFragment {
                 for (int i = 0; i < mMarkerList.size(); i++) {
                     if (mMarkerList.get(i) == marker) {
                         mMarkerList.get(i).setIcon(mMarkerSelected);
+                        mWaterStationDialogInfo.setStationInfo(mStationList.get(i));
+                        PreferenceUtil.save(MapInfoFragment.this.getActivity(),PreferenceConstant.StationName,mStationList.get(i).getStationName());
                         // 定义用于显示该InfoWindow的坐标点
                         LatLng pt = new LatLng(mStationList.get(i).getMAPLGTD(), mStationList.get(i).getMAPLTTD());
                         // 创建InfoWindow
                         mInfoWindowOverLayDialog = new InfoWindow(mWaterStationDialogInfo, pt, dialog_offset);
                         // 显示InfoWindow
                         mBaiduMap.showInfoWindow(mInfoWindowOverLayDialog);
-//                        break;
                     }
                 }
                 return true;

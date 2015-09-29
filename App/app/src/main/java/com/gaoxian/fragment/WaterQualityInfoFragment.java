@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.gaoxian.Constant.PreferenceConstant;
 import com.gaoxian.Constant.StringConstant;
 import com.gaoxian.R;
 import com.gaoxian.api.WQ.WQRetrofitUtil;
@@ -16,6 +17,7 @@ import com.gaoxian.api.callback.NetCallback;
 import com.gaoxian.model.NetWorkResultBean;
 import com.gaoxian.model.WQinfo;
 import com.gaoxian.model.WQinfoPackge;
+import com.gaoxian.util.PreferenceUtil;
 import com.gaoxian.widget.TitleBar;
 
 import java.util.ArrayList;
@@ -47,7 +49,8 @@ public class WaterQualityInfoFragment extends BaseFragment {
 
     private void setUp(View view, Bundle savedInstanceState) {
         titleBar = (TitleBar) view.findViewById(R.id.title_bar);
-        titleBar.initTitleBarInfo(StringConstant.tabWaterQualityInfo);
+       titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(), PreferenceConstant.StationName, StringConstant.defaultStationName),
+                StringConstant.tabWaterQualityInfo);
 
         mInflater = LayoutInflater.from(this.getActivity());
         J_Gallery = (LinearLayout) view.findViewById(R.id.id_j_gallery);

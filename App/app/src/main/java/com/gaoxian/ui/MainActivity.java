@@ -59,6 +59,9 @@ public class MainActivity extends BaseActivity {
             public void onPageSelected(int position) {
                 tabBar.selectTab(position);
                 EventBus.getDefault().post(new IntEvent(IntEvent.Msg_ViewPager_PageChanged));
+
+                //下面的这句话，必须要加，因为百度地图ontouch 方法里面禁用了滑动
+                EventBus.getDefault().post(new IntEvent(IntEvent.Msg_Enable_ViewPager_Scroll));
             }
 
             @Override

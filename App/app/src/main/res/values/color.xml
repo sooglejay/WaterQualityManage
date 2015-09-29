@@ -70,4 +70,9 @@
 
     <color name="light_green_color_trans">#32d094</color>
 
+
+    <color name="title_bar_top_bg_color">#1f8faf</color>
+    <color name="title_bar_bottom_bg_color">#006582</color>
+    <color name="title_bar_bottom_tab_bg_color">#1f8faf</color>
+
 </resources>

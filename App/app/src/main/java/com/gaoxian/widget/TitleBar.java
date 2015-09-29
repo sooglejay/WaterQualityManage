@@ -11,6 +11,7 @@ import com.gaoxian.R;
 
 public class TitleBar extends FrameLayout {
     private TextView mTitleTv = null;
+    private TextView mTabName = null;
 
 
     public TitleBar(Context context, AttributeSet attrs, int defStyle) {
@@ -30,7 +31,8 @@ public class TitleBar extends FrameLayout {
 
     private void initUI(Context context) {
         LayoutInflater.from(context).inflate(R.layout.view_titlebar, this, true);
-        mTitleTv = (TextView) findViewById(R.id.title_id);
+        mTitleTv = (TextView) findViewById(R.id.tv_title_name);
+        mTabName = (TextView) findViewById(R.id.tv_tab_name);
     }
 
     /**
@@ -38,8 +40,9 @@ public class TitleBar extends FrameLayout {
      *
      * @param title
      */
-    public void initTitleBarInfo(String title) {
+    public void initTitleBarInfo(String title,String tabName) {
 
-        mTitleTv.setText(title);
+        mTitleTv.setText(title+"");
+        mTabName.setText(tabName+"");
     }
 }

@@ -6,13 +6,13 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gaoxian.Constant.StringConstant;
 import com.gaoxian.R;
+import com.gaoxian.model.StationInfo;
+import com.gaoxian.util.PreferenceUtil;
 
 /**
  * Created by Administrator on 2015/9/12.
@@ -27,6 +27,10 @@ public class WaterStationInfoDialog extends LinearLayout {
     }
 
     private OverLayOnClickLisenter lisenter;
+    private TextView tvStationTitle;
+    private TextView tvToxic;
+    private TextView tvJWaterQuality;
+    private TextView tvCWaterQuality;
 
     public WaterStationInfoDialog(Context context) {
         super(context);
@@ -50,6 +54,11 @@ public class WaterStationInfoDialog extends LinearLayout {
 
     private void initView(final Context mContext) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.dialog_water_station_info,this,true);
+        tvStationTitle = (TextView)view.findViewById(R.id.tv_station_title);
+        tvToxic = (TextView)view.findViewById(R.id.tv_toxic);
+        tvJWaterQuality = (TextView)view.findViewById(R.id.tv_j_water_quality);
+        tvCWaterQuality = (TextView)view.findViewById(R.id.tv_c_water_quality);
+
         enter = (TextView)view.findViewById(R.id.tv_enter);
         enter.setTag(StringConstant.enter);
 
@@ -71,6 +80,17 @@ public class WaterStationInfoDialog extends LinearLayout {
 
     }
 
+    /**
+     * 设置水厂的基本信息
+     * @param stationInfo
+     */
+    public void setStationInfo(StationInfo stationInfo)
+    {
+        tvStationTitle.setText(""+stationInfo.getStationName());
+        tvToxic.setText("编号："+stationInfo.getSTCD());
+        tvCWaterQuality.setText("出厂水质："+stationInfo.getCCInfo());
+        tvJWaterQuality.setText("进出水质："+stationInfo.getJCinfo());
+    }
     public interface OverLayOnClickLisenter
     {
         public void onClick(View v);

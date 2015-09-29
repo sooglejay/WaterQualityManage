@@ -1,6 +1,7 @@
 package com.gaoxian.widget.ScaleView;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -165,6 +166,8 @@ public class MultiTouchListener implements OnTouchListener {
             TransformInfo info = new TransformInfo();
             info.deltaScale = isScaleEnabled  ? detector.getScaleFactor():1.0f;
             info.deltaAngle = isRotateEnabled ? Vector2D.getAngle(mPrevSpanVector, detector.getCurrentSpanVector()) : 0.0f;
+
+            Log.e("jwjw","scaleX:"+view.getScaleX()+"  scaleY:"+view.getScaleY());
             info.deltaX = isTranslateEnabled  ? detector.getFocusX() - mPivotX : 0.0f;
             info.deltaY = isTranslateEnabled  ? detector.getFocusY() - mPivotY : 0.0f;
             info.pivotX = mPivotX;

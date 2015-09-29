@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.gaoxian.Constant.PreferenceConstant;
 import com.gaoxian.Constant.StringConstant;
 import com.gaoxian.R;
 import com.gaoxian.events.IntEvent;
 import com.gaoxian.util.DoubleClickListener;
+import com.gaoxian.util.PreferenceUtil;
 import com.gaoxian.widget.ScaleView.MultiTouchListener;
 import com.gaoxian.widget.TitleBar;
 
@@ -39,7 +41,9 @@ public class AddMedicineFragment extends BaseFragment {
     private void setUp(View view, Bundle savedInstanceState) {
         titleBar = (TitleBar) view.findViewById(R.id.title_bar);
         layout_view = (LinearLayout) view.findViewById(R.id.layout_view);
-        titleBar.initTitleBarInfo(StringConstant.tabAddMedicine);
+
+        titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(), PreferenceConstant.StationName,StringConstant.defaultStationName),
+                StringConstant.tabAddMedicine);
         layout_view.setOnTouchListener(new MultiTouchListener());
         getLayoutParams(layout_view);
         layout_view.setOnClickListener(new DoubleClickListener() {
@@ -78,10 +82,10 @@ public class AddMedicineFragment extends BaseFragment {
     }
 
     private void processSingleClickEvent(View v) {
-        Log.e("jwjw", "single tap");
+//        Log.e("jwjw", "single tap");
     }
     private void processDoubleClickEvent(View v) {
-        Log.e("jwjw", "double tap");
+//        Log.e("jwjw", "double tap");
         resetLayoutParams(layout_view,originalScaleX,originalScaleY,originalTranslateX,originalTranslateY);
     }
 

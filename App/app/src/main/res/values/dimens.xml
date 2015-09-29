@@ -22,5 +22,5 @@
 
     <dimen name="large_padding">64dp</dimen>
     <dimen name="huge_padding">80dp</dimen>
-    <dimen name="title_bar_height">48dp</dimen>
+    <dimen name="title_bar_height">96dp</dimen>
 </resources>
