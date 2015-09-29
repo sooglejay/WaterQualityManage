@@ -1,7 +1,9 @@
 package com.gaoxian.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +12,16 @@ import android.widget.LinearLayout;
 import com.gaoxian.Constant.StringConstant;
 import com.gaoxian.R;
 import com.gaoxian.events.IntEvent;
+import com.gaoxian.util.DoubleClickListener;
 import com.gaoxian.widget.ScaleView.MultiTouchListener;
 import com.gaoxian.widget.TitleBar;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class AddMedicineFragment extends BaseFragment {
     private float originalScaleX, originalScaleY, originalTranslateX, originalTranslateY;
-    private static final long LONG_PRESS_TIME = 500;
-    private long mCurrentClickTime;
-    private int mClickCount = 0;
 
     private TitleBar titleBar;
     private LinearLayout layout_view;
@@ -39,31 +42,49 @@ public class AddMedicineFragment extends BaseFragment {
         titleBar.initTitleBarInfo(StringConstant.tabAddMedicine);
         layout_view.setOnTouchListener(new MultiTouchListener());
         getLayoutParams(layout_view);
-        layout_view.setOnClickListener(new View.OnClickListener() {
+        layout_view.setOnClickListener(new DoubleClickListener() {
             @Override
-            public void onClick(View v) {
-                mClickCount++;
-                switch (mClickCount) {
-                    case 1:
-                        mCurrentClickTime = System.currentTimeMillis();
-                        break;
-                    case 2:
-                        if (System.currentTimeMillis() - mCurrentClickTime < LONG_PRESS_TIME) {
-                            mCurrentClickTime = System.currentTimeMillis();
-                            mClickCount = 0;
-                            resetLayoutParams(layout_view, originalScaleX, originalScaleY, originalTranslateX, originalTranslateY);
-                        } else {
-                            mCurrentClickTime = System.currentTimeMillis();
-                            mClickCount = 0;
-                        }
-                        break;
-                    default:
-                        break;
+            public void onSingleClick(final View v) {
 
+                final Handler handler = new Handler();
+                final Runnable mRunnable = new Runnable() {
+                    public void run() {
+                        processSingleClickEvent(v); //Do what ever u want on single click
+
+                    }
+                };
+
+                TimerTask timertask = new TimerTask() {
+                    @Override
+                    public void run() {
+                        handler.post(mRunnable);
+                    }
+                };
+                timer = new Timer();
+                timer.schedule(timertask, DOUBLE_CLICK_TIME_DELTA);
+
+            }
+
+            @Override
+            public void onDoubleClick(View v) {
+                if (timer != null) {
+                    timer.cancel(); //Cancels Running Tasks or Waiting Tasks.
+                    timer.purge();  //Frees Memory by erasing cancelled Tasks.
                 }
+                processDoubleClickEvent(v);//Do what ever u want on Double Click
+
             }
         });
     }
+
+    private void processSingleClickEvent(View v) {
+        Log.e("jwjw", "single tap");
+    }
+    private void processDoubleClickEvent(View v) {
+        Log.e("jwjw", "double tap");
+        resetLayoutParams(layout_view,originalScaleX,originalScaleY,originalTranslateX,originalTranslateY);
+    }
+
     private void getLayoutParams(View layout_view) {
         originalScaleX = layout_view.getScaleX();
         originalScaleY = layout_view.getScaleY();
