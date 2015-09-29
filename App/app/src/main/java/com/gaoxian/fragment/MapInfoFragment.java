@@ -2,7 +2,9 @@ package com.gaoxian.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,6 +22,7 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.TextOptions;
 import com.baidu.mapapi.model.LatLng;
+import com.gaoxian.Constant.IntConstant;
 import com.gaoxian.Constant.PreferenceConstant;
 import com.gaoxian.Constant.StringConstant;
 import com.gaoxian.R;
@@ -42,18 +45,20 @@ import retrofit.client.Response;
 
 public class MapInfoFragment extends BaseFragment {
 
-    private static final LatLng GEO_CHENDU = new LatLng(28.435,104.519);
+    private static final LatLng GEO_CHENDU = new LatLng(28.435, 104.519);
     private TitleBar titleBar;
     private static int dialog_offset = -100;
     private static int marker_offset = -1;
 
+
+    private float downX = 0, upX = 0;
     /**
      * MapView 是地图主控件
      */
     private MapView mMapView;
     private BaiduMap mBaiduMap;
 
-    List<StationInfo>mStationList = new ArrayList<>();
+    List<StationInfo> mStationList = new ArrayList<>();
     private List<Marker> mMarkerList = new ArrayList<>();
     BitmapDescriptor mMarkerSelected = BitmapDescriptorFactory
             .fromResource(R.drawable.icon_water_station_selected);
@@ -70,6 +75,7 @@ public class MapInfoFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_4, container, false);
     }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         setUp(view, savedInstanceState);
@@ -79,6 +85,7 @@ public class MapInfoFragment extends BaseFragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
     }
+
     private void setUp(View view, Bundle savedInstanceState) {
         titleBar = (TitleBar) view.findViewById(R.id.title_bar);
         titleBar.initTitleBarInfo(StringConstant.tabMapInfo);
@@ -96,29 +103,45 @@ public class MapInfoFragment extends BaseFragment {
         mMapView = (MapView) view.findViewById(R.id.id_bmapView);
         mBaiduMap = mMapView.getMap();
         mBaiduMap.setMapStatus(u1);
+
+        mBaiduMap.setOnMapTouchListener(new BaiduMap.OnMapTouchListener() {
+            @Override
+            public void onTouch(MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        downX = motionEvent.getX();
+                        if (downX < IntConstant.ScrollBaiduMapBoundary) {
+                            EventBus.getDefault().post(new IntEvent(IntEvent.Msg_Enable_ViewPager_Scroll));
+                        } else {
+                            EventBus.getDefault().post(new IntEvent(IntEvent.Msg_Disable_ViewPager_Scroll));
+                        }
+                        break;
+                }
+            }
+        });
     }
 
     /**
      * 初始化地图上的覆盖物,注意    LatLng llB = new LatLng(infoList.get(i).getMAPLGTD() , infoList.get(i).getMAPLTTD()); 参数的顺序
+     *
      * @param infoList
      */
-    private void initMark(List<StationInfo>infoList) {
-        for(int i = 0 ; i<infoList.size(); i ++)
-        {
-            LatLng llB = new LatLng(infoList.get(i).getMAPLGTD() , infoList.get(i).getMAPLTTD());
+    private void initMark(List<StationInfo> infoList) {
+        for (int i = 0; i < infoList.size(); i++) {
+            LatLng llB = new LatLng(infoList.get(i).getMAPLGTD(), infoList.get(i).getMAPLTTD());
             OverlayOptions ooB = new MarkerOptions().position(llB).icon(mMarkerUnSelected)
                     .zIndex(9);
             Marker newStationMarker = (Marker) (mBaiduMap.addOverlay(ooB));
             mMarkerList.add(newStationMarker);
 
             //定义文字所显示的坐标点
-            LatLng waterStation1 = new LatLng(infoList.get(i).getMAPLGTD(),infoList.get(i).getMAPLTTD());
+            LatLng waterStation1 = new LatLng(infoList.get(i).getMAPLGTD(), infoList.get(i).getMAPLTTD());
             //构建文字Option对象，用于在地图上添加文字
             OverlayOptions textOption1 = new TextOptions()
                     .bgColor(R.color.green_color)
                     .fontSize(24)
                     .fontColor(R.color.light_red)
-                    .text((i+1)+"号水厂")
+                    .text((i + 1) + "号水厂")
                     .rotate(0)
                     .position(waterStation1);
             //在地图上添加该文字对象并显示
@@ -155,13 +178,11 @@ public class MapInfoFragment extends BaseFragment {
                     }
                 });
 
-                for(int i = 0 ; i < mMarkerList.size(); i ++)
-                {
-                    if(mMarkerList.get(i) == marker)
-                    {
+                for (int i = 0; i < mMarkerList.size(); i++) {
+                    if (mMarkerList.get(i) == marker) {
                         mMarkerList.get(i).setIcon(mMarkerSelected);
                         // 定义用于显示该InfoWindow的坐标点
-                        LatLng pt = new LatLng(mStationList.get(i).getMAPLGTD(),mStationList.get(i).getMAPLTTD());
+                        LatLng pt = new LatLng(mStationList.get(i).getMAPLGTD(), mStationList.get(i).getMAPLTTD());
                         // 创建InfoWindow
                         mInfoWindowOverLayDialog = new InfoWindow(mWaterStationDialogInfo, pt, dialog_offset);
                         // 显示InfoWindow
@@ -175,7 +196,7 @@ public class MapInfoFragment extends BaseFragment {
     }
 
     private void getWMGetStation() {
-        GetStationsUtil.getStations(MapInfoFragment.this.getActivity(), PreferenceUtil.load(this.getActivity(), PreferenceConstant.AreaCode,""), StringConstant.apiKey, new NetCallback<NetWorkResultBean<StationInfoPackge>>(MapInfoFragment.this.getActivity()) {
+        GetStationsUtil.getStations(MapInfoFragment.this.getActivity(), PreferenceUtil.load(this.getActivity(), PreferenceConstant.AreaCode, ""), StringConstant.apiKey, new NetCallback<NetWorkResultBean<StationInfoPackge>>(MapInfoFragment.this.getActivity()) {
             @Override
             public void onFailure(RetrofitError error) {
 
@@ -183,14 +204,13 @@ public class MapInfoFragment extends BaseFragment {
 
             @Override
             public void success(NetWorkResultBean<StationInfoPackge> stationInfoPackgeNetWorkResultBean, Response response) {
-                StationInfoPackge infoPackge =  stationInfoPackgeNetWorkResultBean.getData();
+                StationInfoPackge infoPackge = stationInfoPackgeNetWorkResultBean.getData();
                 mStationList = infoPackge.getStationList();
                 initMark(mStationList);
                 setMapLisenter();
             }
         });
     }
-
 
 
     @Override

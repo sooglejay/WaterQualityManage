@@ -1,6 +1,5 @@
 package com.gaoxian.ui;
 
-import android.app.usage.UsageEvents;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,12 +14,13 @@ import com.gaoxian.fragment.AddMedicineFragment;
 import com.gaoxian.fragment.MapInfoFragment;
 import com.gaoxian.fragment.ProductionProcessFragment;
 import com.gaoxian.fragment.WaterQualityInfoFragment;
+import com.gaoxian.widget.ScrollableViewPager;
 import com.gaoxian.widget.TabBar;
 
 import de.greenrobot.event.EventBus;
 
 public class MainActivity extends BaseActivity {
-    private ViewPager viewPager = null;
+    private ScrollableViewPager viewPager = null;
     private TabBar tabBar = null;
     private View lineView = null;
     private ViewPagerAdapter viewPagerAdapter = null;
@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity {
      * 初始化viewpager
      */
     private void initViewPager() {
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        viewPager = (ScrollableViewPager) findViewById(R.id.view_pager);
         viewPager.removeAllViews();
         viewPager.setOffscreenPageLimit(10);
 
@@ -53,12 +53,12 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 tabBar.changeImageView(viewPager.getCurrentItem(), position, positionOffset, positionOffsetPixels);
-                 }
+            }
 
             @Override
             public void onPageSelected(int position) {
                 tabBar.selectTab(position);
-                EventBus.getDefault().post(new IntEvent(IntEvent.Msg_ViewPager_Scroll));
+                EventBus.getDefault().post(new IntEvent(IntEvent.Msg_ViewPager_PageChanged));
             }
 
             @Override
@@ -124,6 +124,12 @@ public class MainActivity extends BaseActivity {
         switch (event.getMsg()) {
             case IntEvent.Msg_Enter_Water_Station:
                 viewPager.setCurrentItem(0, false);
+                break;
+            case IntEvent.Msg_Disable_ViewPager_Scroll:
+                viewPager.setScrollable(false);
+                break;
+            case IntEvent.Msg_Enable_ViewPager_Scroll:
+                viewPager.setScrollable(true);
                 break;
             default:
                 break;

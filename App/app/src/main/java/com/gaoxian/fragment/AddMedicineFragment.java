@@ -97,16 +97,11 @@ public class AddMedicineFragment extends BaseFragment {
         layout_view.setScaleX(originalScaleX);
         layout_view.setScaleY(originalScaleY);
     }
-
-    /**
-     * EvenBus 接收消息
-     *
-     * @param event
-     */
+    
     public void onEventMainThread(IntEvent event) {
 
         switch (event.getMsg()) {
-            case IntEvent.Msg_ViewPager_Scroll:
+            case IntEvent.Msg_ViewPager_PageChanged:
                 if(layout_view!=null)
                 {
                     resetLayoutParams(layout_view, originalScaleX, originalScaleY, originalTranslateX, originalTranslateY);
