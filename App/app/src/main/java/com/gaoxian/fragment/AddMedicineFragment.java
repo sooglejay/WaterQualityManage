@@ -97,7 +97,7 @@ public class AddMedicineFragment extends BaseFragment {
         layout_view.setScaleX(originalScaleX);
         layout_view.setScaleY(originalScaleY);
     }
-    
+
     public void onEventMainThread(IntEvent event) {
 
         switch (event.getMsg()) {
