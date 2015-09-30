@@ -51,10 +51,12 @@ public class MultiTouchListener implements OnTouchListener {
     }
 
     private static void adjustTranslation(View view, float deltaX, float deltaY) {
-        float[] deltaVector = {deltaX, deltaY};
-        view.getMatrix().mapVectors(deltaVector);
-        view.setTranslationX(view.getTranslationX() + deltaVector[0]);
-        view.setTranslationY(view.getTranslationY() + deltaVector[1]);
+        if(view.getScaleX()>1.0) {
+            float[] deltaVector = {deltaX, deltaY};
+            view.getMatrix().mapVectors(deltaVector);
+            view.setTranslationX(view.getTranslationX() + deltaVector[0]);
+            view.setTranslationY(view.getTranslationY() + deltaVector[1]);
+        }
     }
 
     private static void computeRenderOffset(View view, float pivotX, float pivotY) {

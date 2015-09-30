@@ -28,6 +28,7 @@
             android:id="@+id/tv_toxic"
             android:layout_width="wrap_content"
             android:layout_marginLeft="@dimen/middle_padding"
+            android:layout_marginTop="@dimen/middle_padding"
             android:textSize="@dimen/big_textsize"
             android:textColor="@color/black_color"
             android:gravity="center"
