@@ -6,7 +6,7 @@
     <LinearLayout
         android:background="@color/title_bar_top_bg_color"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="center"
         android:layout_height="48dp">
         <TextView

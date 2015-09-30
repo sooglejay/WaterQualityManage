@@ -4,14 +4,373 @@
     android:animateLayoutChanges="true"
     android:orientation="vertical">
 
-<LinearLayout
-    android:orientation="vertical"
-    android:id="@+id/layout_view"
-    android:layout_marginTop="@dimen/title_bar_height"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/productionprocess_background">
-</LinearLayout>
+    <FrameLayout
+        android:orientation="vertical"
+        android:id="@+id/layout_view"
+        android:layout_marginTop="@dimen/title_bar_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/productionprocess_background">
+
+        <!--三个像风扇一样的东西-->
+        <ImageView
+            android:id="@+id/iv_fan_top"
+            android:layout_width="28dp"
+            android:src="@drawable/fan_red"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="170dp"
+            android:layout_height="26dp" />
+        <ImageView
+            android:layout_width="28dp"
+            android:src="@drawable/fan_green"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="210dp"
+            android:layout_height="26dp" />
+        <ImageView
+            android:layout_width="28dp"
+            android:src="@drawable/fan_error"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="250dp"
+            android:layout_height="26dp" />
+
+        <!--风扇下面的开关-->
+        <ImageView
+            android:id="@+id/iv_valve_below_fan"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="72dp"
+            android:layout_marginLeft="178.5dp"
+            android:layout_height="22dp" />
+
+        <!--进水流量-->
+        <TextView
+            android:id="@+id/tv_j_water_amount"
+            android:layout_width="wrap_content"
+            android:text="0.0"
+            android:layout_marginLeft="136dp"
+            android:textSize="10sp"
+            android:textColor="@color/white_color"
+            android:layout_marginTop="90dp"
+            android:layout_height="wrap_content" />
+        <!--浊度NTU-->
+        <TextView
+            android:id="@+id/tv_ntu_water_amount"
+            android:layout_width="wrap_content"
+            android:text="0.0"
+            android:layout_marginLeft="240dp"
+            android:textSize="10sp"
+            android:textColor="@color/white_color"
+            android:layout_marginTop="102dp"
+            android:layout_height="wrap_content" />
+
+        <!-- 左边配水井-->
+        <ImageView
+            android:id="@+id/iv_left_water_box"
+            android:layout_width="64dp"
+            android:src="@drawable/icon_water_level_0"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="106dp"
+            android:layout_height="64dp" />
+        <TextView
+            android:id="@+id/tv_name_on_left_water_box"
+            android:layout_width="wrap_content"
+            android:text="1#配水井"
+            android:textSize="8sp"
+            android:layout_marginLeft="58dp"
+            android:textColor="@color/black_color"
+            android:layout_marginTop="118dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_water_unit_on_left_water_box"
+            android:layout_width="wrap_content"
+            android:text="液位（m）"
+            android:textSize="8sp"
+            android:layout_marginLeft="58dp"
+            android:textColor="@color/black_color"
+            android:layout_marginTop="134dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_water_amount_on_left_water_box"
+            android:layout_width="wrap_content"
+            android:text="0.0"
+            android:textSize="8sp"
+            android:layout_marginLeft="88dp"
+            android:textColor="@color/white_color"
+            android:layout_marginTop="148dp"
+            android:layout_height="wrap_content" />
+
+        <!-- 右边配水井-->
+        <ImageView
+            android:id="@+id/iv_right_water_box"
+            android:layout_width="64dp"
+            android:src="@drawable/icon_water_level_0"
+            android:layout_marginLeft="276dp"
+            android:layout_marginTop="106dp"
+            android:layout_height="64dp" />
+        <TextView
+            android:id="@+id/tv_name_on_right_water_box"
+            android:layout_width="wrap_content"
+            android:text="2#配水井"
+            android:textSize="8sp"
+            android:layout_marginLeft="292dp"
+            android:textColor="@color/black_color"
+            android:layout_marginTop="118dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_water_unit_on_right_water_box"
+            android:layout_width="wrap_content"
+            android:text="液位差（m）"
+            android:textSize="8sp"
+            android:layout_marginLeft="292dp"
+            android:textColor="@color/black_color"
+            android:layout_marginTop="134dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_water_amount_on_right_water_box"
+            android:layout_width="wrap_content"
+            android:text="0.0"
+            android:textSize="8sp"
+            android:layout_marginLeft="322dp"
+            android:textColor="@color/white_color"
+            android:layout_marginTop="148dp"
+            android:layout_height="wrap_content" />
+
+        <!--中间的 污垢厚度-->
+        <TextView
+            android:id="@+id/tv_dirt_water_thickness"
+            android:layout_width="wrap_content"
+            android:text="0.0"
+            android:textSize="8sp"
+            android:layout_marginLeft="192dp"
+            android:textColor="@color/white_color"
+            android:layout_marginTop="194dp"
+            android:layout_height="wrap_content" />
+
+
+
+        <!--  1-18 个开关 -->
+        <!-- 8 -->
+        <ImageView
+            android:id="@+id/iv_valve_8"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="258dp"
+            android:layout_marginLeft="40dp"
+            android:layout_height="22dp" />
+        <!-- 9 -->
+        <ImageView
+            android:id="@+id/iv_valve_9"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="258dp"
+            android:layout_marginLeft="60dp"
+            android:layout_height="22dp" />
+
+        <!-- 10 -->
+        <ImageView
+            android:id="@+id/iv_valve_10"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="258dp"
+            android:layout_marginLeft="78dp"
+            android:layout_height="22dp" />
+
+        <!-- 11 -->
+        <ImageView
+            android:id="@+id/iv_valve_11"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="258dp"
+            android:layout_marginLeft="96.5dp"
+            android:layout_height="22dp" />
+
+        <!-- 12 -->
+        <ImageView
+            android:id="@+id/iv_valve_12"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="258dp"
+            android:layout_marginLeft="114.5dp"
+            android:layout_height="22dp" />
+
+        <!-- 13 -->
+        <ImageView
+            android:id="@+id/iv_valve_13"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="258dp"
+            android:layout_marginLeft="133dp"
+            android:layout_height="22dp" />
+        <!-- 14 -->
+        <ImageView
+            android:id="@+id/iv_valve_14"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="258dp"
+            android:layout_marginLeft="151dp"
+            android:layout_height="22dp" />
+
+        <!-- 1 -->
+        <ImageView
+            android:id="@+id/iv_valve_1"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="258dp"
+            android:layout_marginLeft="204dp"
+            android:layout_height="22dp" />
+
+        <!-- 2 -->
+        <ImageView
+            android:id="@+id/iv_valve_2"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="258dp"
+            android:layout_marginLeft="223dp"
+            android:layout_height="22dp" />
+
+        <!-- 3 -->
+        <ImageView
+            android:id="@+id/iv_valve_3"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="258dp"
+            android:layout_marginLeft="241.5dp"
+            android:layout_height="22dp" />
+
+        <!-- 4 -->
+        <ImageView
+            android:id="@+id/iv_valve_4"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="258dp"
+            android:layout_marginLeft="258dp"
+            android:layout_height="22dp" />
+        <!-- 5 -->
+        <ImageView
+            android:id="@+id/iv_valve_5"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="258dp"
+            android:layout_marginLeft="278dp"
+            android:layout_height="22dp" />
+        <!-- 6 -->
+        <ImageView
+            android:id="@+id/iv_valve_6"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="258dp"
+            android:layout_marginLeft="296dp"
+            android:layout_height="22dp" />
+        <!-- 7 -->
+        <ImageView
+            android:id="@+id/iv_valve_7"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="258dp"
+            android:layout_marginLeft="314dp"
+            android:layout_height="22dp" />
+        <!-- 15 -->
+        <ImageView
+            android:id="@+id/iv_valve_15"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="320dp"
+            android:layout_marginLeft="152dp"
+            android:layout_height="22dp" />
+        <!-- 16 -->
+        <ImageView
+            android:id="@+id/iv_valve_16"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="320dp"
+            android:layout_marginLeft="169dp"
+            android:layout_height="22dp" />
+        <!-- 17 -->
+        <ImageView
+            android:id="@+id/iv_valve_17"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="320dp"
+            android:layout_marginLeft="187dp"
+            android:layout_height="22dp" />
+        <!-- 18 -->
+        <ImageView
+            android:id="@+id/iv_valve_18"
+            android:layout_width="16dp"
+            android:src="@drawable/valve_black"
+            android:layout_marginTop="320dp"
+            android:layout_marginLeft="206dp"
+            android:layout_height="22dp" />
+
+
+        <!-- 1#清水池 -->
+        <TextView
+            android:id="@+id/tv_pool_1"
+            android:layout_width="wrap_content"
+            android:text="0.0"
+            android:textSize="8sp"
+            android:layout_marginLeft="114dp"
+            android:textColor="@color/white_color"
+            android:layout_marginTop="358dp"
+            android:layout_height="wrap_content" />
+
+        <!-- 2#清水池 -->
+        <TextView
+            android:id="@+id/tv_pool_2"
+            android:layout_width="wrap_content"
+            android:text="0.0"
+            android:textSize="8sp"
+            android:layout_marginLeft="272dp"
+            android:textColor="@color/white_color"
+            android:layout_marginTop="358dp"
+            android:layout_height="wrap_content" />
+
+        <!-- 下面 三个风扇 -->
+        <ImageView
+            android:id="@+id/iv_fan_bottom_1"
+            android:layout_width="22dp"
+            android:src="@drawable/fan_gray"
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="138dp"
+            android:layout_height="22dp" />
+        <!-- 下面 三个风扇 -->
+        <ImageView
+            android:id="@+id/iv_fan_bottom_2"
+            android:layout_width="22dp"
+            android:src="@drawable/fan_gray"
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="170dp"
+            android:layout_height="22dp" />
+        <!-- 下面 三个风扇 -->
+        <ImageView
+            android:id="@+id/iv_fan_bottom_3"
+            android:layout_width="22dp"
+            android:src="@drawable/fan_gray"
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="204dp"
+            android:layout_height="22dp" />
+
+        <!-- 出水压力 -->
+        <TextView
+            android:id="@+id/tv_c_water_stress"
+            android:layout_width="wrap_content"
+            android:text="0.0"
+            android:textSize="8sp"
+            android:layout_marginLeft="300dp"
+            android:textColor="@color/white_color"
+            android:layout_marginTop="414dp"
+            android:layout_height="wrap_content" />
+        <!-- 出水流 -->
+        <TextView
+            android:id="@+id/tv_c_water_amount"
+            android:layout_width="wrap_content"
+            android:text="0.0"
+            android:textSize="8sp"
+            android:layout_marginLeft="300dp"
+            android:textColor="@color/white_color"
+            android:layout_marginTop="450dp"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
     <com.gaoxian.widget.TitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"

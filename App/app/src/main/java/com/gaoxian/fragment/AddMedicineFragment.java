@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.gaoxian.Constant.PreferenceConstant;
 import com.gaoxian.Constant.StringConstant;
@@ -26,7 +27,7 @@ public class AddMedicineFragment extends BaseFragment {
     private float originalScaleX, originalScaleY, originalTranslateX, originalTranslateY;
 
     private TitleBar titleBar;
-    private LinearLayout layout_view;
+    private RelativeLayout layout_view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,11 +41,11 @@ public class AddMedicineFragment extends BaseFragment {
 
     private void setUp(View view, Bundle savedInstanceState) {
         titleBar = (TitleBar) view.findViewById(R.id.title_bar);
-        layout_view = (LinearLayout) view.findViewById(R.id.layout_view);
+        layout_view = (RelativeLayout) view.findViewById(R.id.layout_view);
 
         titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(), PreferenceConstant.StationName,StringConstant.defaultStationName),
                 StringConstant.tabAddMedicine);
-        layout_view.setOnTouchListener(new MultiTouchListener());
+//        layout_view.setOnTouchListener(new MultiTouchListener());
         getLayoutParams(layout_view);
         layout_view.setOnClickListener(new DoubleClickListener() {
             @Override
