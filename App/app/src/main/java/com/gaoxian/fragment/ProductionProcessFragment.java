@@ -225,7 +225,10 @@ public class ProductionProcessFragment extends BaseFragment {
      * 获取生产控制信息
      */
     private void getProductionData() {
-        GetProductionDataRetrofitUtil.getProductionData(ProductionProcessFragment.this.getActivity(), "511525001", "weiqi", new NetCallback<NetWorkResultBean<ProductionDataPackge>>(ProductionProcessFragment.this.getActivity()) {
+        GetProductionDataRetrofitUtil.getProductionData(ProductionProcessFragment.this.getActivity(),PreferenceUtil.load(ProductionProcessFragment.this.getActivity(),
+                        PreferenceConstant.AreaCode,""),
+                StringConstant.apiKey,
+                new NetCallback<NetWorkResultBean<ProductionDataPackge>>(ProductionProcessFragment.this.getActivity()) {
             @Override
             public void onFailure(RetrofitError error) {
             }
@@ -272,7 +275,11 @@ public class ProductionProcessFragment extends BaseFragment {
      * 获取生产控制信息
      */
     private void getProductionState() {
-        GetProductionDataRetrofitUtil.getProductionState(ProductionProcessFragment.this.getActivity(), "511525001", "weiqi", new NetCallback<NetWorkResultBean<ProductionStatePackge>>(ProductionProcessFragment.this.getActivity()) {
+        GetProductionDataRetrofitUtil.getProductionState(ProductionProcessFragment.this.getActivity(),
+                PreferenceUtil.load(ProductionProcessFragment.this.getActivity(),
+                        PreferenceConstant.AreaCode,""),
+                StringConstant.apiKey,
+                new NetCallback<NetWorkResultBean<ProductionStatePackge>>(ProductionProcessFragment.this.getActivity()) {
             @Override
             public void onFailure(RetrofitError error) {
 
@@ -288,13 +295,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     if (bean.getSCKZCode().equals(NetWorkConstant.PWF01)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF01.setImageResource(R.drawable.valve_open);
+                                iv_PWF01.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF01.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF01.setImageResource(R.drawable.valve_error);
+                                iv_PWF01.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -302,13 +309,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF02)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF02.setImageResource(R.drawable.valve_open);
+                                iv_PWF02.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF02.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF02.setImageResource(R.drawable.valve_error);
+                                iv_PWF02.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -316,13 +323,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF03)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF03.setImageResource(R.drawable.valve_open);
+                                iv_PWF03.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF03.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF03.setImageResource(R.drawable.valve_error);
+                                iv_PWF03.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -330,13 +337,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF04)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF04.setImageResource(R.drawable.valve_open);
+                                iv_PWF04.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF04.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF04.setImageResource(R.drawable.valve_error);
+                                iv_PWF04.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -344,13 +351,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF05)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF05.setImageResource(R.drawable.valve_open);
+                                iv_PWF05.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF05.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF05.setImageResource(R.drawable.valve_error);
+                                iv_PWF05.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -358,13 +365,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF06)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF06.setImageResource(R.drawable.valve_open);
+                                iv_PWF06.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF06.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF06.setImageResource(R.drawable.valve_error);
+                                iv_PWF06.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -372,13 +379,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF07)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF07.setImageResource(R.drawable.valve_open);
+                                iv_PWF07.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF07.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF07.setImageResource(R.drawable.valve_error);
+                                iv_PWF07.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -386,13 +393,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF08)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF08.setImageResource(R.drawable.valve_open);
+                                iv_PWF08.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF08.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF08.setImageResource(R.drawable.valve_error);
+                                iv_PWF08.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -400,13 +407,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF09)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF09.setImageResource(R.drawable.valve_open);
+                                iv_PWF09.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF09.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF09.setImageResource(R.drawable.valve_error);
+                                iv_PWF09.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -414,13 +421,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF10)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF10.setImageResource(R.drawable.valve_open);
+                                iv_PWF10.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF10.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF10.setImageResource(R.drawable.valve_error);
+                                iv_PWF10.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -428,13 +435,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF11)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF11.setImageResource(R.drawable.valve_open);
+                                iv_PWF11.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF11.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF11.setImageResource(R.drawable.valve_error);
+                                iv_PWF11.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -442,13 +449,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF12)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF12.setImageResource(R.drawable.valve_open);
+                                iv_PWF12.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF12.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF12.setImageResource(R.drawable.valve_error);
+                                iv_PWF12.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -456,13 +463,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF13)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF13.setImageResource(R.drawable.valve_open);
+                                iv_PWF13.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF13.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF13.setImageResource(R.drawable.valve_error);
+                                iv_PWF13.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -470,13 +477,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF14)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF14.setImageResource(R.drawable.valve_open);
+                                iv_PWF14.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF14.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF14.setImageResource(R.drawable.valve_error);
+                                iv_PWF14.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -484,13 +491,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF15)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF15.setImageResource(R.drawable.valve_open);
+                                iv_PWF15.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF15.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF15.setImageResource(R.drawable.valve_error);
+                                iv_PWF15.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -498,13 +505,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF16)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF16.setImageResource(R.drawable.valve_open);
+                                iv_PWF16.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF16.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF16.setImageResource(R.drawable.valve_error);
+                                iv_PWF16.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -512,13 +519,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF17)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF17.setImageResource(R.drawable.valve_open);
+                                iv_PWF17.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF17.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF17.setImageResource(R.drawable.valve_error);
+                                iv_PWF17.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -526,13 +533,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF18)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_PWF18.setImageResource(R.drawable.valve_open);
+                                iv_PWF18.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_PWF18.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_PWF18.setImageResource(R.drawable.valve_error);
+                                iv_PWF18.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;
@@ -541,13 +548,13 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.KGF01)) {
                         switch (bean.getSCKZState()) {
                             case 0:
-                                iv_KGF01.setImageResource(R.drawable.valve_open);
+                                iv_KGF01.setImageResource(R.drawable.valve_left_green);
                                 break;
                             case 1:
                                 iv_KGF01.setImageResource(R.drawable.valve_close);
                                 break;
                             case 2:
-                                iv_KGF01.setImageResource(R.drawable.valve_error);
+                                iv_KGF01.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
                                 break;

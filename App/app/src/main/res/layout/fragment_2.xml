@@ -29,28 +29,28 @@
 
         <!-- 中间一行  四个像风扇一样的东西 从做到右写-->
         <ImageView
-            android:id="@+id/iv_QS01"
+            android:id="@+id/iv_QS02"
             android:layout_width="16dp"
             android:src="@drawable/fan_right_gray"
             android:layout_marginTop="100dp"
             android:layout_marginLeft="64dp"
             android:layout_height="18dp" />
         <ImageView
-            android:id="@+id/iv_QY01"
+            android:id="@+id/iv_QY02"
             android:layout_width="16dp"
             android:src="@drawable/fan_left_gray"
             android:layout_marginTop="100dp"
             android:layout_marginLeft="115dp"
             android:layout_height="18dp" />
         <ImageView
-            android:id="@+id/iv_CW01"
+            android:id="@+id/iv_CW02"
             android:layout_width="16dp"
             android:src="@drawable/fan_right_gray"
             android:layout_marginTop="100.5dp"
             android:layout_marginLeft="228dp"
             android:layout_height="18dp" />
         <ImageView
-            android:id="@+id/iv_YX01"
+            android:id="@+id/iv_YX02"
             android:layout_width="16dp"
             android:src="@drawable/fan_left_gray"
             android:layout_marginTop="100.5dp"
@@ -110,7 +110,7 @@
 
         <!-- 中转站  中间的 数字液位 -->
         <TextView
-            android:id="@+id/tv_center"
+            android:id="@+id/tv_EYHLYE01"
             android:layout_width="wrap_content"
             android:text="0.0"
             android:textColor="@color/white_color"
@@ -123,7 +123,7 @@
 
         <!-- 中转站  下面的 数字 从左到右-->
         <TextView
-            android:id="@+id/tv_1"
+            android:id="@+id/tv_JLBPL01"
             android:layout_width="wrap_content"
             android:text="0.0"
             android:textColor="@color/white_color"
@@ -132,7 +132,7 @@
             android:layout_marginLeft="142dp"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/tv_2"
+            android:id="@+id/tv_JLBPL02"
             android:layout_width="wrap_content"
             android:text="0.0"
             android:textColor="@color/white_color"
@@ -160,7 +160,7 @@
             android:layout_height="16dp" />
         <!--下面两个余氟 量 TextView-->
         <TextView
-            android:id="@+id/tv_yufu1"
+            android:id="@+id/tv_YL01"
             android:layout_width="wrap_content"
             android:text="0.0"
             android:textSize="8dp"
@@ -169,7 +169,7 @@
             android:layout_marginLeft="206dp"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/tv_yufu2"
+            android:id="@+id/tv_YL02"
             android:layout_width="wrap_content"
             android:text="0.0"
             android:textSize="8dp"
@@ -250,6 +250,7 @@
                     android:layout_weight="1"
                     android:layout_height="0dp">
                     <ImageView
+                        android:id="@+id/iv_QS01"
                         android:layout_marginTop="1dp"
                         android:layout_marginBottom="1dp"
                         android:layout_width="0dp"
@@ -261,6 +262,7 @@
                         android:layout_height="match_parent"
                         android:background="@color/dark_black_color"/>
                     <ImageView
+                        android:id="@+id/iv_QY01"
                         android:layout_marginTop="1dp"
                         android:layout_marginBottom="1dp"
                         android:layout_width="0dp"
@@ -337,6 +339,7 @@
                     android:layout_weight="1"
                     android:layout_height="0dp">
                     <ImageView
+                        android:id="@+id/iv_CW01"
                         android:layout_width="0dp"
                         android:layout_marginTop="1dp"
                         android:layout_marginBottom="1dp"
@@ -348,6 +351,7 @@
                         android:layout_height="match_parent"
                         android:background="@color/dark_black_color"/>
                     <ImageView
+                        android:id="@+id/iv_YX01"
                         android:layout_marginTop="1dp"
                         android:layout_marginBottom="1dp"
                         android:layout_width="0dp"
@@ -478,6 +482,7 @@
                     android:layout_weight="1"
                     android:layout_height="0dp">
                     <TextView
+                        android:id="@+id/tv_CQL01"
                        android:layout_width="0dp"
                         android:text="0.0"
                         android:layout_weight="1"
@@ -799,6 +804,7 @@
                     android:layout_weight="1"
                     android:layout_height="0dp">
                     <TextView
+                        android:id="@+id/tv_CQL02"
                         android:layout_width="0dp"
                         android:text="0.0"
                         android:layout_weight="1"
