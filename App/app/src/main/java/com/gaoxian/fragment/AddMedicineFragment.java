@@ -7,13 +7,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.gaoxian.Constant.PreferenceConstant;
 import com.gaoxian.Constant.StringConstant;
 import com.gaoxian.R;
+import com.gaoxian.api.ChlorineDosing.GetChlorineDosingDataUtil;
+import com.gaoxian.api.callback.NetCallback;
 import com.gaoxian.events.IntEvent;
+import com.gaoxian.model.ChlorineDosingDataPackge;
+import com.gaoxian.model.NetWorkResultBean;
 import com.gaoxian.util.DoubleClickListener;
 import com.gaoxian.util.PreferenceUtil;
 import com.gaoxian.widget.ScaleView.MultiTouchListener;
@@ -21,6 +24,9 @@ import com.gaoxian.widget.TitleBar;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 public class AddMedicineFragment extends BaseFragment {
@@ -37,16 +43,22 @@ public class AddMedicineFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         setUp(view, savedInstanceState);
+        setUpListener();
+        getChlorineDosingData();
     }
 
     private void setUp(View view, Bundle savedInstanceState) {
         titleBar = (TitleBar) view.findViewById(R.id.title_bar);
-        layout_view = (RelativeLayout) view.findViewById(R.id.layout_view);
-
-        titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(), PreferenceConstant.StationName,StringConstant.defaultStationName),
+        titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(), PreferenceConstant.StationName, StringConstant.defaultStationName),
                 StringConstant.tabAddMedicine);
-//        layout_view.setOnTouchListener(new MultiTouchListener());
+
+        layout_view = (RelativeLayout) view.findViewById(R.id.layout_view);
         getLayoutParams(layout_view);
+
+    }
+
+    private void setUpListener() {
+        layout_view.setOnTouchListener(new MultiTouchListener());
         layout_view.setOnClickListener(new DoubleClickListener() {
             @Override
             public void onSingleClick(final View v) {
@@ -106,7 +118,7 @@ public class AddMedicineFragment extends BaseFragment {
     public void onEventMainThread(IntEvent event) {
 
         switch (event.getMsg()) {
-            case IntEvent.Msg_ViewPager_PageChanged:
+            case IntEvent.Msg_ResetViewScale:
                 if(layout_view!=null)
                 {
                     resetLayoutParams(layout_view, originalScaleX, originalScaleY, originalTranslateX, originalTranslateY);
@@ -116,4 +128,23 @@ public class AddMedicineFragment extends BaseFragment {
                 break;
         }
     }
+
+    /**
+     * 测试加氟加药
+     */
+    private void getChlorineDosingData() {
+        GetChlorineDosingDataUtil.getChlorineDosingData(AddMedicineFragment.this.getActivity(),PreferenceUtil.load(AddMedicineFragment.this.getActivity(),PreferenceConstant.AreaCode,""), "weiqi", new NetCallback<NetWorkResultBean<ChlorineDosingDataPackge>>(AddMedicineFragment.this.getActivity()) {
+            @Override
+            public void onFailure(RetrofitError error) {
+
+            }
+
+            @Override
+            public void success(NetWorkResultBean<ChlorineDosingDataPackge> chlorineDosingDataPackgeNetWorkResultBean, Response response) {
+                ChlorineDosingDataPackge test = chlorineDosingDataPackgeNetWorkResultBean.getData();
+                Log.e("jwjw",test.toString());
+            }
+        });
+    }
+
 }

@@ -1,13 +1,12 @@
 package com.gaoxian.widget.ScaleView;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.widget.Toast;
 
-import java.util.Calendar;
+import com.gaoxian.events.IntEvent;
+
+import de.greenrobot.event.EventBus;
 
 public class MultiTouchListener implements OnTouchListener {
 
@@ -51,11 +50,15 @@ public class MultiTouchListener implements OnTouchListener {
     }
 
     private static void adjustTranslation(View view, float deltaX, float deltaY) {
-        if(view.getScaleX()>1.0) {
+        double scaleX = view.getScaleX();
+        if(scaleX>1.0) {
             float[] deltaVector = {deltaX, deltaY};
             view.getMatrix().mapVectors(deltaVector);
             view.setTranslationX(view.getTranslationX() + deltaVector[0]);
             view.setTranslationY(view.getTranslationY() + deltaVector[1]);
+        }else if(scaleX==1.0)
+        {
+            EventBus.getDefault().post(new IntEvent(IntEvent.Msg_ResetViewScale));
         }
     }
 
@@ -168,8 +171,6 @@ public class MultiTouchListener implements OnTouchListener {
             TransformInfo info = new TransformInfo();
             info.deltaScale = isScaleEnabled  ? detector.getScaleFactor():1.0f;
             info.deltaAngle = isRotateEnabled ? Vector2D.getAngle(mPrevSpanVector, detector.getCurrentSpanVector()) : 0.0f;
-
-            Log.e("jwjw","scaleX:"+view.getScaleX()+"  scaleY:"+view.getScaleY());
             info.deltaX = isTranslateEnabled  ? detector.getFocusX() - mPivotX : 0.0f;
             info.deltaY = isTranslateEnabled  ? detector.getFocusY() - mPivotY : 0.0f;
             info.pivotX = mPivotX;

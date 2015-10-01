@@ -49,18 +49,18 @@
             android:id="@+id/tv_JSLL01"
             android:layout_width="wrap_content"
             android:text="0.0"
-            android:layout_marginLeft="136dp"
-            android:textSize="10sp"
+            android:layout_marginLeft="138dp"
+            android:textSize="8sp"
             android:textColor="@color/white_color"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="92dp"
             android:layout_height="wrap_content" />
         <!--浊度NTU-->
         <TextView
             android:id="@+id/tv_JSZD01"
             android:layout_width="wrap_content"
             android:text="0.0"
-            android:layout_marginLeft="240dp"
-            android:textSize="10sp"
+            android:layout_marginLeft="244dp"
+            android:textSize="8sp"
             android:textColor="@color/white_color"
             android:layout_marginTop="102dp"
             android:layout_height="wrap_content" />

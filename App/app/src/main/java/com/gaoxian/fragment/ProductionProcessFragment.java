@@ -94,7 +94,7 @@ public class ProductionProcessFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         setUp(view, savedInstanceState);
         setUpLisenter();
-        GetProductionData();
+        getProductionData();
         getProductionState();
     }
 
@@ -210,7 +210,7 @@ public class ProductionProcessFragment extends BaseFragment {
     public void onEventMainThread(IntEvent event) {
 
         switch (event.getMsg()) {
-            case IntEvent.Msg_ViewPager_PageChanged:
+            case IntEvent.Msg_ResetViewScale:
                 if (layout_view != null) {
                     resetLayoutParams(layout_view, originalScaleX, originalScaleY, originalTranslateX, originalTranslateY);
                 }
@@ -224,7 +224,7 @@ public class ProductionProcessFragment extends BaseFragment {
     /**
      * 获取生产控制信息
      */
-    private void GetProductionData() {
+    private void getProductionData() {
         GetProductionDataRetrofitUtil.getProductionData(ProductionProcessFragment.this.getActivity(), "511525001", "weiqi", new NetCallback<NetWorkResultBean<ProductionDataPackge>>(ProductionProcessFragment.this.getActivity()) {
             @Override
             public void onFailure(RetrofitError error) {

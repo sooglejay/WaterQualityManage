@@ -60,4 +60,38 @@ public class NetWorkConstant {
     public static final String GSB03 = "GSB03";//供水泵03
 
 
+
+    //加氟加药数据信息
+    public static final String YL01 = "YL01";//余氯01
+    public static final String EYHLYE01 = "EYHLYE01";//二氧化氯中转站液位
+    public static final String YL02 = "YL02";//余氯02
+    public static final String CQL01 = "CQL01";//二氧化氯产气量01
+    public static final String CQL02 = "CQL02";//二氧化氯产气量02
+    public static final String JLBPL01 = "JLBPL01";//加药计量泵频率01
+    public static final String JLBPL02 = "JLBPL02";//加药计量泵频率02
+
+
+//    public static final String JLBPL01 = "JLBPL01";//二氧化氯中转站泵频率01
+//    public static final String JLBPL02 = "JLBPL02";//二氧化氯中转站泵频率02
+
+
+
+    //加氟加药 控制信息
+    public static final String DLSFM01 = "DLSFM01";//动力水阀门01
+    public static final String DLSFM02 = "DLSFM02";//动力水阀门02
+    public static final String QS01 = "QS01";//二氧化氯缺水状态01
+    public static final String QY01 = "QY01";//二氧化氯欠压状态01
+    public static final String CW01 = "CW01";//二氧化氯超温状态01
+    public static final String YX01 = "YX01";//二氧化氯运行状态01
+    public static final String ZZZB01 = "ZZZB01";//二氧化氯中转站泵状态1
+    public static final String ZZZB02 = "ZZZB02";//二氧化氯中转站泵状态2
+    public static final String QS02 = "QS02";//二氧化氯缺水状态02
+    public static final String QY02 = "QY02";//二氧化氯缺水状态02
+    public static final String CW02 = "CW02";//二氧化氯超温状态02
+    public static final String YX02 = "YX02";//二氧化氯运行状态02
+    public static final String JLBZT01 = "JLBZT01";//加药剂量泵状态01
+    public static final String JLBZT02 = "JLBZT02";//加药剂量泵状态02
+    public static final String JYSBZT01 = "JYSBZT01";//加药设备运行状态01
+
+
 }
