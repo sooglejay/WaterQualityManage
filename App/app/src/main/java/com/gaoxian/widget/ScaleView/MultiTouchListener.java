@@ -1,5 +1,6 @@
 package com.gaoxian.widget.ScaleView;
 
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -19,6 +20,9 @@ public class MultiTouchListener implements OnTouchListener {
     private int mActivePointerId = INVALID_POINTER_ID;
     private float mPrevX;
     private float mPrevY;
+
+    //add a flag to sign whether  viewpager is scrolled
+    public static boolean isViewpagerScrolled = false;//default must to be false
     private ScaleGestureDetector mScaleGestureDetector;
     public MultiTouchListener() {
         mScaleGestureDetector = new ScaleGestureDetector(new ScaleGestureListener());
@@ -52,12 +56,18 @@ public class MultiTouchListener implements OnTouchListener {
     private static void adjustTranslation(View view, float deltaX, float deltaY) {
         double scaleX = view.getScaleX();
         if(scaleX>1.0) {
+
+            if(!isViewpagerScrolled)
+            {
+                EventBus.getDefault().post(new IntEvent(IntEvent.Msg_Disable_ViewPager_Scroll));
+            }
             float[] deltaVector = {deltaX, deltaY};
             view.getMatrix().mapVectors(deltaVector);
             view.setTranslationX(view.getTranslationX() + deltaVector[0]);
             view.setTranslationY(view.getTranslationY() + deltaVector[1]);
         }else if(scaleX==1.0)
         {
+            isViewpagerScrolled = false;
             EventBus.getDefault().post(new IntEvent(IntEvent.Msg_ResetViewScale));
         }
     }

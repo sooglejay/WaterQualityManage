@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import de.greenrobot.event.EventBus;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
@@ -41,6 +43,7 @@ public class AddMedicineFragment extends BaseFragment {
 
     private TitleBar titleBar;
     private RelativeLayout layout_view;
+    private LinearLayout layout_bottom;//this layout is a
 
     private TextView tv_YL01;//余氟 1
     private TextView tv_YL02;//余氟 2
@@ -87,6 +90,7 @@ public class AddMedicineFragment extends BaseFragment {
         titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(), PreferenceConstant.StationName, StringConstant.defaultStationName),
                 StringConstant.tabAddMedicine);
 
+        layout_bottom = (LinearLayout) view.findViewById(R.id.layout_bottom);
         layout_view = (RelativeLayout) view.findViewById(R.id.layout_view);
         getLayoutParams(layout_view);
 
@@ -119,6 +123,12 @@ public class AddMedicineFragment extends BaseFragment {
     }
 
     private void setUpListener() {
+        layout_bottom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new IntEvent(IntEvent.Msg_Enable_ViewPager_Scroll));
+            }
+        });
         layout_view.setOnTouchListener(new MultiTouchListener());
         layout_view.setOnClickListener(new DoubleClickListener() {
             @Override
@@ -172,6 +182,7 @@ public class AddMedicineFragment extends BaseFragment {
     }
 
     public void resetLayoutParams(View layout_view, float originalScaleX, float originalScaleY, float originalTranslateX, float originalTranslateY) {
+        EventBus.getDefault().post(new IntEvent(IntEvent.Msg_Enable_ViewPager_Scroll));
         layout_view.setTranslationX(originalTranslateX);
         layout_view.setTranslationY(originalTranslateY);
         layout_view.setScaleX(originalScaleX);
@@ -182,10 +193,13 @@ public class AddMedicineFragment extends BaseFragment {
 
         switch (event.getMsg()) {
             case IntEvent.Msg_ResetViewScale:
+
                 if (layout_view != null) {
+
                     resetLayoutParams(layout_view, originalScaleX, originalScaleY, originalTranslateX, originalTranslateY);
                 }
                 break;
+
             default:
                 break;
         }

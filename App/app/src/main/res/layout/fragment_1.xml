@@ -3,6 +3,12 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/title_bar_height"
+        android:layout_height="match_parent"></LinearLayout>
 
     <FrameLayout
         android:orientation="vertical"
