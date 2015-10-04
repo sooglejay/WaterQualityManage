@@ -185,6 +185,7 @@
             android:layout_height="wrap_content" />
 
 
+        <!-- 左边 表格-->
         <LinearLayout
             android:layout_width="150dp"
             android:weightSum="4"
@@ -511,6 +512,8 @@
 
         </LinearLayout>
 
+
+        <!-- 右边 表格-->
         <LinearLayout
             android:layout_width="150dp"
             android:weightSum="4"
@@ -831,6 +834,322 @@
                 android:layout_height="match_parent"
                 android:background="@color/dark_black_color"/>
 
+        </LinearLayout>
+
+
+        <!--bottom - left 表格-->
+        <LinearLayout
+            android:layout_width="150dp"
+            android:weightSum="4"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="440dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/dark_black_color"/>
+
+
+            <!-- 第一个小块 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="1#计量泵"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:textSize="8sp"
+                    android:layout_gravity="center"
+                    android:layout_height="10dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_height="0dp">
+                    <TextView
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:textSize="8sp"
+                        android:text="2#计量泵"
+                        android:layout_gravity="center"
+                        android:layout_height="12dp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+            </LinearLayout>
+            <!--第一块结束-->
+
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/dark_black_color"/>
+
+
+            <!-- 第二块开始 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:src="@drawable/circle_flag_red"
+                    android:layout_gravity="center"
+                    android:layout_height="10dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+
+                <ImageView
+                    android:layout_marginTop="1dp"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/circle_flag_red"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="1dp"
+                    android:layout_height="10dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+            </LinearLayout>
+            <!-- 第二块结束 -->
+
+
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/dark_black_color"/>
+
+            <!-- 第三块开始 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+                <TextView
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_width="wrap_content"
+                    android:textSize="8sp"
+                    android:text="频率设定"
+                    android:layout_gravity="center"
+                    android:layout_height="10dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_height="0dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:textSize="8sp"
+                        android:text="频率设定"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_height="12dp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+            </LinearLayout>
+            <!-- 第三块结束 -->
+
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/dark_black_color"/>
+
+            <!-- 第四块开始 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:text="00"
+                    android:textSize="8sp"
+                    android:layout_gravity="center"
+                    android:layout_height="10dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_height="0dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textSize="8sp"
+                        android:text="00"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_height="12dp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+            </LinearLayout>
+            <!-- 第四块结束 -->
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/dark_black_color"/>
+
+        </LinearLayout>
+       <!--bottom - right  表格-->
+        <LinearLayout
+            android:layout_width="100dp"
+            android:weightSum="2"
+            android:layout_marginLeft="244dp"
+            android:layout_marginTop="440dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/dark_black_color"/>
+
+
+            <!-- 第一个小块 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="运行"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:textSize="8sp"
+                    android:layout_gravity="center"
+                    android:layout_height="10dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_height="0dp">
+                    <TextView
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:textSize="8sp"
+                        android:text="故障"
+                        android:layout_gravity="center"
+                        android:layout_height="12dp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+            </LinearLayout>
+            <!--第一块结束-->
+
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/dark_black_color"/>
+
+
+            <!-- 第二块开始 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:src="@drawable/circle_flag_red"
+                    android:layout_gravity="center"
+                    android:layout_height="10dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+
+                <ImageView
+                    android:layout_marginTop="1dp"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/circle_flag_green"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="1dp"
+                    android:layout_height="10dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_black_color"/>
+            </LinearLayout>
+            <!-- 第二块结束 -->
+
+
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/dark_black_color"/>
         </LinearLayout>
     </RelativeLayout>
 
