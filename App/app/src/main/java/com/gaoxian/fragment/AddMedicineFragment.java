@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.gaoxian.Constant.IntConstant;
 import com.gaoxian.Constant.NetWorkConstant;
 import com.gaoxian.Constant.PreferenceConstant;
 import com.gaoxian.Constant.StringConstant;
@@ -265,10 +266,10 @@ public class AddMedicineFragment extends BaseFragment {
                 for (ChlorineDosingState bean : dataList) {
                     if (bean.getJLJYCode().equals(NetWorkConstant.QS01)) {
                         switch (bean.getJLJYState()) {
-                            case 0:
+                            case IntConstant.State_open:
                                 iv_QS01.setImageResource(R.drawable.circle_flag_green);
                                 break;
-                            case 1:
+                            case IntConstant.State_close:
                                 iv_QS01.setImageResource(R.drawable.circle_flag_red);
                                 break;
                             default:
@@ -276,13 +277,13 @@ public class AddMedicineFragment extends BaseFragment {
                         }
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.QS02)) {
                         switch (bean.getJLJYState()) {
-                            case 0:
+                            case IntConstant.State_open:
                                 iv_QS02.setImageResource(R.drawable.fan_right_green);
                                 break;
-                            case 1:
+                            case IntConstant.State_close:
                                 iv_QS02.setImageResource(R.drawable.fan_right_gray);
                                 break;
-                             case 2:
+                             case IntConstant.State_error:
                                 iv_QS02.setImageResource(R.drawable.fan_right_red);
                                 break;
                             default:
@@ -290,10 +291,10 @@ public class AddMedicineFragment extends BaseFragment {
                         }
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.QY01)) {
                         switch (bean.getJLJYState()) {
-                            case 0:
+                            case IntConstant.State_open:
                                 iv_QY01.setImageResource(R.drawable.circle_flag_green);
                                 break;
-                            case 1:
+                            case IntConstant.State_close:
                                 iv_QY01.setImageResource(R.drawable.circle_flag_red);
                                 break;
                             default:
@@ -301,13 +302,13 @@ public class AddMedicineFragment extends BaseFragment {
                         }
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.QY02)) {
                         switch (bean.getJLJYState()) {
-                            case 0:
+                            case IntConstant.State_open:
                                 iv_QY02.setImageResource(R.drawable.fan_left_green);
                                 break;
-                            case 1:
+                            case IntConstant.State_close:
                                 iv_QY02.setImageResource(R.drawable.fan_left_gray);
                                 break;
-                            case 2:
+                            case IntConstant.State_error:
                                 iv_QY02.setImageResource(R.drawable.fan_left_red);
                                 break;
                             default:
@@ -315,10 +316,10 @@ public class AddMedicineFragment extends BaseFragment {
                         }
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.CW01)) {
                         switch (bean.getJLJYState()) {
-                            case 0:
+                            case IntConstant.State_open:
                                 iv_CW01.setImageResource(R.drawable.circle_flag_green);
                                 break;
-                            case 1:
+                            case IntConstant.State_close:
                                 iv_CW01.setImageResource(R.drawable.circle_flag_red);
                                 break;
                             default:
@@ -326,13 +327,13 @@ public class AddMedicineFragment extends BaseFragment {
                         }
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.CW02)) {
                         switch (bean.getJLJYState()) {
-                            case 0:
+                            case IntConstant.State_open:
                                 iv_CW02.setImageResource(R.drawable.fan_right_green);
                                 break;
-                            case 1:
+                            case IntConstant.State_close:
                                 iv_CW02.setImageResource(R.drawable.fan_right_gray);
                                 break;
-                            case 2:
+                            case IntConstant.State_error:
                                 iv_CW02.setImageResource(R.drawable.fan_right_red);
                                 break;
                             default:
@@ -340,10 +341,10 @@ public class AddMedicineFragment extends BaseFragment {
                         }
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.YX01)) {
                         switch (bean.getJLJYState()) {
-                            case 0:
+                            case IntConstant.State_open:
                                 iv_YX01.setImageResource(R.drawable.circle_flag_green);
                                 break;
-                            case 1:
+                            case IntConstant.State_close:
                                 iv_YX01.setImageResource(R.drawable.circle_flag_red);
                                 break;
                             default:
@@ -351,13 +352,13 @@ public class AddMedicineFragment extends BaseFragment {
                         }
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.YX02)) {
                         switch (bean.getJLJYState()) {
-                            case 0:
+                            case IntConstant.State_open:
                                 iv_YX02.setImageResource(R.drawable.fan_left_green);
                                 break;
-                            case 1:
+                            case IntConstant.State_close:
                                 iv_YX02.setImageResource(R.drawable.fan_left_gray);
                                 break;
-                            case 2:
+                            case IntConstant.State_error:
                                 iv_YX02.setImageResource(R.drawable.fan_left_red);
                                 break;
                             default:
@@ -365,13 +366,13 @@ public class AddMedicineFragment extends BaseFragment {
                         }
                     }else if (bean.getJLJYCode().equals(NetWorkConstant.DLSFM01)) {
                         switch (bean.getJLJYState()) {
-                            case 0:
+                            case IntConstant.State_open:
                                 iv_DLSFM01.setImageResource(R.drawable.valve_up_green);
                                 break;
-                            case 1:
+                            case IntConstant.State_close:
                                 iv_DLSFM01.setImageResource(R.drawable.valve_up_gray);
                                 break;
-                            case 2:
+                            case IntConstant.State_error:
                                 iv_DLSFM01.setImageResource(R.drawable.valve_up_red);
                                 break;
                             default:
@@ -379,13 +380,13 @@ public class AddMedicineFragment extends BaseFragment {
                         }
                     }else if (bean.getJLJYCode().equals(NetWorkConstant.DLSFM02)) {
                         switch (bean.getJLJYState()) {
-                            case 0:
+                            case IntConstant.State_open:
                                 iv_DLSFM02.setImageResource(R.drawable.valve_up_green);
                                 break;
-                            case 1:
+                            case IntConstant.State_close:
                                 iv_DLSFM02.setImageResource(R.drawable.valve_up_gray);
                                 break;
-                            case 2:
+                            case IntConstant.State_error:
                                 iv_DLSFM02.setImageResource(R.drawable.valve_up_red);
                                 break;
                             default:
@@ -393,13 +394,13 @@ public class AddMedicineFragment extends BaseFragment {
                         }
                     }else if (bean.getJLJYCode().equals(NetWorkConstant.JLBZT01)) {
                         switch (bean.getJLJYState()) {
-                            case 0:
+                            case IntConstant.State_open:
                                 iv_JLBZT01.setImageResource(R.drawable.valve_left_green);
                                 break;
-                            case 1:
+                            case IntConstant.State_close:
                                 iv_JLBZT01.setImageResource(R.drawable.valve_left_gray);
                                 break;
-                            case 2:
+                            case IntConstant.State_error:
                                 iv_JLBZT01.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:
@@ -407,13 +408,13 @@ public class AddMedicineFragment extends BaseFragment {
                         }
                     }else if (bean.getJLJYCode().equals(NetWorkConstant.JLBZT02)) {
                         switch (bean.getJLJYState()) {
-                            case 0:
+                            case IntConstant.State_open:
                                 iv_JLBZT02.setImageResource(R.drawable.valve_left_green);
                                 break;
-                            case 1:
+                            case IntConstant.State_close:
                                 iv_JLBZT02.setImageResource(R.drawable.valve_left_gray);
                                 break;
-                            case 2:
+                            case IntConstant.State_error:
                                 iv_JLBZT02.setImageResource(R.drawable.valve_left_red);
                                 break;
                             default:

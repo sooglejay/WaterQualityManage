@@ -30,9 +30,6 @@ public class NetWorkConstant {
     public static final String QSCYW02 = "QSCYW02";//清水池液位2号
 
 
-    public static final int SCKZState_open = 1;//开
-    public static final int SCKZState_close = 0;//关
-    public static final int SCKZState_error = 2;//错误
 
     //生产过程 界面的 获取生产控制状态信息 网络请求 后 回传的字段
     public static final String PWF01 = "PWF01";//排污阀01

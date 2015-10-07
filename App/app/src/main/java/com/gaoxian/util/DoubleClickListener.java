@@ -9,7 +9,7 @@ import java.util.Timer;
  */
 public abstract class DoubleClickListener implements View.OnClickListener {
 
-    public static final long DOUBLE_CLICK_TIME_DELTA = 300;//milliseconds
+    public static final long DOUBLE_CLICK_TIME_DELTA = 200;//milliseconds
     public Timer timer = null;  //at class level;
 
     long lastClickTime = 0;

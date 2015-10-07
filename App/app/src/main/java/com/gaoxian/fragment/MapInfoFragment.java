@@ -7,7 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
@@ -45,7 +45,6 @@ import retrofit.client.Response;
 public class MapInfoFragment extends BaseFragment {
 
     private static final LatLng GEO_CHENDU = new LatLng(28.435, 104.519);
-    private TitleBar titleBar;
     private static int dialog_offset = -100;
     private static int marker_offset = -1;
 
@@ -86,10 +85,6 @@ public class MapInfoFragment extends BaseFragment {
     }
 
     private void setUp(View view, Bundle savedInstanceState) {
-        titleBar = (TitleBar) view.findViewById(R.id.title_bar);
-        titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(), PreferenceConstant.StationName,StringConstant.defaultStationName),
-                StringConstant.tabMapInfo);
-
         initMapView(view);
         getWMGetStation();
     }
@@ -105,6 +100,7 @@ public class MapInfoFragment extends BaseFragment {
         mBaiduMap = mMapView.getMap();
         mBaiduMap.setMapStatus(u1);
 
+        //
         mBaiduMap.setOnMapTouchListener(new BaiduMap.OnMapTouchListener() {
             @Override
             public void onTouch(MotionEvent motionEvent) {
