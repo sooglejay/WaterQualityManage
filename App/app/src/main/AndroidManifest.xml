@@ -59,6 +59,10 @@
         <activity
             android:name=".ui.Test_interface"
             android:label="@string/title_activity_test_interface" >
+        </activity>
+        <activity
+            android:name=".ui.Test_DM"
+            android:label="@string/title_activity_test_interface" >
 
         </activity>
     </application>

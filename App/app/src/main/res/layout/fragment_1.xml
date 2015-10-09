@@ -3,6 +3,8 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:orientation="vertical">
+
+    <!-- 这个 是背景图片 我直接铺满屏幕-->
     <LinearLayout
         android:id="@+id/layout_bottom"
         android:layout_width="match_parent"

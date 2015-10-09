@@ -46,32 +46,45 @@ public class AddMedicineFragment extends BaseFragment {
     private RelativeLayout layout_view;
     private LinearLayout layout_bottom;//this layout is a
 
+
+    //数字信息    加氟加药数据
     private TextView tv_YL01;//余氟 1
     private TextView tv_YL02;//余氟 2
     private TextView tv_EYHLYE01;//二氧化氯中转站液位
+
     private TextView tv_JLBPL01;//二氧化氯中转站泵频率01
+    private TextView tv_JYBPL01;//加药计量泵频率01
+
     private TextView tv_JLBPL02;//二氧化氯中转站泵频率02
+    private TextView tv_JYBPL02;//加药计量泵频率02
+
     private TextView tv_CQL01;//二氧化氯产气量01
     private TextView tv_CQL02;//二氧化氯产气量02
 
 
+    //图片状态信息   加氟加药状态
     public ImageView iv_QS01;//表格中的两组 ，每组四个图片 ，状态
-    public ImageView iv_QS02;
+    public ImageView iv_QS02;//二氧化氯缺水状态02
 
     public ImageView iv_QY01;
-    public ImageView iv_QY02;
+    public ImageView iv_QY02;//二氧化氯欠压状态02
 
-    public ImageView iv_CW01;
+    public ImageView iv_CW01;//二氧化氯超温状态02
     public ImageView iv_CW02;
 
     public ImageView iv_YX01;
-    public ImageView iv_YX02;
+    public ImageView iv_YX02;//二氧化氯运行状态02
 
-    public ImageView iv_DLSFM01;
+    public ImageView iv_DLSFM01;//动力水阀门02
     public ImageView iv_DLSFM02;
 
-    public ImageView iv_JLBZT01;
+    public ImageView iv_JLBZT01;//加药剂量泵状态01
     public ImageView iv_JLBZT02;
+
+    public ImageView iv_ZZZB01;//二氧化氯中转站泵状态01
+    public ImageView iv_ZZZB02;
+
+    public ImageView iv_JYSBZT01;//加药设备运行状态01  只有一个设置
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -95,14 +108,19 @@ public class AddMedicineFragment extends BaseFragment {
         layout_view = (RelativeLayout) view.findViewById(R.id.layout_view);
         getLayoutParams(layout_view);
 
+        //数据
         tv_YL01 = (TextView) view.findViewById(R.id.tv_YL01);
         tv_YL02 = (TextView) view.findViewById(R.id.tv_YL02);
         tv_EYHLYE01 = (TextView) view.findViewById(R.id.tv_EYHLYE01);
         tv_JLBPL01 = (TextView) view.findViewById(R.id.tv_JLBPL01);
         tv_JLBPL02 = (TextView) view.findViewById(R.id.tv_JLBPL02);
+        tv_JYBPL01 = (TextView) view.findViewById(R.id.tv_JYBPL01);
+        tv_JYBPL02 = (TextView) view.findViewById(R.id.tv_JYBPL02);
         tv_CQL01 = (TextView) view.findViewById(R.id.tv_CQL01);
         tv_CQL02 = (TextView) view.findViewById(R.id.tv_CQL02);
 
+
+        //状态
         iv_QS01 = (ImageView) view.findViewById(R.id.iv_QS01);
         iv_QS02 = (ImageView) view.findViewById(R.id.iv_QS02);
 
@@ -118,8 +136,12 @@ public class AddMedicineFragment extends BaseFragment {
         iv_DLSFM01 = (ImageView) view.findViewById(R.id.iv_DLSFM01);
         iv_DLSFM02 = (ImageView) view.findViewById(R.id.iv_DLSFM02);
 
+        iv_ZZZB01 = (ImageView) view.findViewById(R.id.iv_ZZZB01);
+        iv_ZZZB02 = (ImageView) view.findViewById(R.id.iv_ZZZB02);
+
         iv_JLBZT01 = (ImageView) view.findViewById(R.id.iv_JLBZT01);
         iv_JLBZT02 = (ImageView) view.findViewById(R.id.iv_JLBZT02);
+        iv_JYSBZT01 = (ImageView) view.findViewById(R.id.iv_JYSBZT01);
 
     }
 
@@ -235,11 +257,17 @@ public class AddMedicineFragment extends BaseFragment {
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.CQL02)) {
                         tv_CQL02.setText("" + bean.getJLJYData());
 
+                    } else if (bean.getJLJYCode().equals(NetWorkConstant.JYBPL01)) {
+                        tv_JYBPL01.setText("" + bean.getJLJYData());
+
+                     } else if (bean.getJLJYCode().equals(NetWorkConstant.JYBPL02)) {
+                        tv_JYBPL02.setText("" + bean.getJLJYData());
+
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.JLBPL01)) {
                         tv_JLBPL01.setText("" + bean.getJLJYData());
 
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.JLBPL02)) {
-                        tv_JLBPL01.setText("" + bean.getJLJYData());
+                        tv_JLBPL02.setText("" + bean.getJLJYData());
 
                     }
                 }
@@ -278,13 +306,10 @@ public class AddMedicineFragment extends BaseFragment {
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.QS02)) {
                         switch (bean.getJLJYState()) {
                             case IntConstant.State_open:
-                                iv_QS02.setImageResource(R.drawable.fan_right_green);
+                                iv_QS02.setImageResource(R.drawable.circle_flag_green);
                                 break;
                             case IntConstant.State_close:
-                                iv_QS02.setImageResource(R.drawable.fan_right_gray);
-                                break;
-                             case IntConstant.State_error:
-                                iv_QS02.setImageResource(R.drawable.fan_right_red);
+                                iv_QS02.setImageResource(R.drawable.circle_flag_red);
                                 break;
                             default:
                                 break;
@@ -303,13 +328,10 @@ public class AddMedicineFragment extends BaseFragment {
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.QY02)) {
                         switch (bean.getJLJYState()) {
                             case IntConstant.State_open:
-                                iv_QY02.setImageResource(R.drawable.fan_left_green);
+                                iv_QY02.setImageResource(R.drawable.circle_flag_green);
                                 break;
                             case IntConstant.State_close:
-                                iv_QY02.setImageResource(R.drawable.fan_left_gray);
-                                break;
-                            case IntConstant.State_error:
-                                iv_QY02.setImageResource(R.drawable.fan_left_red);
+                                iv_QY02.setImageResource(R.drawable.circle_flag_red);
                                 break;
                             default:
                                 break;
@@ -328,13 +350,10 @@ public class AddMedicineFragment extends BaseFragment {
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.CW02)) {
                         switch (bean.getJLJYState()) {
                             case IntConstant.State_open:
-                                iv_CW02.setImageResource(R.drawable.fan_right_green);
+                                iv_CW02.setImageResource(R.drawable.circle_flag_green);
                                 break;
                             case IntConstant.State_close:
-                                iv_CW02.setImageResource(R.drawable.fan_right_gray);
-                                break;
-                            case IntConstant.State_error:
-                                iv_CW02.setImageResource(R.drawable.fan_right_red);
+                                iv_CW02.setImageResource(R.drawable.circle_flag_red);
                                 break;
                             default:
                                 break;
@@ -353,18 +372,15 @@ public class AddMedicineFragment extends BaseFragment {
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.YX02)) {
                         switch (bean.getJLJYState()) {
                             case IntConstant.State_open:
-                                iv_YX02.setImageResource(R.drawable.fan_left_green);
+                                iv_YX02.setImageResource(R.drawable.circle_flag_green);
                                 break;
                             case IntConstant.State_close:
-                                iv_YX02.setImageResource(R.drawable.fan_left_gray);
-                                break;
-                            case IntConstant.State_error:
-                                iv_YX02.setImageResource(R.drawable.fan_left_red);
+                                iv_YX02.setImageResource(R.drawable.circle_flag_red);
                                 break;
                             default:
                                 break;
                         }
-                    }else if (bean.getJLJYCode().equals(NetWorkConstant.DLSFM01)) {
+                    } else if (bean.getJLJYCode().equals(NetWorkConstant.DLSFM01)) {
                         switch (bean.getJLJYState()) {
                             case IntConstant.State_open:
                                 iv_DLSFM01.setImageResource(R.drawable.valve_up_green);
@@ -378,7 +394,7 @@ public class AddMedicineFragment extends BaseFragment {
                             default:
                                 break;
                         }
-                    }else if (bean.getJLJYCode().equals(NetWorkConstant.DLSFM02)) {
+                    } else if (bean.getJLJYCode().equals(NetWorkConstant.DLSFM02)) {
                         switch (bean.getJLJYState()) {
                             case IntConstant.State_open:
                                 iv_DLSFM02.setImageResource(R.drawable.valve_up_green);
@@ -392,30 +408,24 @@ public class AddMedicineFragment extends BaseFragment {
                             default:
                                 break;
                         }
-                    }else if (bean.getJLJYCode().equals(NetWorkConstant.JLBZT01)) {
+                    } else if (bean.getJLJYCode().equals(NetWorkConstant.JLBZT01)) {
                         switch (bean.getJLJYState()) {
                             case IntConstant.State_open:
-                                iv_JLBZT01.setImageResource(R.drawable.valve_left_green);
+                                iv_JLBZT01.setImageResource(R.drawable.circle_flag_green);
                                 break;
                             case IntConstant.State_close:
-                                iv_JLBZT01.setImageResource(R.drawable.valve_left_gray);
-                                break;
-                            case IntConstant.State_error:
-                                iv_JLBZT01.setImageResource(R.drawable.valve_left_red);
+                                iv_JLBZT01.setImageResource(R.drawable.circle_flag_red);
                                 break;
                             default:
                                 break;
                         }
-                    }else if (bean.getJLJYCode().equals(NetWorkConstant.JLBZT02)) {
+                    } else if (bean.getJLJYCode().equals(NetWorkConstant.JLBZT02)) {
                         switch (bean.getJLJYState()) {
                             case IntConstant.State_open:
-                                iv_JLBZT02.setImageResource(R.drawable.valve_left_green);
+                                iv_JLBZT02.setImageResource(R.drawable.circle_flag_green);
                                 break;
                             case IntConstant.State_close:
-                                iv_JLBZT02.setImageResource(R.drawable.valve_left_gray);
-                                break;
-                            case IntConstant.State_error:
-                                iv_JLBZT02.setImageResource(R.drawable.valve_left_red);
+                                iv_JLBZT02.setImageResource(R.drawable.circle_flag_red);
                                 break;
                             default:
                                 break;
