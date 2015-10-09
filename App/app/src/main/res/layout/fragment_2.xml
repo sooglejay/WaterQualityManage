@@ -1124,7 +1124,7 @@
                     android:layout_width="wrap_content"
                     android:layout_marginTop="1dp"
                     android:layout_marginBottom="1dp"
-                    android:src="@drawable/circle_flag_red"
+                    android:src="@drawable/circle_flag_green"
                     android:layout_gravity="center"
                     android:layout_height="10dp" />
                 <View
@@ -1133,6 +1133,7 @@
                     android:background="@color/dark_black_color"/>
 
                 <ImageView
+                    android:id="@+id/iv_JYSBZT01_error"
                     android:layout_marginTop="1dp"
                     android:layout_width="wrap_content"
                     android:src="@drawable/circle_flag_green"

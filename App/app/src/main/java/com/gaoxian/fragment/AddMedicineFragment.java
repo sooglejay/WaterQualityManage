@@ -85,6 +85,7 @@ public class AddMedicineFragment extends BaseFragment {
     public ImageView iv_ZZZB02;
 
     public ImageView iv_JYSBZT01;//加药设备运行状态01  只有一个设置
+    public ImageView iv_JYSBZT01_error;//加药设备运行状态01  如果出现故障，下面的故障灯要变红
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -142,6 +143,7 @@ public class AddMedicineFragment extends BaseFragment {
         iv_JLBZT01 = (ImageView) view.findViewById(R.id.iv_JLBZT01);
         iv_JLBZT02 = (ImageView) view.findViewById(R.id.iv_JLBZT02);
         iv_JYSBZT01 = (ImageView) view.findViewById(R.id.iv_JYSBZT01);
+        iv_JYSBZT01_error = (ImageView) view.findViewById(R.id.iv_JYSBZT01_error);
 
     }
 
@@ -260,7 +262,7 @@ public class AddMedicineFragment extends BaseFragment {
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.JYBPL01)) {
                         tv_JYBPL01.setText("" + bean.getJLJYData());
 
-                     } else if (bean.getJLJYCode().equals(NetWorkConstant.JYBPL02)) {
+                    } else if (bean.getJLJYCode().equals(NetWorkConstant.JYBPL02)) {
                         tv_JYBPL02.setText("" + bean.getJLJYData());
 
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.JLBPL01)) {
@@ -426,6 +428,45 @@ public class AddMedicineFragment extends BaseFragment {
                                 break;
                             case IntConstant.State_close:
                                 iv_JLBZT02.setImageResource(R.drawable.circle_flag_red);
+                                break;
+                            default:
+                                break;
+                        }
+                    } else if (bean.getJLJYCode().equals(NetWorkConstant.ZZZB01)) {
+                        switch (bean.getJLJYState()) {
+                            case IntConstant.State_open:
+                                iv_ZZZB01.setImageResource(R.drawable.circle_flag_green);
+                                break;
+                            case IntConstant.State_close:
+                                iv_ZZZB01.setImageResource(R.drawable.circle_flag_red);
+                                break;
+                            default:
+                                break;
+                        }
+                    } else if (bean.getJLJYCode().equals(NetWorkConstant.ZZZB02)) {
+                        switch (bean.getJLJYState()) {
+                            case IntConstant.State_open:
+                                iv_ZZZB02.setImageResource(R.drawable.circle_flag_green);
+                                break;
+                            case IntConstant.State_close:
+                                iv_ZZZB02.setImageResource(R.drawable.circle_flag_red);
+                                break;
+                            default:
+                                break;
+                        }
+                    } else if (bean.getJLJYCode().equals(NetWorkConstant.JYSBZT01)) {
+                        switch (bean.getJLJYState()) {
+                            case IntConstant.State_open:
+                                iv_JLBZT02.setImageResource(R.drawable.circle_flag_green);
+                                iv_JYSBZT01_error.setImageResource(R.drawable.circle_flag_green);
+                                break;
+                            case IntConstant.State_close:
+                                iv_JLBZT02.setImageResource(R.drawable.circle_flag_red);
+                                iv_JYSBZT01_error.setImageResource(R.drawable.circle_flag_green);
+                                break;
+                            case IntConstant.State_error:
+                                iv_JLBZT02.setImageResource(R.drawable.circle_flag_red);
+                                iv_JYSBZT01_error.setImageResource(R.drawable.circle_flag_red);
                                 break;
                             default:
                                 break;
