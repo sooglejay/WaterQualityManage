@@ -142,6 +142,55 @@
             android:layout_height="wrap_content" />
 
 
+        <!--配水井-->
+        <!-- 左边1配水井-->
+        <TextView
+            android:id="@+id/tv_water_unit_on_left_water_box"
+            android:layout_width="wrap_content"
+            android:text="液位（m）"
+            android:textSize="8sp"
+            android:layout_marginLeft="28dp"
+            android:textColor="@color/black_color"
+            android:layout_marginTop="330dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_PSJYW01"
+            android:layout_width="wrap_content"
+            android:text="0.0"
+            android:textSize="8sp"
+            android:layout_marginLeft="52dp"
+            android:textColor="@color/white_color"
+            android:layout_marginTop="340dp"
+            android:layout_height="wrap_content" />
+
+        <!-- 右边2配水井-->
+
+        <TextView
+            android:id="@+id/tv_water_unit_on_right_water_box"
+            android:layout_width="wrap_content"
+            android:text="液位（m）"
+            android:textSize="8sp"
+            android:layout_marginLeft="110dp"
+            android:textColor="@color/black_color"
+            android:layout_marginTop="330dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_PSJYW02"
+            android:layout_width="wrap_content"
+            android:text="0.0"
+            android:textSize="8sp"
+            android:layout_marginLeft="134dp"
+            android:textColor="@color/white_color"
+            android:layout_marginTop="340dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+
 
         <!-- 中转站  下面的 阀门  加氟开关-->
         <ImageView

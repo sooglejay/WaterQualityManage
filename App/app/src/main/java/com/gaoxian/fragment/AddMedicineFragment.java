@@ -87,6 +87,10 @@ public class AddMedicineFragment extends BaseFragment {
     public ImageView iv_JYSBZT01;//加药设备运行状态01  只有一个设置
     public ImageView iv_JYSBZT01_error;//加药设备运行状态01  如果出现故障，下面的故障灯要变红
 
+
+    private TextView tv_PSJYW01;//配水井1
+    private TextView tv_PSJYW02;//配水井2
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_2, container, false);
@@ -144,6 +148,11 @@ public class AddMedicineFragment extends BaseFragment {
         iv_JLBZT02 = (ImageView) view.findViewById(R.id.iv_JLBZT02);
         iv_JYSBZT01 = (ImageView) view.findViewById(R.id.iv_JYSBZT01);
         iv_JYSBZT01_error = (ImageView) view.findViewById(R.id.iv_JYSBZT01_error);
+
+
+        tv_PSJYW01 = (TextView) view.findViewById(R.id.tv_PSJYW01);
+        tv_PSJYW02 = (TextView) view.findViewById(R.id.tv_PSJYW02);
+
 
     }
 
@@ -218,10 +227,14 @@ public class AddMedicineFragment extends BaseFragment {
 
         switch (event.getMsg()) {
             case IntEvent.Msg_ResetViewScale:
-
                 if (layout_view != null) {
-
                     resetLayoutParams(layout_view, originalScaleX, originalScaleY, originalTranslateX, originalTranslateY);
+                }
+                break;
+            case IntEvent.Msg_RefreshData:
+                if (tv_PSJYW01 != null && isAdded()) {
+                    tv_PSJYW01.setText(PreferenceUtil.load(AddMedicineFragment.this.getActivity(), PreferenceConstant.psj1, "")+"");
+                    tv_PSJYW02.setText(PreferenceUtil.load(AddMedicineFragment.this.getActivity(), PreferenceConstant.psj2, "")+"");
                 }
                 break;
 

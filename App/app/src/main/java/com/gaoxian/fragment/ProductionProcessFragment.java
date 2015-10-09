@@ -265,11 +265,15 @@ public class ProductionProcessFragment extends BaseFragment {
                         tv_CSLL01.setText("" + bean.getSCKZData());
 
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PSJYW01)) {
+                        //配水井有点特殊,因为服务端接口 只在生产过程那里返回了字段，但是却又有两个地方使用了数据
                         tv_PSJYW01.setText("" + bean.getSCKZData());
+                        PreferenceUtil.save(ProductionProcessFragment.this.getActivity(), PreferenceConstant.psj1, bean.getSCKZData()+"");
+                        EventBus.getDefault().post(new IntEvent(IntEvent.Msg_RefreshData));
 
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PSJYW02)) {
+                        //配水井有点特殊,因为服务端接口 只在生产过程那里返回了字段，但是却又有两个地方使用了数据
                         tv_PSJYW02.setText("" + bean.getSCKZData());
-
+                        PreferenceUtil.save(ProductionProcessFragment.this.getActivity(), PreferenceConstant.psj2, bean.getSCKZData()+"");
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.QSCYW01)) {
                         tv_QSCYW01.setText("" + bean.getSCKZData());
 
@@ -575,19 +579,16 @@ public class ProductionProcessFragment extends BaseFragment {
                         switch (bean.getSCKZState()) {
                             case IntConstant.State_open:
                                 iv_QSB01.setImageResource(R.drawable.fan_top_open);
-
                                 iv_QSB02.setImageResource(R.drawable.fan_top_close);
                                 iv_QSB03.setImageResource(R.drawable.fan_top_error);
                                 break;
                             case IntConstant.State_close:
                                 iv_QSB01.setImageResource(R.drawable.fan_top_close);
-
                                 iv_QSB02.setImageResource(R.drawable.fan_top_open);
                                 iv_QSB03.setImageResource(R.drawable.fan_top_error);
                                 break;
                             case IntConstant.State_error:
                                 iv_QSB01.setImageResource(R.drawable.fan_top_error);
-
                                 iv_QSB02.setImageResource(R.drawable.fan_top_open);
                                 iv_QSB03.setImageResource(R.drawable.fan_top_close);
                                 break;
