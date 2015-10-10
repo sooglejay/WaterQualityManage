@@ -6,6 +6,7 @@
 
     <View
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/title_bar_height"
         android:layout_width="match_parent"
         android:id="@+id/layout_bottom"
         android:layout_height="match_parent">

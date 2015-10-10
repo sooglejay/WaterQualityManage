@@ -43,8 +43,8 @@ public class AddMedicineFragment extends BaseFragment {
     private float originalScaleX, originalScaleY, originalTranslateX, originalTranslateY;
 
     private TitleBar titleBar;
-    private RelativeLayout layout_view;
-    private LinearLayout layout_bottom;//this layout is a bottom of  the imageView background
+    private LinearLayout layout_view;
+    private View layout_bottom;//this layout is a bottom of  the imageView background
 
 
     //数字信息    加氟加药数据
@@ -109,8 +109,8 @@ public class AddMedicineFragment extends BaseFragment {
         titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(), PreferenceConstant.StationName, StringConstant.defaultStationName),
                 StringConstant.tabAddMedicine);
 
-        layout_bottom = (LinearLayout) view.findViewById(R.id.layout_bottom);
-        layout_view = (RelativeLayout) view.findViewById(R.id.layout_view);
+        layout_bottom = (View) view.findViewById(R.id.layout_bottom);
+        layout_view = (LinearLayout) view.findViewById(R.id.layout_view);
         getLayoutParams(layout_view);
 
         //数据

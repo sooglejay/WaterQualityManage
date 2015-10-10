@@ -4,1329 +4,1603 @@
     android:animateLayoutChanges="true"
     android:orientation="vertical">
 
-    <LinearLayout
+    <View
         android:id="@+id/layout_bottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/title_bar_height"
-        android:orientation="vertical"></LinearLayout>
+        android:orientation="vertical"></View>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/layout_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="@dimen/title_bar_height"
         android:background="@drawable/addmedicine_background"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="10">
+
 
         <!--上面两个阀门-->
-        <ImageView
-            android:id="@+id/iv_DLSFM02"
-            android:layout_width="18dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="48dp"
-            android:layout_marginTop="3dp"
-            android:src="@drawable/icon_dlsfm" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"
 
-        <ImageView
-            android:id="@+id/iv_DLSFM01"
-            android:layout_width="18dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="48dp"
-            android:layout_marginTop="36dp"
-            android:src="@drawable/icon_dlsfm" />
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.138" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4" />
+                <!--风扇下面的开关-->
+                <ImageView
+                    android:id="@+id/iv_DLSFM01"
+                    android:layout_width="16dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/icon_dlsfm" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.4" />
+                <!--风扇下面的开关-->
+                <ImageView
+                    android:id="@+id/iv_DLSFM02"
+                    android:layout_width="16dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="bottom"
+                    android:src="@drawable/icon_dlsfm" />
+            </LinearLayout>
+
+        </LinearLayout>
+
 
         <!-- 中间一行  四个像风扇一样的东西 从做到右写-->
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="18dp"
-            android:layout_marginLeft="64dp"
-            android:layout_marginTop="100dp"
-            android:src="@drawable/fan_right_gray" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.32"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="18dp"
-            android:layout_marginLeft="115dp"
-            android:layout_marginTop="100dp"
-            android:src="@drawable/fan_left_gray" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.218" />
 
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="18dp"
-            android:layout_marginLeft="228dp"
-            android:layout_marginTop="100.5dp"
-            android:src="@drawable/fan_right_gray" />
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="18dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/fan_right_gray" />
 
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="18dp"
-            android:layout_marginLeft="280dp"
-            android:layout_marginTop="100.5dp"
-            android:src="@drawable/fan_left_gray" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.12" />
 
-        <!-- 中转站  上面的状态 图标-->
-        <ImageView
-            android:id="@+id/iv_ZZZB01"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:layout_marginLeft="138dp"
-            android:layout_marginTop="230dp"
-            android:src="@drawable/circle_flag_green" />
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="18dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/fan_left_gray" />
 
-        <TextView
-            android:id="@+id/tv_flag01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="134dp"
-            android:layout_marginTop="220dp"
-            android:text="状态"
-            android:textColor="@color/black_color"
-            android:textSize="8sp" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.325" />
 
-        <ImageView
-            android:id="@+id/iv_ZZZB02"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:layout_marginLeft="212dp"
-            android:layout_marginTop="230dp"
-            android:src="@drawable/circle_flag_green" />
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="18dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/fan_right_gray" />
 
-        <TextView
-            android:id="@+id/tv_flag02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="208dp"
-            android:layout_marginTop="220dp"
-            android:text="状态"
-            android:textColor="@color/black_color"
-            android:textSize="8sp" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.12" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="18dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/fan_left_gray" />
+        </LinearLayout>
 
 
-        <!-- 中转站  风扇 从左到右-->
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="18dp"
-            android:layout_marginLeft="135dp"
-            android:layout_marginTop="237dp"
-            android:src="@drawable/fan_right_gray" />
+        <!-- top  表格-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.6"
+            android:orientation="horizontal"
+            android:weightSum="4.6">
 
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="18dp"
-            android:layout_marginLeft="208dp"
-            android:layout_marginTop="237dp"
-            android:src="@drawable/fan_left_gray" />
+            <Space
+                android:layout_width="0dp"
+
+                android:layout_height="match_parent"
+                android:layout_weight="0.2" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_black_color" />
+
+
+                <!-- 第一个小块 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:text="运行状态"
+                        android:textSize="8sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="缺水"
+                            android:textSize="8sp" />
+
+                        <View
+                            android:layout_width="1dp"
+
+                            android:layout_height="match_parent"
+                            android:background="@color/dark_black_color" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="欠压"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_QS01"
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/circle_flag_green" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/dark_black_color" />
+
+                        <ImageView
+                            android:id="@+id/iv_QY01"
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/circle_flag_green" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+                </LinearLayout>
+                <!--第一块结束-->
+
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_black_color" />
+
+
+                <!-- 第二块开始 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/circle_flag_red" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="超温"
+                            android:textSize="8sp" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/dark_black_color" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="运行"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_CW01"
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/circle_flag_green" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/dark_black_color" />
+
+                        <ImageView
+                            android:id="@+id/iv_YX01"
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/circle_flag_red" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+                </LinearLayout>
+                <!-- 第二块结束 -->
+
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_black_color" />
+
+                <!-- 第三块开始 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:text="产品设定"
+                        android:textSize="8sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="流量"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0.0"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+                </LinearLayout>
+                <!-- 第三块结束 -->
+
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_black_color" />
+
+                <!-- 第四块开始 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:text="0000"
+                        android:textSize="8sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="产气量"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_CQL01"
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0.0"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+                </LinearLayout>
+                <!-- 第四块结束 -->
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_black_color" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2" />
+
+            <!-- 右边 表格-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_black_color" />
+
+
+                <!-- 第一个小块 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:text="运行状态"
+                        android:textSize="8sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="缺水"
+                            android:textSize="8sp" />
+
+                        <View
+                            android:layout_width="1dp"
+
+                            android:layout_height="match_parent"
+                            android:background="@color/dark_black_color" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="欠压"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_QS02"
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/circle_flag_green" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/dark_black_color" />
+
+                        <ImageView
+                            android:id="@+id/iv_QY02"
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/circle_flag_green" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+                </LinearLayout>
+                <!--第一块结束-->
+
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_black_color" />
+
+
+                <!-- 第二块开始 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/circle_flag_red" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="超温"
+                            android:textSize="8sp" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/dark_black_color" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="运行"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_CW02"
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/circle_flag_green" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/dark_black_color" />
+
+                        <ImageView
+                            android:id="@+id/iv_YX02"
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/circle_flag_red" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+                </LinearLayout>
+                <!-- 第二块结束 -->
+
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_black_color" />
+
+                <!-- 第三块开始 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:text="产品设定"
+                        android:textSize="8sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="流量"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0.0"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+                </LinearLayout>
+                <!-- 第三块结束 -->
+
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_black_color" />
+
+                <!-- 第四块开始 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:text="0000"
+                        android:textSize="8sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="产气量"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_CQL02"
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0.0"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+                </LinearLayout>
+                <!-- 第四块结束 -->
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_black_color" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2" />
+        </LinearLayout>
 
         <!-- 中转站  中间的 数字液位 -->
-        <TextView
-            android:id="@+id/tv_EYHLYE01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="174dp"
-            android:layout_marginTop="222dp"
-            android:text="0.0"
-            android:textColor="@color/white_color"
-            android:textSize="8sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.9"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.37" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.08"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_flag01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="状态"
+                    android:textColor="@color/black_color"
+                    android:textSize="8sp" />
+
+                <ImageView
+                    android:id="@+id/iv_ZZZB01"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/circle_flag_green" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.03" />
+
+            <TextView
+                android:id="@+id/tv_EYHLYE01"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:text="0.0"
+                android:textColor="@color/red_color"
+                android:textSize="8sp" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.07" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.08"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_flag02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="状态"
+                    android:textColor="@color/black_color"
+                    android:textSize="8sp" />
+
+                <ImageView
+                    android:id="@+id/iv_ZZZB02"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/circle_flag_green" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 中转站  风扇 从左到右-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.415" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="18dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/fan_right_gray" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.17" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="18dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/fan_left_gray" />
+        </LinearLayout>
 
 
         <!-- 中转站  下面的 数字 从左到右-->
-        <TextView
-            android:id="@+id/tv_JLBPL01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="142dp"
-            android:layout_marginTop="250dp"
-            android:text="0.0"
-            android:textColor="@color/white_color"
-            android:textSize="8sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-        <TextView
-            android:id="@+id/tv_JLBPL02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="214dp"
-            android:layout_marginTop="250dp"
-            android:text="0.0"
-            android:textColor="@color/white_color"
-            android:textSize="8sp" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4" />
 
+            <TextView
+                android:id="@+id/tv_JLBPL01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.0"
+                android:textColor="@color/red_color"
+                android:textSize="8sp" />
 
-        <!--配水井-->
-        <!-- 左边1配水井-->
-        <TextView
-            android:id="@+id/tv_water_unit_on_left_water_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="28dp"
-            android:layout_marginTop="330dp"
-            android:text="液位（m）"
-            android:textColor="@color/black_color"
-            android:textSize="8sp" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.19" />
 
-        <TextView
-            android:id="@+id/tv_PSJYW01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="52dp"
-            android:layout_marginTop="340dp"
-            android:text="0.0"
-            android:textColor="@color/white_color"
-            android:textSize="8sp" />
+            <TextView
+                android:id="@+id/tv_JLBPL02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.0"
+                android:textColor="@color/red_color"
+                android:textSize="8sp" />
 
-        <!-- 右边2配水井-->
-
-        <TextView
-            android:id="@+id/tv_water_unit_on_right_water_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="110dp"
-            android:layout_marginTop="330dp"
-            android:text="液位（m）"
-            android:textColor="@color/black_color"
-            android:textSize="8sp" />
-
-        <TextView
-            android:id="@+id/tv_PSJYW02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="134dp"
-            android:layout_marginTop="340dp"
-            android:text="0.0"
-            android:textColor="@color/white_color"
-            android:textSize="8sp" />
+        </LinearLayout>
 
 
         <!-- 中转站  下面的 阀门  加氟开关-->
-        <ImageView
-
-            android:layout_width="14dp"
-            android:layout_height="16dp"
-            android:layout_marginLeft="202dp"
-            android:layout_marginTop="290dp"
-            android:src="@drawable/valve_left_gray" />
-
-        <ImageView
-            android:layout_width="14dp"
-            android:layout_height="16dp"
-            android:layout_marginLeft="294dp"
-            android:layout_marginTop="290dp"
-            android:src="@drawable/valve_left_gray" />
-        <!--下面两个余氟 量 TextView-->
-        <TextView
-            android:id="@+id/tv_YL01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="206dp"
-            android:layout_marginTop="330dp"
-            android:text="0.0"
-            android:textColor="@color/white_color"
-            android:textSize="8dp" />
-
-        <TextView
-            android:id="@+id/tv_YL02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="298dp"
-            android:layout_marginTop="330dp"
-            android:text="0.0"
-            android:textColor="@color/white_color"
-            android:textSize="8dp" />
-
-
-        <!-- 左边 表格-->
         <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="14dp"
-            android:layout_marginTop="156dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.74"
             android:orientation="horizontal"
-            android:weightSum="4">
+            android:weightSum="1">
 
-            <View
-                android:layout_width="1dp"
+            <Space
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
+                android:layout_weight="0.608" />
+
+            <ImageView
+
+                android:layout_width="14dp"
+                android:layout_height="16dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/valve_left_gray" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.238" />
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="16dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/valve_left_gray" />
+        </LinearLayout>
 
 
-            <!-- 第一个小块 -->
+        <!-- 中转站  下面的 阀门  加氟开关-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.9"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.08" />
+
+            <!--配水井-->
+            <!-- 左边1配水井-->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:orientation="vertical"
+                android:weightSum="1">
 
-                <View
+                <Space
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
+                    android:layout_height="0dp"
+                    android:layout_weight="0.9" />
 
                 <TextView
+                    android:id="@+id/tv_water_unit_on_left_water_box"
                     android:layout_width="wrap_content"
-                    android:layout_height="10dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="运行状态"
+                    android:text="液位(m)"
+                    android:textColor="@color/black_color"
                     android:textSize="8sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="缺水"
-                        android:textSize="8sp" />
-
-                    <View
-                        android:layout_width="1dp"
-
-                        android:layout_height="match_parent"
-                        android:background="@color/dark_black_color" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="欠压"
-                        android:textSize="8sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/iv_QS01"
-                        android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_marginBottom="1dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/circle_flag_green" />
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/dark_black_color" />
-
-                    <ImageView
-                        android:id="@+id/iv_QY01"
-                        android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_marginBottom="1dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/circle_flag_green" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-            </LinearLayout>
-            <!--第一块结束-->
-
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
-
-
-            <!-- 第二块开始 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/circle_flag_red" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="超温"
-                        android:textSize="8sp" />
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/dark_black_color" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="运行"
-                        android:textSize="8sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/iv_CW01"
-                        android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_marginBottom="1dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/circle_flag_green" />
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/dark_black_color" />
-
-                    <ImageView
-                        android:id="@+id/iv_YX01"
-                        android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_marginBottom="1dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/circle_flag_red" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-            </LinearLayout>
-            <!-- 第二块结束 -->
-
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
-
-            <!-- 第三块开始 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
 
                 <TextView
+                    android:id="@+id/tv_PSJYW01"
                     android:layout_width="wrap_content"
-                    android:layout_height="10dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="产品设定"
+                    android:text="0.0"
+                    android:textColor="@color/red_color"
                     android:textSize="8sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="流量"
-                        android:textSize="8sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0.0"
-                        android:textSize="8sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
             </LinearLayout>
-            <!-- 第三块结束 -->
 
 
-            <View
-                android:layout_width="1dp"
+            <Space
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
+                android:layout_weight="0.13" />
 
-            <!-- 第四块开始 -->
+            <!-- 右边2配水井-->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:orientation="vertical"
+                android:weightSum="1">
 
-                <View
+                <Space
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
+                    android:layout_height="0dp"
+                    android:layout_weight="0.9" />
 
                 <TextView
+                    android:id="@+id/tv_water_unit_on_right_water_box"
                     android:layout_width="wrap_content"
-                    android:layout_height="10dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="0000"
+                    android:text="液位(m)"
+                    android:textColor="@color/black_color"
                     android:textSize="8sp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="产气量"
-                        android:textSize="8sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_CQL01"
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0.0"
-                        android:textSize="8sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
+                <TextView
+                    android:id="@+id/tv_PSJYW02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="0.0"
+                    android:textColor="@color/white_color"
+                    android:textSize="8sp" />
             </LinearLayout>
-            <!-- 第四块结束 -->
 
-            <View
-                android:layout_width="1dp"
+            <Space
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
+                android:layout_weight="0.15" />
+
+
+            <!--余氟1-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.08"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.85" />
+
+                <TextView
+                    android:id="@+id/tv_YL01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.0"
+                    android:textColor="@color/red_color"
+                    android:textSize="8dp" />
+            </LinearLayout>
+
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.17" />
+
+
+            <!--余氟2-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.08"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.85" />
+
+                <TextView
+                    android:id="@+id/tv_YL02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.0"
+                    android:textColor="@color/red_color"
+                    android:textSize="8dp" />
+            </LinearLayout>
 
         </LinearLayout>
 
 
-        <!-- 右边 表格-->
+        <!-- bottom  表格-->
         <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="194dp"
-            android:layout_marginTop="156dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.45"
             android:orientation="horizontal"
-            android:weightSum="4">
+            android:weightSum="4.6">
 
-            <View
-                android:layout_width="1dp"
+            <Space
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
+                android:layout_weight="0.2" />
 
-
-            <!-- 第一个小块 -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_gravity="bottom"
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
                     android:background="@color/dark_black_color" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:text="运行状态"
-                    android:textSize="8sp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
+                <!-- 第一个小块 -->
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="缺水"
-                        android:textSize="8sp" />
+                    android:orientation="vertical">
 
                     <View
-                        android:layout_width="1dp"
-
-                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
                         android:background="@color/dark_black_color" />
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="欠压"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"
+                        android:text="1#计量泵"
                         android:textSize="8sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="2#计量泵"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
                 </LinearLayout>
+                <!--第一块结束-->
+
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
                     android:background="@color/dark_black_color" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/iv_QS02"
-                        android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_marginBottom="1dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/circle_flag_green" />
+                <!-- 第二块开始 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
                         android:background="@color/dark_black_color" />
 
                     <ImageView
-                        android:id="@+id/iv_QY02"
-                        android:layout_width="0dp"
+                        android:id="@+id/iv_JLBZT01"
+                        android:layout_width="wrap_content"
                         android:layout_height="10dp"
-                        android:layout_marginBottom="1dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/circle_flag_green" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-            </LinearLayout>
-            <!--第一块结束-->
-
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
-
-
-            <!-- 第二块开始 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/circle_flag_red" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="超温"
-                        android:textSize="8sp" />
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/dark_black_color" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="运行"
-                        android:textSize="8sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/iv_CW02"
-                        android:layout_width="0dp"
-                        android:layout_height="10dp"
                         android:layout_marginBottom="1dp"
                         android:layout_marginTop="1dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/circle_flag_green" />
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/dark_black_color" />
-
-                    <ImageView
-                        android:id="@+id/iv_YX02"
-                        android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_marginBottom="1dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_weight="1"
                         android:src="@drawable/circle_flag_red" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <ImageView
+                        android:id="@+id/iv_JLBZT02"
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"
+                        android:src="@drawable/circle_flag_red" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
                 </LinearLayout>
+                <!-- 第二块结束 -->
+
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-            </LinearLayout>
-            <!-- 第二块结束 -->
-
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
-
-            <!-- 第三块开始 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
                     android:background="@color/dark_black_color" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:text="产品设定"
-                    android:textSize="8sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
+                <!-- 第三块开始 -->
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="流量"
-                        android:textSize="8sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0.0"
-                        android:textSize="8sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-            </LinearLayout>
-            <!-- 第三块结束 -->
-
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
-
-            <!-- 第四块开始 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:text="0000"
-                    android:textSize="8sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="产气量"
-                        android:textSize="8sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_CQL02"
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0.0"
-                        android:textSize="8sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-            </LinearLayout>
-            <!-- 第四块结束 -->
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
-
-        </LinearLayout>
-
-
-        <!--bottom - left 表格-->
-        <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="14dp"
-            android:layout_marginTop="440dp"
-            android:orientation="horizontal"
-            android:weightSum="4">
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
-
-
-            <!-- 第一个小块 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginTop="1dp"
-                    android:text="1#计量泵"
-                    android:textSize="8sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="2#计量泵"
-                        android:textSize="8sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-            </LinearLayout>
-            <!--第一块结束-->
-
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
-
-
-            <!-- 第二块开始 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <ImageView
-                    android:id="@+id/iv_JLBZT01"
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginTop="1dp"
-                    android:src="@drawable/circle_flag_red" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <ImageView
-                    android:id="@+id/iv_JLBZT02"
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginTop="1dp"
-                    android:src="@drawable/circle_flag_red" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-            </LinearLayout>
-            <!-- 第二块结束 -->
-
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
-
-            <!-- 第三块开始 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginTop="1dp"
-                    android:text="频率设定"
-                    android:textSize="8sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"
                         android:text="频率设定"
                         android:textSize="8sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="频率设定"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
                 </LinearLayout>
+                <!-- 第三块结束 -->
+
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-            </LinearLayout>
-            <!-- 第三块结束 -->
-
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
-
-            <!-- 第四块开始 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
                     android:background="@color/dark_black_color" />
 
-                <TextView
-                    android:id="@+id/tv_JYBPL01"
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginTop="1dp"
-                    android:text="00"
-                    android:textSize="8sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
+                <!-- 第四块开始 -->
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
 
                     <TextView
-                        android:id="@+id/tv_JYBPL02"
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
+                        android:id="@+id/tv_JYBPL01"
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"
                         android:text="00"
                         android:textSize="8sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_JYBPL02"
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="00"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
                 </LinearLayout>
+                <!-- 第四块结束 -->
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
                     android:background="@color/dark_black_color" />
+
             </LinearLayout>
-            <!-- 第四块结束 -->
 
-            <View
-                android:layout_width="1dp"
+            <Space
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
+                android:layout_weight="1" />
 
-        </LinearLayout>
-        <!--bottom - right  表格-->
-        <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="244dp"
-            android:layout_marginTop="440dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
-
-
-            <!-- 第一个小块 -->
+            <!-- 右边 表格-->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_gravity="bottom"
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:weightSum="4">
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
                     android:background="@color/dark_black_color" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginTop="1dp"
-                    android:text="运行"
-                    android:textSize="8sp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
+                <!-- 第一个小块 -->
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="故障"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"
+                        android:text="运行"
                         android:textSize="8sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="故障"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
                 </LinearLayout>
+                <!--第一块结束-->
+
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_black_color" />
+
+
+                <!-- 第二块开始 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <ImageView
+                        android:id="@+id/iv_JYSBZT01"
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"
+                        android:src="@drawable/circle_flag_green" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+
+                    <ImageView
+                        android:id="@+id/iv_JYSBZT01_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"
+                        android:src="@drawable/circle_flag_green" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_black_color" />
+                </LinearLayout>
+                <!-- 第二块结束 -->
+
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
                     android:background="@color/dark_black_color" />
             </LinearLayout>
-            <!--第一块结束-->
 
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
-
-
-            <!-- 第二块开始 -->
-            <LinearLayout
+            <Space
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <ImageView
-                    android:id="@+id/iv_JYSBZT01"
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginTop="1dp"
-                    android:src="@drawable/circle_flag_green" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-
-                <ImageView
-                    android:id="@+id/iv_JYSBZT01_error"
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginTop="1dp"
-                    android:src="@drawable/circle_flag_green" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_black_color" />
-            </LinearLayout>
-            <!-- 第二块结束 -->
-
-
-            <View
-                android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@color/dark_black_color" />
+                android:layout_weight="0.2" />
         </LinearLayout>
-    </RelativeLayout>
+
+    </LinearLayout>
 
     <com.gaoxian.widget.TitleBar
         android:id="@+id/title_bar"
