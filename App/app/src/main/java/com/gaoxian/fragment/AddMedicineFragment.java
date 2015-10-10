@@ -44,7 +44,7 @@ public class AddMedicineFragment extends BaseFragment {
 
     private TitleBar titleBar;
     private RelativeLayout layout_view;
-    private LinearLayout layout_bottom;//this layout is a
+    private LinearLayout layout_bottom;//this layout is a bottom of  the imageView background
 
 
     //数字信息    加氟加药数据

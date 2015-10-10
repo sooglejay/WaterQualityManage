@@ -3,6 +3,7 @@ package com.gaoxian.fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.Space;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.gaoxian.Constant.IntConstant;
@@ -43,8 +45,8 @@ public class ProductionProcessFragment extends BaseFragment {
     private float originalScaleX, originalScaleY, originalTranslateX, originalTranslateY;
 
     private TitleBar titleBar;
-    private FrameLayout layout_view;
-    private LinearLayout layout_bottom;//这个布局是折中的考虑，用来作为viewpager的滑动开关,等有时间了再仔细考虑
+    private LinearLayout layout_view;
+    private View layout_bottom;//这个布局是折中的考虑，用来作为viewpager的滑动开关,等有时间了再仔细考虑
 
 
     private TextView tv_JSZD01;//进水浊度
@@ -91,15 +93,14 @@ public class ProductionProcessFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_1, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         setUp(view, savedInstanceState);
-        setUpLisenter();
-        getProductionData();
-        getProductionState();
+
     }
 
     private void setUp(View view, Bundle savedInstanceState) {
@@ -109,8 +110,8 @@ public class ProductionProcessFragment extends BaseFragment {
                         StringConstant.defaultStationName),
                 StringConstant.tabAddMedicine);
 
-        layout_bottom = (LinearLayout) view.findViewById(R.id.layout_bottom);
-        layout_view = (FrameLayout) view.findViewById(R.id.layout_view);
+        layout_bottom = (View) view.findViewById(R.id.layout_bottom);
+        layout_view = (LinearLayout) view.findViewById(R.id.layout_view);
         //提取缩放前View的属性
         getLayoutParams(layout_view);
 
@@ -151,6 +152,10 @@ public class ProductionProcessFragment extends BaseFragment {
         iv_GSB02 = (ImageView) view.findViewById(R.id.iv_GSB02);
         iv_GSB03 = (ImageView) view.findViewById(R.id.iv_GSB03);
 
+
+        setUpLisenter();
+        getProductionData();
+        getProductionState();
     }
 
     private void setUpLisenter() {
