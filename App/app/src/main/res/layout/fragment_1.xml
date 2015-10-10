@@ -18,13 +18,18 @@
         android:layout_marginTop="@dimen/title_bar_height"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:weightSum="10"
         android:background="@drawable/productionprocess_background"
         android:orientation="vertical">
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_weight="0.85"
+            android:layout_height="0dp" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -54,11 +59,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
             android:orientation="horizontal"
             android:weightSum="1">
-
-
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -66,16 +70,15 @@
             <!--风扇下面的开关-->
             <ImageView
                 android:id="@+id/iv_KGF01"
-                android:layout_marginTop="6dp"
                 android:layout_width="16dp"
                 android:layout_height="22dp"
                 android:src="@drawable/valve_close" />
         </LinearLayout>
-
         <!--进水流量-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -89,15 +92,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0.0"
+                android:layout_gravity="bottom"
                 android:textColor="@color/red_color"
                 android:textSize="8sp" />
         </LinearLayout>
 
 
+
         <!--浊度NTU-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -116,10 +122,12 @@
         </LinearLayout>
 
 
+
         <!--   左边 的配水井 -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:layout_height="0dp"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -164,7 +172,7 @@
                         android:id="@+id/tv_PSJYW01"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right"
+                        android:layout_gravity="center"
                         android:text="0.0"
                         android:textColor="@color/white_color"
                         android:textSize="8sp" />
@@ -218,7 +226,7 @@
                         android:id="@+id/tv_PSJYW02"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right"
+                        android:layout_gravity="center"
                         android:text="0.0"
                         android:textColor="@color/white_color"
                         android:textSize="8sp" />
@@ -229,11 +237,13 @@
         </LinearLayout>
 
 
+
+
         <!--中间的 污垢厚度-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -246,6 +256,7 @@
                 android:id="@+id/tv_WNHD01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:text="0.0"
                 android:textColor="@color/red_color"
                 android:textSize="8sp" />
@@ -255,8 +266,8 @@
         <!--  1—14 个开关  -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="54dp"
+            android:layout_height="0dp"
+            android:layout_weight="1.67"
             android:orientation="horizontal"
             android:weightSum="20">
 
@@ -266,6 +277,7 @@
                 android:layout_weight="2.2" />
             <!-- 8 -->
             <ImageView
+                android:layout_gravity="bottom"
                 android:id="@+id/iv_PWF08"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
@@ -275,6 +287,7 @@
             <!-- 9 -->
             <ImageView
                 android:id="@+id/iv_PWF09"
+                android:layout_gravity="bottom"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
                 android:layout_weight="1"
@@ -282,6 +295,7 @@
 
             <!-- 10 -->
             <ImageView
+                android:layout_gravity="bottom"
                 android:id="@+id/iv_PWF10"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
@@ -291,6 +305,7 @@
 
             <!-- 11 -->
             <ImageView
+                android:layout_gravity="bottom"
                 android:id="@+id/iv_PWF11"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
@@ -299,6 +314,7 @@
 
             <!-- 12 -->
             <ImageView
+                android:layout_gravity="bottom"
                 android:id="@+id/iv_PWF12"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
@@ -308,6 +324,7 @@
             <!-- 13 -->
             <ImageView
                 android:id="@+id/iv_PWF13"
+                android:layout_gravity="bottom"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
                 android:layout_weight="1"
@@ -315,6 +332,7 @@
 
             <!-- 14 -->
             <ImageView
+                android:layout_gravity="bottom"
                 android:id="@+id/iv_PWF14"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
@@ -330,12 +348,14 @@
             <ImageView
                 android:id="@+id/iv_PWF01"
                 android:layout_width="0dp"
+                android:layout_gravity="bottom"
                 android:layout_height="24dp"
                 android:layout_weight="1"
                 android:src="@drawable/valve_close" />
             <!-- 2 -->
             <ImageView
                 android:id="@+id/iv_PWF02"
+                android:layout_gravity="bottom"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
                 android:layout_weight="1"
@@ -344,6 +364,7 @@
             <!-- 3 -->
             <ImageView
                 android:id="@+id/iv_PWF03"
+                android:layout_gravity="bottom"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
                 android:layout_weight="1"
@@ -352,12 +373,14 @@
             <!-- 4 -->
             <ImageView
                 android:id="@+id/iv_PWF04"
+                android:layout_gravity="bottom"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
                 android:layout_weight="1"
                 android:src="@drawable/valve_close" />
             <!-- 5 -->
             <ImageView
+                android:layout_gravity="bottom"
                 android:id="@+id/iv_PWF05"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
@@ -367,11 +390,13 @@
             <ImageView
                 android:id="@+id/iv_PWF06"
                 android:layout_width="0dp"
+                android:layout_gravity="bottom"
                 android:layout_height="24dp"
                 android:layout_weight="1"
                 android:src="@drawable/valve_close" />
             <!-- 7 -->
             <ImageView
+                android:layout_gravity="bottom"
                 android:id="@+id/iv_PWF07"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
@@ -385,11 +410,13 @@
         </LinearLayout>
 
 
+
+
         <!--  15—18 个开关  -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_height="0dp"
+            android:layout_weight="1.25"
             android:orientation="horizontal"
             android:weightSum="7">
 
@@ -400,6 +427,7 @@
             <!-- 15 -->
             <ImageView
                 android:id="@+id/iv_PWF15"
+                android:layout_gravity="bottom"
                 android:layout_width="0dp"
                 android:layout_height="16dp"
                 android:layout_weight="0.35"
@@ -407,6 +435,7 @@
             <!-- 16 -->
             <ImageView
                 android:id="@+id/iv_PWF16"
+                android:layout_gravity="bottom"
                 android:layout_width="0dp"
                 android:layout_height="16dp"
                 android:layout_weight="0.35"
@@ -414,6 +443,7 @@
             <!-- 17 -->
             <ImageView
                 android:id="@+id/iv_PWF17"
+                android:layout_gravity="bottom"
                 android:layout_width="0dp"
                 android:layout_height="16dp"
                 android:layout_weight="0.35"
@@ -421,6 +451,7 @@
             <!-- 18 -->
             <ImageView
                 android:id="@+id/iv_PWF18"
+                android:layout_gravity="bottom"
                 android:layout_width="0dp"
                 android:layout_height="16dp"
                 android:layout_weight="0.35"
@@ -428,11 +459,13 @@
         </LinearLayout>
 
 
+
+
         <!-- 1#清水池 -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.65"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -445,6 +478,7 @@
                 android:id="@+id/tv_QSCYW01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:text="0.0"
                 android:textColor="@color/red_color"
                 android:textSize="8sp" />
@@ -457,6 +491,7 @@
             <TextView
                 android:id="@+id/tv_QSCYW02"
                 android:layout_width="wrap_content"
+                android:layout_gravity="bottom"
                 android:layout_height="wrap_content"
                 android:text="0.0"
                 android:textColor="@color/red_color"
@@ -464,11 +499,13 @@
         </LinearLayout>
 
 
+
+
         <!-- 下面 三个风扇 -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -479,6 +516,7 @@
             <!--三个像风扇一样的东西-->
             <ImageView
                 android:id="@+id/iv_GSB01"
+                android:layout_gravity="bottom"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/fan_bottom_close" />
@@ -492,6 +530,7 @@
                 android:id="@+id/iv_GSB02"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:layout_gravity="bottom"
                 android:src="@drawable/fan_bottom_close" />
 
             <Space
@@ -500,6 +539,7 @@
                 android:layout_weight="0.03" />
 
             <ImageView
+                android:layout_gravity="bottom"
                 android:id="@+id/iv_GSB03"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -517,11 +557,14 @@
                 android:textSize="8sp" />
         </LinearLayout>
 
+
+
+
         <!-- 出水流 -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -533,10 +576,14 @@
                 android:id="@+id/tv_CSLL01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:text="0.0"
                 android:textColor="@color/red_color"
                 android:textSize="8sp" />
         </LinearLayout>
+
+
+
     </LinearLayout>
     <com.gaoxian.widget.TitleBar
         android:id="@+id/title_bar"
