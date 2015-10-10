@@ -48,11 +48,13 @@
             <ImageView
                 android:id="@+id/iv_QSB02"
                 android:layout_width="28dp"
+                android:visibility="invisible"
                 android:layout_height="26dp"
                 android:src="@drawable/fan_top_open" />
 
             <ImageView
                 android:id="@+id/iv_QSB03"
+                android:visibility="invisible"
                 android:layout_width="28dp"
                 android:layout_height="26dp"
                 android:src="@drawable/fan_top_close" />
