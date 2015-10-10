@@ -77,19 +77,17 @@ public class WaterQualityInfoFragment extends BaseFragment {
     }
 
     /**
-     *
      * @param WQJCList 进水的水质数据结构
      * @param strJCinfo 进水的水质的等级信息
      */
     public void J_addView(List<WQinfo> WQJCList, String strJCinfo) {
         tv_j_water_level_str.setText(getResources().getString(R.string.j_water_level_str)+strJCinfo);
-
+        J_Gallery.removeAllViews();
         int size = WQJCList.size();
         int half = size % 2 == 0 ? size / 2 : size / 2 + 1;
         for (int i = 0; i < half; i++) {
 
-            View j_layout = mInflater.inflate(R.layout.item_water_info,
-                    J_Gallery, false);
+            View j_layout = mInflater.inflate(R.layout.item_water_info, J_Gallery, false);
 
             ( (TextView) j_layout.findViewById(R.id.tv_top_digit) ).setText(WQJCList.get(i).getWQMonitorData() + "");
             ( (TextView) j_layout.findViewById(R.id.tv_top_unit) ).setText(WQJCList.get(i).getUnit()+"");
@@ -117,6 +115,7 @@ public class WaterQualityInfoFragment extends BaseFragment {
      */
     public void C_addView(List<WQinfo> WQCCList, String strCCinfo) {
         tv_c_water_level_str.setText(getResources().getString(R.string.c_water_level_str)+strCCinfo);
+        C_Gallery.removeAllViews();
         int size = WQCCList.size();
 
         int half = size % 2 == 0 ? size / 2 : size / 2 + 1;
