@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gaoxian.Constant.IntConstant;
 import com.gaoxian.Constant.NetWorkConstant;
@@ -48,6 +49,9 @@ public class ProductionProcessFragment extends BaseFragment {
     private LinearLayout layout_view;
     private View layout_bottom;//这个布局是折中的考虑，用来作为viewpager的滑动开关,等有时间了再仔细考虑
 
+    //定时操作
+    final Handler handler=new Handler();
+    private Runnable runnable;
 
     private TextView tv_JSZD01;//进水浊度
     private TextView tv_WNHD01;//污泥厚度01
@@ -100,7 +104,8 @@ public class ProductionProcessFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         setUp(view, savedInstanceState);
-
+        getProductionData();
+        getProductionState();
     }
 
     private void setUp(View view, Bundle savedInstanceState) {
@@ -154,8 +159,15 @@ public class ProductionProcessFragment extends BaseFragment {
 
 
         setUpLisenter();
-        getProductionData();
-        getProductionState();
+        runnable=new Runnable() {
+            @Override
+            public void run() {
+                handler.postDelayed(this,60000);//刷新频率为1分钟
+                getProductionData();
+                getProductionState();
+            }
+        };
+        handler.postDelayed(runnable,60000);//执行定时操作
     }
 
     private void setUpLisenter() {
