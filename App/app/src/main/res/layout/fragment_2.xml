@@ -1021,7 +1021,7 @@
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.4" />
+                android:layout_weight="0.407" />
 
             <TextView
                 android:id="@+id/tv_JLBPL01"
@@ -1196,7 +1196,7 @@
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.17" />
+                android:layout_weight="0.15" />
 
 
             <!--余氟2-->
