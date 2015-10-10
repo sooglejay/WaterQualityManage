@@ -1034,7 +1034,7 @@
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.19" />
+                android:layout_weight="0.18" />
 
             <TextView
                 android:id="@+id/tv_JLBPL02"
@@ -1091,7 +1091,7 @@
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.08" />
+                android:layout_weight="0.07" />
 
             <!--配水井-->
             <!-- 左边1配水井-->
@@ -1196,7 +1196,7 @@
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.15" />
+                android:layout_weight="0.18" />
 
 
             <!--余氟2-->
