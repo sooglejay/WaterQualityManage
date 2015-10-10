@@ -2,6 +2,7 @@ package com.gaoxian.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,10 @@ import retrofit.client.Response;
 
 public class WaterQualityInfoFragment extends BaseFragment {
 
+    //定时操作
+    final Handler handler=new Handler();
+    private Runnable runnable;
+
     private TitleBar titleBar;
     private TextView tv_j_water_level_str;
     private TextView tv_c_water_level_str;
@@ -45,6 +50,7 @@ public class WaterQualityInfoFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         setUp(view, savedInstanceState);
+        getWQInfo(this.getActivity());
     }
 
     private void setUp(View view, Bundle savedInstanceState) {
@@ -60,8 +66,14 @@ public class WaterQualityInfoFragment extends BaseFragment {
         tv_j_water_level_str = (TextView) view.findViewById(R.id.tv_j_water_level_str);
         tv_c_water_level_str = (TextView) view.findViewById(R.id.tv_c_water_level_str);
 
-
-        getWQInfo(this.getActivity());
+        runnable=new Runnable() {
+            @Override
+            public void run() {
+                handler.postDelayed(this,300000);//刷新频率为5分钟
+                getWQInfo(getActivity());
+            }
+        };
+        handler.postDelayed(runnable,300000);//执行定时操作
     }
 
     /**

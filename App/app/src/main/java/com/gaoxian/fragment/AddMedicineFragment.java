@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gaoxian.Constant.IntConstant;
 import com.gaoxian.Constant.NetWorkConstant;
@@ -46,6 +47,9 @@ public class AddMedicineFragment extends BaseFragment {
     private LinearLayout layout_view;
     private View layout_bottom;//this layout is a bottom of  the imageView background
 
+    //定时操作
+    final Handler handler=new Handler();
+    private Runnable runnable;
 
     //数字信息    加氟加药数据
     private TextView tv_YL01;//余氟 1
@@ -102,6 +106,15 @@ public class AddMedicineFragment extends BaseFragment {
         setUpListener();
         getChlorineDosingData();
         getChlorineDosingState();
+        runnable=new Runnable() {
+            @Override
+            public void run() {
+                handler.postDelayed(this,60000);//刷新频率为1分钟
+                getChlorineDosingData();
+                getChlorineDosingState();
+            }
+        };
+        handler.postDelayed(runnable,60000);//执行定时操作
     }
 
     private void setUp(View view, Bundle savedInstanceState) {
