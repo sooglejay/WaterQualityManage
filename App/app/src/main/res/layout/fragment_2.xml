@@ -940,8 +940,8 @@
                 android:layout_height="match_parent"
                 android:gravity="bottom"
                 android:text="0.0"
-                android:textColor="@color/red_color"
-                android:textSize="8sp" />
+                android:textColor="@color/white_color"
+                android:textSize="6sp" />
 
             <Space
                 android:layout_width="0dp"
@@ -1028,8 +1028,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0.0"
-                android:textColor="@color/red_color"
-                android:textSize="8sp" />
+                android:textColor="@color/white_color"
+                android:textSize="6sp" />
 
             <Space
                 android:layout_width="0dp"
@@ -1041,8 +1041,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0.0"
-                android:textColor="@color/red_color"
-                android:textSize="8sp" />
+                android:textColor="@color/white_color"
+                android:textSize="6sp" />
 
         </LinearLayout>
 
@@ -1122,7 +1122,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="0.0"
-                    android:textColor="@color/red_color"
+                    android:textColor="@color/white_color"
                     android:textSize="8sp" />
             </LinearLayout>
 
@@ -1188,7 +1188,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0.0"
-                    android:textColor="@color/red_color"
+                    android:textColor="@color/white_color"
                     android:textSize="8dp" />
             </LinearLayout>
 
@@ -1217,7 +1217,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0.0"
-                    android:textColor="@color/red_color"
+                    android:textColor="@color/white_color"
                     android:textSize="8dp" />
             </LinearLayout>
 

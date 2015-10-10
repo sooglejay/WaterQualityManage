@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gaoxian" >
+    package="com.gaoxian">
 
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <!-- 这个权限用于进行网络定位 -->
@@ -29,14 +29,13 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" >
+            android:process=":remote">
             <intent-filter>
-                <action android:name="com.baidu.location.service_v2.2" >
-                </action>
+                <action android:name="com.baidu.location.service_v2.2"></action>
             </intent-filter>
         </service>
 
@@ -45,12 +44,15 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="4hKGNM7GZqmKaRuITUvGZPWg" />
 
-        <activity android:name=".ui.MainActivity" >
-
-        </activity>
-        <activity android:name=".ui.LoginPageActivity" >
-        </activity>
-        <activity android:name=".ui.WelcomePage" >
+        <activity
+            android:name=".ui.MainActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ui.LoginPageActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ui.WelcomePage"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -58,12 +60,13 @@
         </activity>
         <activity
             android:name=".ui.Test_interface"
-            android:label="@string/title_activity_test_interface" >
+            android:label="@string/title_activity_test_interface"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ui.Test_DM"
-            android:label="@string/title_activity_test_interface" >
-
+            android:label="@string/title_activity_test_interface"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
