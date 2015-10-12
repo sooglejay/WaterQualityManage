@@ -23,6 +23,7 @@ import java.util.*;
 public class CarNetCrashHandler implements UncaughtExceptionHandler {
 
     private static final String TAG = "Activity";
+    private static final String FILE_NAME = "gaoxian";
     private Context mContext;
     private static final String SDCARD_ROOT = Environment.getExternalStorageDirectory().toString();
     private static CarNetCrashHandler mInstance = new CarNetCrashHandler();
@@ -109,7 +110,7 @@ public class CarNetCrashHandler implements UncaughtExceptionHandler {
         sb.append(obtainExceptionInfo(ex));
 
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-        	File dir = new File(SDCARD_ROOT + File.separator + "50_GaoXian/saiyaren/crash" + File.separator);
+        	File dir = new File(SDCARD_ROOT + File.separator + FILE_NAME+ File.separator);
             if (!dir.exists()) {
                 dir.mkdirs();
             }

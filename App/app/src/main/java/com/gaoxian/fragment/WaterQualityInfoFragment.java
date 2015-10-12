@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.Space;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.baidu.mapapi.search.geocode.GeoCodeResult;
 import com.gaoxian.Constant.PreferenceConstant;
 import com.gaoxian.Constant.StringConstant;
 import com.gaoxian.R;
@@ -20,9 +22,9 @@ import com.gaoxian.model.NetWorkResultBean;
 import com.gaoxian.model.WQinfo;
 import com.gaoxian.model.WQinfoPackge;
 import com.gaoxian.util.PreferenceUtil;
+import com.gaoxian.util.UIUtils;
 import com.gaoxian.widget.TitleBar;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit.RetrofitError;
@@ -78,35 +80,38 @@ public class WaterQualityInfoFragment extends BaseFragment {
     }
 
     /**
-     * @param WQJCList  进水的水质数据结构
-     * @param strJCinfo 进水的水质的等级信息
+     * @param wQinfoListDatas 水质信息数据结构
+     * @param layoutGroup     展示水质信息的顶层布局
      */
-    public void J_addView(List<WQinfo> WQJCList, String strJCinfo) {
-        tv_j_water_level_str.setText(getResources().getString(R.string.j_water_level_str) + strJCinfo);
-        J_Gallery.removeAllViews();
-        int size = WQJCList.size();
+    public void addView(List<WQinfo> wQinfoListDatas, LinearLayout layoutGroup) {
+        layoutGroup.removeAllViews();
+        int marginBottom = (int) UIUtils.dp2px(this.getActivity(), 12);
+        wQinfoListDatas.add(wQinfoListDatas.get(0));
+        wQinfoListDatas.add(wQinfoListDatas.get(0));
+        wQinfoListDatas.add(wQinfoListDatas.get(0));
+
+        int size = wQinfoListDatas.size();
         int y = size % 4;//对4取余
         int mode = size / 4;//对4取模
         for (int i = 0; i <= mode; i++) {
             LinearLayout horizentalLinearLayout = new LinearLayout(this.getActivity());
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100);
-            layoutParams.setMargins(12, 12, 12, 12);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            layoutParams.setMargins(0,0,0, marginBottom);
             horizentalLinearLayout.setLayoutParams(layoutParams);
             if (i < mode) {
                 for (int j = 0; j < 4; j++) {
-                    View j_layout = mInflater.inflate(R.layout.item_water_info, J_Gallery, false);
+                    View c_layout = mInflater.inflate(R.layout.item_water_info, layoutGroup, false);
                     Space space1 = new Space(this.getActivity());
-                    TextView tv_top_name = (TextView) j_layout.findViewById(R.id.tv_top_name);
-                    TextView tv_top_digit = (TextView) j_layout.findViewById(R.id.tv_top_digit);
-                    TextView tv_top_unit = (TextView) j_layout.findViewById(R.id.tv_top_unit);
-                    tv_top_name.setText(WQJCList.get(4 * i + j).getParameterName() + "");
-                    tv_top_digit.setText(WQJCList.get(4 * i + j).getWQMonitorData() + "");
-                    tv_top_unit.setText(WQJCList.get(4 * i + j).getUnit() + "");
-                    j_layout.setPadding(12, 12, 12, 12);
-                    j_layout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                    TextView tv_name = (TextView) c_layout.findViewById(R.id.tv_name);
+                    TextView tv_digit = (TextView) c_layout.findViewById(R.id.tv_digit);
+                    TextView tv_unit = (TextView) c_layout.findViewById(R.id.tv_unit);
+                    tv_name.setText(wQinfoListDatas.get(4 * i + j).getParameterName() + "");
+                    tv_digit.setText(wQinfoListDatas.get(4 * i + j).getWQMonitorData() + "");
+                    tv_unit.setText(wQinfoListDatas.get(4 * i + j).getUnit() + "");
+                    c_layout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
                     space1.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 0.2f));
                     horizentalLinearLayout.addView(space1);
-                    horizentalLinearLayout.addView(j_layout);
+                    horizentalLinearLayout.addView(c_layout);
                 }
                 Space endSpace = new Space(this.getActivity());
                 endSpace.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 0.2f));
@@ -114,173 +119,42 @@ public class WaterQualityInfoFragment extends BaseFragment {
             } else if (i == mode) {
                 int p = 0;
                 while (p < y) {
-                    View j_layout = mInflater.inflate(R.layout.item_water_info, J_Gallery, false);
+                    View c_layout = mInflater.inflate(R.layout.item_water_info, layoutGroup, false);
                     Space space1 = new Space(this.getActivity());
-                    TextView tv_top_name = (TextView) j_layout.findViewById(R.id.tv_top_name);
-                    TextView tv_top_digit = (TextView) j_layout.findViewById(R.id.tv_top_digit);
-                    TextView tv_top_unit = (TextView) j_layout.findViewById(R.id.tv_top_unit);
-                    tv_top_name.setText(WQJCList.get(4 * i + p).getParameterName() + "");
-                    tv_top_digit.setText(WQJCList.get(4 * i + p).getWQMonitorData() + "");
-                    tv_top_unit.setText(WQJCList.get(4 * i + p).getUnit() + "");
-                    j_layout.setPadding(12, 12, 12, 12);
-                    j_layout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                    TextView tv_top_name = (TextView) c_layout.findViewById(R.id.tv_name);
+                    TextView tv_top_digit = (TextView) c_layout.findViewById(R.id.tv_digit);
+                    TextView tv_top_unit = (TextView) c_layout.findViewById(R.id.tv_unit);
+                    tv_top_name.setText(wQinfoListDatas.get(4 * i + p).getParameterName() + "");
+                    tv_top_digit.setText(wQinfoListDatas.get(4 * i + p).getWQMonitorData() + "");
+                    tv_top_unit.setText(wQinfoListDatas.get(4 * i + p).getUnit() + "");
+                    c_layout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
                     space1.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 0.2f));
                     horizentalLinearLayout.addView(space1);
-                    horizentalLinearLayout.addView(j_layout);
+                    horizentalLinearLayout.addView(c_layout);
                     p++;
                 }
                 int k = y;
                 while (k < 4) {
-                    View j_layout = mInflater.inflate(R.layout.item_water_info, J_Gallery, false);
+                    View c_layout = mInflater.inflate(R.layout.item_water_info, layoutGroup, false);
                     Space space1 = new Space(this.getActivity());
-                    TextView tv_top_name = (TextView) j_layout.findViewById(R.id.tv_top_name);
-                    TextView tv_top_digit = (TextView) j_layout.findViewById(R.id.tv_top_digit);
-                    TextView tv_top_unit = (TextView) j_layout.findViewById(R.id.tv_top_unit);
-                    tv_top_name.setVisibility(View.GONE);
+                    TextView tv_top_name = (TextView) c_layout.findViewById(R.id.tv_name);
+                    TextView tv_top_digit = (TextView) c_layout.findViewById(R.id.tv_digit);
+                    TextView tv_top_unit = (TextView) c_layout.findViewById(R.id.tv_unit);
+                    tv_top_name.setText("");
                     tv_top_digit.setText("无参数");
-                    tv_top_unit.setVisibility(View.GONE);
-                    j_layout.setPadding(12, 12, 12, 12);
-                    j_layout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                    tv_top_unit.setText("");
+                    c_layout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,1.0f));
                     space1.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 0.2f));
                     horizentalLinearLayout.addView(space1);
-                    horizentalLinearLayout.addView(j_layout);
+                    horizentalLinearLayout.addView(c_layout);
                     k++;
                 }
                 Space endSpace = new Space(this.getActivity());
                 endSpace.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 0.2f));
                 horizentalLinearLayout.addView(endSpace);
             }
-            J_Gallery.addView(horizentalLinearLayout);
+            layoutGroup.addView(horizentalLinearLayout);
         }
-
-
-//        int size = WQJCList.size();
-//        int width_4 = J_Gallery.getResources().getDisplayMetrics().widthPixels;
-//        int half = size % 2 == 0 ? size / 2 : size / 2 + 1;
-//        for (int i = 0; i < half; i++) {
-//
-//            View j_layout = mInflater.inflate(R.layout.item_water_info, J_Gallery, false);
-//            j_layout.setLayoutParams(new LinearLayout.LayoutParams(width_4/4, ViewGroup.LayoutParams.MATCH_PARENT));
-//            ( (TextView) j_layout.findViewById(R.id.tv_top_digit) ).setText(WQJCList.get(i).getWQMonitorData() + "");
-//            ( (TextView) j_layout.findViewById(R.id.tv_top_unit) ).setText(WQJCList.get(i).getUnit()+"");
-//            ( (TextView) j_layout.findViewById(R.id.tv_top_name) ).setText(WQJCList.get(i).getParameterName() + "");
-//
-//            if (half + i < size) {
-//                ( (TextView) j_layout.findViewById(R.id.tv_bottom_digit) ).setText(WQJCList.get(half + i).getWQMonitorData() + "");
-//                ( (TextView) j_layout.findViewById(R.id.tv_bottom_unit) ).setText(WQJCList.get(half + i).getUnit()+"");
-//                ( (TextView) j_layout.findViewById(R.id.tv_bottom_name) ).setText(WQJCList.get(half + i).getParameterName() + "");
-//
-//            } else {
-//                j_layout.findViewById(R.id.tv_bottom_digit).setVisibility(View.GONE);
-//                j_layout.findViewById(R.id.tv_bottom_unit).setVisibility(View.GONE);
-//                ((TextView) j_layout.findViewById(R.id.tv_bottom_name)).setText("无监控参数");
-//            }
-//
-//            J_Gallery.addView(j_layout);
-//        }
-    }
-
-    /**
-     * @param WQCCList  出水的水质数据结构
-     * @param strCCinfo 出水的水质的等级
-     */
-    public void C_addView(List<WQinfo> WQCCList, String strCCinfo) {
-        tv_c_water_level_str.setText(getResources().getString(R.string.c_water_level_str) + strCCinfo);
-        C_Gallery.removeAllViews();
-        int size = WQCCList.size();
-        int y = size % 4;//对4取余
-        int mode = size / 4;//对4取模
-        for (int i = 0; i <= mode; i++) {
-            LinearLayout horizentalLinearLayout = new LinearLayout(this.getActivity());
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100);
-            layoutParams.setMargins(12, 12, 12, 12);
-            horizentalLinearLayout.setLayoutParams(layoutParams);
-            if (i < mode) {
-                for (int j = 0; j < 4; j++) {
-                    View j_layout = mInflater.inflate(R.layout.item_water_info, C_Gallery, false);
-                    Space space1 = new Space(this.getActivity());
-                    TextView tv_top_name = (TextView) j_layout.findViewById(R.id.tv_top_name);
-                    TextView tv_top_digit = (TextView) j_layout.findViewById(R.id.tv_top_digit);
-                    TextView tv_top_unit = (TextView) j_layout.findViewById(R.id.tv_top_unit);
-                    tv_top_name.setText(WQCCList.get(4 * i + j).getParameterName() + "");
-                    tv_top_digit.setText(WQCCList.get(4 * i + j).getWQMonitorData() + "");
-                    tv_top_unit.setText(WQCCList.get(4 * i + j).getUnit() + "");
-                    j_layout.setPadding(12, 12, 12, 12);
-                    j_layout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                    space1.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 0.2f));
-                    horizentalLinearLayout.addView(space1);
-                    horizentalLinearLayout.addView(j_layout);
-                }
-                Space endSpace = new Space(this.getActivity());
-                endSpace.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 0.2f));
-                horizentalLinearLayout.addView(endSpace);
-            } else if (i == mode) {
-                int p = 0;
-                while (p < y) {
-                    View j_layout = mInflater.inflate(R.layout.item_water_info, C_Gallery, false);
-                    Space space1 = new Space(this.getActivity());
-                    TextView tv_top_name = (TextView) j_layout.findViewById(R.id.tv_top_name);
-                    TextView tv_top_digit = (TextView) j_layout.findViewById(R.id.tv_top_digit);
-                    TextView tv_top_unit = (TextView) j_layout.findViewById(R.id.tv_top_unit);
-                    tv_top_name.setText(WQCCList.get(4 * i + p).getParameterName() + "");
-                    tv_top_digit.setText(WQCCList.get(4 * i + p).getWQMonitorData() + "");
-                    tv_top_unit.setText(WQCCList.get(4 * i + p).getUnit() + "");
-                    j_layout.setPadding(12, 12, 12, 12);
-                    j_layout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                    space1.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 0.2f));
-                    horizentalLinearLayout.addView(space1);
-                    horizentalLinearLayout.addView(j_layout);
-                    p++;
-                }
-                int k = y;
-                while (k < 4) {
-                    View j_layout = mInflater.inflate(R.layout.item_water_info, C_Gallery, false);
-                    Space space1 = new Space(this.getActivity());
-                    TextView tv_top_name = (TextView) j_layout.findViewById(R.id.tv_top_name);
-                    TextView tv_top_digit = (TextView) j_layout.findViewById(R.id.tv_top_digit);
-                    TextView tv_top_unit = (TextView) j_layout.findViewById(R.id.tv_top_unit);
-                    tv_top_name.setVisibility(View.GONE);
-                    tv_top_digit.setText("无参数");
-                    tv_top_unit.setVisibility(View.GONE);
-                    j_layout.setPadding(12, 12, 12, 12);
-                    j_layout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                    space1.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 0.2f));
-                    horizentalLinearLayout.addView(space1);
-                    horizentalLinearLayout.addView(j_layout);
-                    k++;
-                }
-                Space endSpace = new Space(this.getActivity());
-                endSpace.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 0.2f));
-                horizentalLinearLayout.addView(endSpace);
-            }
-            C_Gallery.addView(horizentalLinearLayout);
-        }
-
-//        int size = WQCCList.size();
-//        int width_4 = C_Gallery.getResources().getDisplayMetrics().widthPixels;
-//        int half = size % 2 == 0 ? size / 2 : size / 2 + 1;
-//        for (int i = 0; i < half; i++) {
-//
-//            View c_layout = mInflater.inflate(R.layout.item_water_info,
-//                    C_Gallery, false);
-//
-//            c_layout.setLayoutParams(new LinearLayout.LayoutParams(width_4/4, ViewGroup.LayoutParams.MATCH_PARENT));
-//            ( (TextView) c_layout.findViewById(R.id.tv_top_digit) ).setText(WQCCList.get(i).getWQMonitorData() + "");
-//            ( (TextView) c_layout.findViewById(R.id.tv_top_unit) ).setText(WQCCList.get(i).getUnit()+"");
-//            ( (TextView) c_layout.findViewById(R.id.tv_top_name) ).setText(WQCCList.get(i).getParameterName() + "");
-//
-//            if (half + i < size) {
-//                ( (TextView) c_layout.findViewById(R.id.tv_bottom_digit) ).setText(WQCCList.get(half + i).getWQMonitorData() + "");
-//                ( (TextView) c_layout.findViewById(R.id.tv_bottom_unit) ).setText(WQCCList.get(half + i).getUnit()+"");
-//                ( (TextView) c_layout.findViewById(R.id.tv_bottom_name) ).setText(WQCCList.get(half + i).getParameterName() + "");
-//
-//            } else {
-//                c_layout.findViewById(R.id.tv_bottom_digit).setVisibility(View.GONE);
-//                c_layout.findViewById(R.id.tv_bottom_unit).setVisibility(View.GONE);
-//                ((TextView) c_layout.findViewById(R.id.tv_bottom_name)).setText("无监控参数");
-//            }
-//            C_Gallery.addView(c_layout);
-//        }
     }
 
     @Override
@@ -300,12 +174,23 @@ public class WaterQualityInfoFragment extends BaseFragment {
 
             @Override
             public void success(NetWorkResultBean<WQinfoPackge> wQinfoPackgeNetWorkResultBean, Response response) {
-
-                WQinfoPackge test = wQinfoPackgeNetWorkResultBean.getData();
-                J_addView(test.getWQJCList(), test.getJCInfo());
-                C_addView(test.getWQCCList(), test.getCCinfo());
+                setWaterQualityInfo(wQinfoPackgeNetWorkResultBean.getData());
             }
         });
+    }
+
+    /**
+     * 设置水质信息
+     * @param bean
+     */
+    private void setWaterQualityInfo(WQinfoPackge bean) {
+        //进水水质
+        tv_j_water_level_str.setText(getResources().getString(R.string.j_water_level_str) + bean.getJCInfo());
+        addView(bean.getWQJCList(), J_Gallery);
+
+        //出水水质
+        tv_c_water_level_str.setText(getResources().getString(R.string.c_water_level_str) + bean.getJCInfo());
+        addView(bean.getWQCCList(), C_Gallery);
     }
 
 }
