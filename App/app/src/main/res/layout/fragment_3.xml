@@ -31,7 +31,6 @@
                     android:layout_marginTop="@dimen/more_big_padding"
                     android:layout_width="wrap_content"
                     android:textSize="@dimen/big_textsize"
-                    android:textColor="@color/black_color"
                     android:layout_height="wrap_content" />
                 <ScrollView
                     android:layout_width="match_parent"
@@ -98,7 +97,6 @@
                     android:layout_marginTop="@dimen/more_big_padding"
                     android:layout_width="wrap_content"
                     android:textSize="@dimen/big_textsize"
-                    android:textColor="@color/black_color"
                     android:layout_height="wrap_content" />
                 <ScrollView
                     android:layout_width="match_parent"
