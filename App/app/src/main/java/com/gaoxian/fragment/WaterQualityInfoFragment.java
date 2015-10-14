@@ -85,16 +85,16 @@ public class WaterQualityInfoFragment extends BaseFragment {
      */
     public void addView(List<WQinfo> wQinfoListDatas, LinearLayout layoutGroup) {
         layoutGroup.removeAllViews();
-        int marginBottom = (int) UIUtils.dp2px(this.getActivity(),8);
+        int marginBottom = (int) UIUtils.dp2px(this.getActivity(),10);
         int size = wQinfoListDatas.size();
         int y = size % 4;//对4取余
         int mode = size / 4;//对4取模
         for (int i = 0; i <= mode; i++) {
             LinearLayout horizentalLinearLayout = new LinearLayout(this.getActivity());
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,0,1.0f);
-            layoutParams.setMargins(0,0,0, marginBottom);
-            horizentalLinearLayout.setLayoutParams(layoutParams);
             if (i < mode) {
+                layoutParams.setMargins(0,0,0, marginBottom);
+                horizentalLinearLayout.setLayoutParams(layoutParams);
                 for (int j = 0; j < 4; j++) {
                     View c_layout = mInflater.inflate(R.layout.item_water_info, layoutGroup, false);
                     Space space1 = new Space(this.getActivity());
@@ -112,7 +112,11 @@ public class WaterQualityInfoFragment extends BaseFragment {
                 Space endSpace = new Space(this.getActivity());
                 endSpace.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 0.2f));
                 horizentalLinearLayout.addView(endSpace);
+
             } else if (i == mode) {
+                //最后一行的不设置bottom
+                layoutParams.setMargins(0,0,0,0);
+                horizentalLinearLayout.setLayoutParams(layoutParams);
                 int p = 0;
                 while (p < y) {
                     View c_layout = mInflater.inflate(R.layout.item_water_info, layoutGroup, false);

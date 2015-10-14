@@ -1,5 +1,6 @@
 package com.gaoxian.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -43,6 +44,7 @@ import retrofit.client.Response;
 
 
 public class ProductionProcessFragment extends BaseFragment {
+    public final static String PSJ_ICON_STRING = "icon_water_level_";
     private float originalScaleX, originalScaleY, originalTranslateX, originalTranslateY;
 
     private TitleBar titleBar;
@@ -94,6 +96,10 @@ public class ProductionProcessFragment extends BaseFragment {
     public ImageView iv_GSB01;//供水泵01
     public ImageView iv_GSB02;//供水泵02
     public ImageView iv_GSB03;//供水泵03
+
+
+    public ImageView iv_left_water_box;//左边的配水井
+    public ImageView iv_right_water_box;//右边的配水井
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -156,6 +162,10 @@ public class ProductionProcessFragment extends BaseFragment {
         iv_GSB01 = (ImageView) view.findViewById(R.id.iv_GSB01);
         iv_GSB02 = (ImageView) view.findViewById(R.id.iv_GSB02);
         iv_GSB03 = (ImageView) view.findViewById(R.id.iv_GSB03);
+
+
+        iv_left_water_box = (ImageView) view.findViewById(R.id.iv_left_water_box);
+        iv_right_water_box = (ImageView) view.findViewById(R.id.iv_right_water_box);
 
 
         setUpLisenter();
@@ -284,12 +294,29 @@ public class ProductionProcessFragment extends BaseFragment {
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PSJYW01)) {
                         //配水井有点特殊,因为服务端接口 只在生产过程那里返回了字段，但是却又有两个地方使用了数据
                         tv_PSJYW01.setText("" + bean.getSCKZData());
+
+
+                        //配水井的水位高度
+                        float value = (float)bean.getSCKZData();
+                        int scale = (int)(value*10/IntConstant.SUM_VALUE);
+                        int backgroundResId = iconSpellID(PSJ_ICON_STRING+scale,ProductionProcessFragment.this.getActivity());
+                        iv_left_water_box.setImageResource(backgroundResId);
+
                         PreferenceUtil.save(ProductionProcessFragment.this.getActivity(), PreferenceConstant.psj1, bean.getSCKZData()+"");
                         EventBus.getDefault().post(new IntEvent(IntEvent.Msg_RefreshData));
 
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PSJYW02)) {
                         //配水井有点特殊,因为服务端接口 只在生产过程那里返回了字段，但是却又有两个地方使用了数据
                         tv_PSJYW02.setText("" + bean.getSCKZData());
+
+
+                        //配水井的水位高度
+                        float value = (float)bean.getSCKZData();
+                        int scale = (int)(value*10/IntConstant.SUM_VALUE);
+                        int backgroundResId = iconSpellID(PSJ_ICON_STRING+scale,ProductionProcessFragment.this.getActivity());
+                        iv_right_water_box.setImageResource(backgroundResId);
+
+
                         PreferenceUtil.save(ProductionProcessFragment.this.getActivity(), PreferenceConstant.psj2, bean.getSCKZData()+"");
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.QSCYW01)) {
                         tv_QSCYW01.setText("" + bean.getSCKZData());
@@ -309,359 +336,373 @@ public class ProductionProcessFragment extends BaseFragment {
     private void getProductionState() {
         GetProductionDataRetrofitUtil.getProductionState(ProductionProcessFragment.this.getActivity(),
                 PreferenceUtil.load(ProductionProcessFragment.this.getActivity(),
-                        PreferenceConstant.AreaCode,""),
+                        PreferenceConstant.AreaCode, ""),
                 StringConstant.apiKey,
                 new NetCallback<NetWorkResultBean<ProductionStatePackge>>(ProductionProcessFragment.this.getActivity()) {
-            @Override
-            public void onFailure(RetrofitError error) {
+                    @Override
+                    public void onFailure(RetrofitError error) {
 
-            }
-
-            @Override
-            public void success(NetWorkResultBean<ProductionStatePackge> productionDataPackgeNetWorkResultBean, Response response) {
-                ProductionStatePackge test = productionDataPackgeNetWorkResultBean.getData();
-                List<ProductionState> dataList = test.getPSDataList();
-                Log.e("jwjw", test.toString());
-
-                for (ProductionState bean : dataList) {
-                    if (bean.getSCKZCode().equals(NetWorkConstant.PWF01)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF01.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF01.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF01.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF02)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF02.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF02.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF02.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF03)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF03.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF03.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF03.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF04)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF04.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF04.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF04.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF05)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF05.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF05.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF05.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF06)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF06.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF06.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF06.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF07)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF07.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF07.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF07.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF08)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF08.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF08.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF08.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF09)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF09.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF09.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF09.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF10)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF10.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF10.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF10.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF11)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF11.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF11.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF11.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF12)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF12.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF12.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF12.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF13)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF13.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF13.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF13.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF14)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF14.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF14.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF14.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF15)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF15.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF15.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF15.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF16)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF16.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF16.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF16.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF17)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF17.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF17.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF17.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF18)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_PWF18.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_PWF18.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_PWF18.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.KGF01)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_KGF01.setImageResource(R.drawable.valve_left_green);
-                                break;
-                            case IntConstant.State_close:
-                                iv_KGF01.setImageResource(R.drawable.valve_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_KGF01.setImageResource(R.drawable.valve_left_red);
-                                break;
-                            default:
-                                break;
-                        }
-
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.QSB01)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_QSB01.setImageResource(R.drawable.fan_top_open);
-                                iv_QSB02.setImageResource(R.drawable.fan_top_close);
-                                iv_QSB03.setImageResource(R.drawable.fan_top_error);
-                                break;
-                            case IntConstant.State_close:
-                                iv_QSB01.setImageResource(R.drawable.fan_top_close);
-                                iv_QSB02.setImageResource(R.drawable.fan_top_open);
-                                iv_QSB03.setImageResource(R.drawable.fan_top_error);
-                                break;
-                            case IntConstant.State_error:
-                                iv_QSB01.setImageResource(R.drawable.fan_top_error);
-                                iv_QSB02.setImageResource(R.drawable.fan_top_open);
-                                iv_QSB03.setImageResource(R.drawable.fan_top_close);
-                                break;
-                            default:
-                                break;
-                        }
-
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.GSB01)) {
-
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_GSB01.setImageResource(R.drawable.fan_bottom_open);
-                                break;
-                            case IntConstant.State_close:
-                                iv_GSB01.setImageResource(R.drawable.fan_bottom_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_GSB01.setImageResource(R.drawable.fan_bottom_error);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.GSB02)) {
-
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_GSB02.setImageResource(R.drawable.fan_bottom_open);
-                                break;
-                            case IntConstant.State_close:
-                                iv_GSB02.setImageResource(R.drawable.fan_bottom_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_GSB02.setImageResource(R.drawable.fan_bottom_error);
-                                break;
-                            default:
-                                break;
-                        }
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.GSB03)) {
-                        switch (bean.getSCKZState()) {
-                            case IntConstant.State_open:
-                                iv_GSB03.setImageResource(R.drawable.fan_bottom_open);
-                                break;
-                            case IntConstant.State_close:
-                                iv_GSB03.setImageResource(R.drawable.fan_bottom_close);
-                                break;
-                            case IntConstant.State_error:
-                                iv_GSB03.setImageResource(R.drawable.fan_bottom_error);
-                                break;
-                            default:
-                                break;
-                        }
                     }
 
-                }
+                    @Override
+                    public void success(NetWorkResultBean<ProductionStatePackge> productionDataPackgeNetWorkResultBean, Response response) {
+                        ProductionStatePackge test = productionDataPackgeNetWorkResultBean.getData();
+                        List<ProductionState> dataList = test.getPSDataList();
+                        Log.e("jwjw", test.toString());
 
-            }
-        });
+                        for (ProductionState bean : dataList) {
+                            if (bean.getSCKZCode().equals(NetWorkConstant.PWF01)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF01.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF01.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF01.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF02)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF02.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF02.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF02.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF03)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF03.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF03.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF03.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF04)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF04.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF04.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF04.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF05)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF05.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF05.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF05.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF06)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF06.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF06.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF06.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF07)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF07.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF07.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF07.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF08)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF08.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF08.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF08.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF09)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF09.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF09.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF09.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF10)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF10.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF10.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF10.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF11)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF11.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF11.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF11.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF12)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF12.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF12.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF12.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF13)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF13.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF13.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF13.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF14)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF14.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF14.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF14.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF15)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF15.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF15.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF15.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF16)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF16.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF16.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF16.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF17)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF17.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF17.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF17.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PWF18)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_PWF18.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_PWF18.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_PWF18.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.KGF01)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_KGF01.setImageResource(R.drawable.valve_left_green);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_KGF01.setImageResource(R.drawable.valve_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_KGF01.setImageResource(R.drawable.valve_left_red);
+                                        break;
+                                    default:
+                                        break;
+                                }
+
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.QSB01)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_QSB01.setImageResource(R.drawable.fan_top_open);
+                                        iv_QSB02.setImageResource(R.drawable.fan_top_close);
+                                        iv_QSB03.setImageResource(R.drawable.fan_top_error);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_QSB01.setImageResource(R.drawable.fan_top_close);
+                                        iv_QSB02.setImageResource(R.drawable.fan_top_open);
+                                        iv_QSB03.setImageResource(R.drawable.fan_top_error);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_QSB01.setImageResource(R.drawable.fan_top_error);
+                                        iv_QSB02.setImageResource(R.drawable.fan_top_open);
+                                        iv_QSB03.setImageResource(R.drawable.fan_top_close);
+                                        break;
+                                    default:
+                                        break;
+                                }
+
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.GSB01)) {
+
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_GSB01.setImageResource(R.drawable.fan_bottom_open);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_GSB01.setImageResource(R.drawable.fan_bottom_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_GSB01.setImageResource(R.drawable.fan_bottom_error);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.GSB02)) {
+
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_GSB02.setImageResource(R.drawable.fan_bottom_open);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_GSB02.setImageResource(R.drawable.fan_bottom_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_GSB02.setImageResource(R.drawable.fan_bottom_error);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.GSB03)) {
+                                switch (bean.getSCKZState()) {
+                                    case IntConstant.State_open:
+                                        iv_GSB03.setImageResource(R.drawable.fan_bottom_open);
+                                        break;
+                                    case IntConstant.State_close:
+                                        iv_GSB03.setImageResource(R.drawable.fan_bottom_close);
+                                        break;
+                                    case IntConstant.State_error:
+                                        iv_GSB03.setImageResource(R.drawable.fan_bottom_error);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+
+                        }
+
+                    }
+                });
     }
+
+    /**
+     * 获得资源的省份图片
+     *
+     */
+    public int iconSpellID(String imgName,Context mContext){
+        if (imgName == null){
+            imgName = "icon_water_level_0";
+        }
+        int spellId = mContext.getResources().getIdentifier(imgName.toLowerCase(), "drawable", mContext.getPackageName());
+        return spellId;
+    }
+
+
 }
