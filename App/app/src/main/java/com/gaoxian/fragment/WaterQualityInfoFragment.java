@@ -85,7 +85,7 @@ public class WaterQualityInfoFragment extends BaseFragment {
      */
     public void addView(List<WQinfo> wQinfoListDatas, LinearLayout layoutGroup) {
         layoutGroup.removeAllViews();
-        int marginBottom = (int) UIUtils.dp2px(this.getActivity(), 6);
+        int marginBottom = (int) UIUtils.dp2px(this.getActivity(),8);
         int size = wQinfoListDatas.size();
         int y = size % 4;//对4取余
         int mode = size / 4;//对4取模

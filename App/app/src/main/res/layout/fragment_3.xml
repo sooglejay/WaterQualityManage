@@ -22,13 +22,14 @@
                 android:layout_marginRight="@dimen/middle_padding"
                 android:layout_width="match_parent"
                 android:background="@drawable/bg_water_info"
+                android:paddingBottom="@dimen/middle_padding"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center|top"
                 android:orientation="vertical">
                 <TextView
                     android:text="进厂水水质"
-                    android:layout_marginTop="@dimen/middle_padding"
+                    android:layout_marginTop="@dimen/small_padding"
                     android:layout_width="wrap_content"
                     android:textSize="@dimen/big_textsize"
                     android:textColor="#000200"
@@ -92,12 +93,13 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/bg_water_info"
                 android:layout_height="0dp"
+                android:paddingBottom="@dimen/middle_padding"
                 android:layout_weight="1"
                 android:gravity="center|top"
                 android:orientation="vertical">
                 <TextView
                     android:text="出厂水水质"
-                    android:layout_marginTop="@dimen/middle_padding"
+                    android:layout_marginTop="@dimen/small_padding"
                     android:layout_width="wrap_content"
                     android:textColor="#000200"
                     android:textSize="@dimen/big_textsize"
