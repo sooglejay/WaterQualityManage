@@ -28,13 +28,14 @@
                 android:orientation="vertical">
                 <TextView
                     android:text="进厂水水质"
-                    android:layout_marginTop="@dimen/more_big_padding"
+                    android:layout_marginTop="@dimen/middle_padding"
                     android:layout_width="wrap_content"
                     android:textSize="@dimen/big_textsize"
+                    android:textColor="#000200"
                     android:layout_height="wrap_content" />
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/middle_padding"
+                    android:layout_marginTop="@dimen/small_padding"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:scrollbars="none" >
@@ -56,14 +57,17 @@
                 android:layout_height="wrap_content">
                 <View
                     android:layout_width="1dp"
+                    android:layout_marginRight="@dimen/middle_padding"
                     android:background="@color/light_gray_color"
                     android:layout_height="match_parent"/>
                 <TextView
                     android:id="@+id/tv_j_water_level_str"
                     android:text="@string/j_water_level_str"
+                    android:textColor="#006683"
                     android:layout_width="0dp"
-                    android:padding="@dimen/small_padding"
-                    android:gravity="center"
+                    android:paddingTop="@dimen/small_padding"
+                    android:paddingBottom="@dimen/small_padding"
+                    android:gravity="center_vertical"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
                 <View
@@ -93,13 +97,14 @@
                 android:orientation="vertical">
                 <TextView
                     android:text="出厂水水质"
-                    android:layout_marginTop="@dimen/more_big_padding"
+                    android:layout_marginTop="@dimen/middle_padding"
                     android:layout_width="wrap_content"
+                    android:textColor="#000200"
                     android:textSize="@dimen/big_textsize"
                     android:layout_height="wrap_content" />
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/middle_padding"
+                    android:layout_marginTop="@dimen/small_padding"
                     android:layout_gravity="center"
                     android:layout_height="wrap_content"
                     android:scrollbars="none" >
@@ -121,14 +126,17 @@
                 android:layout_height="wrap_content">
                 <View
                     android:layout_width="1dp"
+                    android:layout_marginRight="@dimen/middle_padding"
                     android:background="@color/light_gray_color"
                     android:layout_height="match_parent"/>
                 <TextView
                     android:id="@+id/tv_c_water_level_str"
                     android:text="@string/c_water_level_str"
                     android:layout_width="0dp"
-                    android:padding="@dimen/small_padding"
-                    android:gravity="center"
+                    android:paddingTop="@dimen/small_padding"
+                    android:paddingBottom="@dimen/small_padding"
+                    android:textColor="#006683"
+                    android:gravity="center_vertical"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
                 <View
@@ -142,7 +150,7 @@
                 android:layout_marginLeft="@dimen/middle_padding"
                 android:layout_width="match_parent"
                 android:layout_marginRight="@dimen/middle_padding"
-                android:layout_marginBottom="18dp"
+                android:layout_marginBottom="@dimen/middle_padding"
                 android:background="@color/light_gray_color"
                 android:layout_height="1dp"/>
 

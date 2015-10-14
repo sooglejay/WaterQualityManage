@@ -182,6 +182,8 @@ public class MapInfoFragment extends BaseFragment {
                         LatLng pt = new LatLng(mStationList.get(i).getMAPLGTD(), mStationList.get(i).getMAPLTTD());
                         // 创建InfoWindow
                         mInfoWindowOverLayDialog = new InfoWindow(mWaterStationDialogInfo, pt, dialog_offset);
+
+
                         // 显示InfoWindow
                         mBaiduMap.showInfoWindow(mInfoWindowOverLayDialog);
                     }
