@@ -6,7 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.gaoxian.R;
 import com.gaoxian.events.IntEvent;
@@ -14,6 +16,7 @@ import com.gaoxian.fragment.AddMedicineFragment;
 import com.gaoxian.fragment.MapInfoFragment;
 import com.gaoxian.fragment.ProductionProcessFragment;
 import com.gaoxian.fragment.WaterQualityInfoFragment;
+import com.gaoxian.widget.CustomViewPager.JazzyViewPager;
 import com.gaoxian.widget.ScrollableViewPager;
 import com.gaoxian.widget.TabBar;
 
@@ -47,12 +50,15 @@ public class MainActivity extends BaseActivity {
         viewPager.removeAllViews();
         viewPager.setOffscreenPageLimit(10);
 
-        viewPagerAdapter = new ViewPagerAdapter(this, getSupportFragmentManager());
+        viewPagerAdapter = new ViewPagerAdapter(this, getSupportFragmentManager(),viewPager);
         viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setTransitionEffect(JazzyViewPager.TransitionEffect.Standard);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+              Log.e("viewpager","currentPosition:"+viewPager.getCurrentItem()+" position:"+position+"  positionOffset:"+positionOffset+" positionOffsetPixels"+positionOffsetPixels);
                 tabBar.changeImageView(viewPager.getCurrentItem(), position, positionOffset, positionOffsetPixels);
+
             }
 
             @Override
@@ -84,10 +90,18 @@ public class MainActivity extends BaseActivity {
      * 首页viewpager的adapter
      */
     private static final class ViewPagerAdapter extends FragmentStatePagerAdapter {
-        public ViewPagerAdapter(Context context, FragmentManager fm) {
+        public ViewPagerAdapter(Context context, FragmentManager fm,ScrollableViewPager mViewPagerInAdapter) {
             super(fm);
+            this.mViewPagerInAdapter = mViewPagerInAdapter;
         }
-
+        private ScrollableViewPager mViewPagerInAdapter;
+        /* ... */
+        @Override
+        public Object instantiateItem(ViewGroup container, final int position) {
+            Object obj = super.instantiateItem(container, position);
+            mViewPagerInAdapter.setObjectForPosition(obj, position);
+            return obj;
+        }
         @Override
         public Fragment getItem(int position) {
             Fragment fragment = null;

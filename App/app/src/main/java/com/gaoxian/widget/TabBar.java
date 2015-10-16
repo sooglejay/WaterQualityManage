@@ -2,6 +2,7 @@ package com.gaoxian.widget;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -292,6 +293,15 @@ public class TabBar extends LinearLayout {
         if (position == 0) {
             iv0Selected.setAlpha(1 - positionOffset);
             iv0.setAlpha(positionOffset);
+
+//            iv1Selected.setAlpha(positionOffset);
+//            iv1.setAlpha(1 - positionOffset);
+
+//            int currentAlpha = (int)(positionOffset*255);
+//            int nextAlpha = (int)((1-positionOffset)*255);
+//            tv0.setTextColor(Color.argb(currentAlpha, Color.red(getResources().getColor(R.color.middle_gray_color)), Color.green(getResources().getColor(R.color.middle_gray_color)), Color.blue(getResources().getColor(R.color.middle_gray_color) )));
+//            tv1.setTextColor(Color.argb(nextAlpha, Color.red(getResources().getColor(R.color.tab_blue_color)), Color.green(getResources().getColor(R.color.tab_blue_color)), Color.blue(getResources().getColor(R.color.tab_blue_color))));
+//
 
         } else if (position == 1) {
             iv1Selected.setAlpha(1 - positionOffset);

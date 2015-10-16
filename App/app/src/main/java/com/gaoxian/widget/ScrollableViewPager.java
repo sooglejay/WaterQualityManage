@@ -4,10 +4,12 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import com.gaoxian.widget.CustomViewPager.JazzyViewPager;
+
 /**
  * Created by xuejiebang-android on 15/7/13.
  */
-public class ScrollableViewPager extends android.support.v4.view.ViewPager {
+public class ScrollableViewPager extends JazzyViewPager {
 
     private boolean isScroll = true;
 
