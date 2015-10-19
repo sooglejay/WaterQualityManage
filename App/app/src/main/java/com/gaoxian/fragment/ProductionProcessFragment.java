@@ -48,9 +48,9 @@ public class ProductionProcessFragment extends BaseFragment {
     private View layout_bottom;//这个布局是折中的考虑，用来作为viewpager的滑动开关,等有时间了再仔细考虑
 
     //定时操作
-    final Handler handler=new Handler();
+    final Handler handler = new Handler();
     private Runnable runnable;
-    
+
     private Context mContext;
 
     private TextView tv_JSZD01;//进水浊度
@@ -101,16 +101,21 @@ public class ProductionProcessFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        
         return inflater.inflate(R.layout.fragment_1, container, false);
     }
 
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        mContext = view.getContext().getApplicationContext();
+        mContext = getActivity().getApplicationContext();
         setUp(view, savedInstanceState);
-        getProductionData();
-        getProductionState();
+        try {
+            getProductionData();
+            getProductionState();
+        } catch (NullPointerException npe) {
+            Log.e("jwjw", "生产过程-空指针！");
+            mContext = getActivity().getApplicationContext();
+        }
     }
 
     private void setUp(View view, Bundle savedInstanceState) {
@@ -168,15 +173,20 @@ public class ProductionProcessFragment extends BaseFragment {
 
 
         setUpLisenter();
-        runnable=new Runnable() {
+        runnable = new Runnable() {
             @Override
             public void run() {
-                handler.postDelayed(this,IntConstant.refreshIntervalOneMinute);//刷新频率为1分钟
-                getProductionData();
-                getProductionState();
+                handler.postDelayed(this, IntConstant.refreshIntervalOneMinute);//刷新频率为1分钟
+                try {
+                    getProductionData();
+                    getProductionState();
+                } catch (NullPointerException npe) {
+                    Log.e("jwjw", "生产过程-空指针！");
+                    mContext = getActivity().getApplicationContext();
+                }
             }
         };
-        handler.postDelayed(runnable,IntConstant.refreshIntervalOneMinute);//执行定时操作
+        handler.postDelayed(runnable, IntConstant.refreshIntervalOneMinute);//执行定时操作
     }
 
     private void setUpLisenter() {
@@ -262,71 +272,71 @@ public class ProductionProcessFragment extends BaseFragment {
      * 获取生产控制信息
      */
     private void getProductionData() {
-        GetProductionDataRetrofitUtil.getProductionData(mContext,PreferenceUtil.load(getActivity().getApplicationContext(),
-                        PreferenceConstant.AreaCode,""),
+        GetProductionDataRetrofitUtil.getProductionData(mContext, PreferenceUtil.load(mContext,
+                        PreferenceConstant.AreaCode, ""),
                 StringConstant.weiqi,
                 new NetCallback<NetWorkResultBean<ProductionDataPackge>>(mContext) {
-            @Override
-            public void onFailure(RetrofitError error) {
-            }
-
-            @Override
-            public void success(NetWorkResultBean<ProductionDataPackge> productionDataPackgeNetWorkResultBean, Response response) {
-                ProductionDataPackge test = productionDataPackgeNetWorkResultBean.getData();
-                List<ProductionData> dataList = test.getPDDataList();
-                Log.e("jwjw", test.toString());
-
-                for (ProductionData bean : dataList) {
-                    if (bean.getSCKZCode().equals(NetWorkConstant.JSZD01)) {
-                        tv_JSZD01.setText("" + bean.getSCKZData());
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.WNHD01)) {
-                        tv_WNHD01.setText("" + bean.getSCKZData());
-
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.GSYL01)) {
-                        tv_GSYL01.setText("" + bean.getSCKZData());
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.JSLL01)) {
-                        tv_JSLL01.setText("" + bean.getSCKZData());
-
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.CSLL01)) {
-                        tv_CSLL01.setText("" + bean.getSCKZData());
-
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PSJYW01)) {
-                        //配水井有点特殊,因为服务端接口 只在生产过程那里返回了字段，但是却又有两个地方使用了数据
-                        tv_PSJYW01.setText("" + bean.getSCKZData());
-
-
-                        //配水井的水位高度
-                        float value = (float)bean.getSCKZData();
-                        int scale = (int)(value*10/IntConstant.SUM_VALUE);
-                        int backgroundResId = iconSpellID(PSJ_ICON_STRING+scale,mContext);
-                        iv_left_water_box.setImageResource(backgroundResId);
-
-                        PreferenceUtil.save(mContext, PreferenceConstant.psj1, bean.getSCKZData()+"");
-                        EventBus.getDefault().post(new IntEvent(IntEvent.Msg_RefreshData));
-
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.PSJYW02)) {
-                        //配水井有点特殊,因为服务端接口 只在生产过程那里返回了字段，但是却又有两个地方使用了数据
-                        tv_PSJYW02.setText("" + bean.getSCKZData());
-
-
-                        //配水井的水位高度
-                        float value = (float)bean.getSCKZData();
-                        int scale = (int)(value*10/IntConstant.SUM_VALUE);
-                        int backgroundResId = iconSpellID(PSJ_ICON_STRING+scale,mContext);
-                        iv_right_water_box.setImageResource(backgroundResId);
-
-
-                        PreferenceUtil.save(mContext, PreferenceConstant.psj2, bean.getSCKZData()+"");
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.QSCYW01)) {
-                        tv_QSCYW01.setText("" + bean.getSCKZData());
-
-                    } else if (bean.getSCKZCode().equals(NetWorkConstant.QSCYW02)) {
-                        tv_QSCYW02.setText("" + bean.getSCKZData());
-
+                    @Override
+                    public void onFailure(RetrofitError error) {
                     }
-                }
-            }
-        });
+
+                    @Override
+                    public void success(NetWorkResultBean<ProductionDataPackge> productionDataPackgeNetWorkResultBean, Response response) {
+                        ProductionDataPackge test = productionDataPackgeNetWorkResultBean.getData();
+                        List<ProductionData> dataList = test.getPDDataList();
+                        Log.e("jwjw", test.toString());
+
+                        for (ProductionData bean : dataList) {
+                            if (bean.getSCKZCode().equals(NetWorkConstant.JSZD01)) {
+                                tv_JSZD01.setText("" + bean.getSCKZData());
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.WNHD01)) {
+                                tv_WNHD01.setText("" + bean.getSCKZData());
+
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.GSYL01)) {
+                                tv_GSYL01.setText("" + bean.getSCKZData());
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.JSLL01)) {
+                                tv_JSLL01.setText("" + bean.getSCKZData());
+
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.CSLL01)) {
+                                tv_CSLL01.setText("" + bean.getSCKZData());
+
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PSJYW01)) {
+                                //配水井有点特殊,因为服务端接口 只在生产过程那里返回了字段，但是却又有两个地方使用了数据
+                                tv_PSJYW01.setText("" + bean.getSCKZData());
+
+
+                                //配水井的水位高度
+                                float value = (float) bean.getSCKZData();
+                                int scale = (int) (value * 10 / IntConstant.SUM_VALUE);
+                                int backgroundResId = iconSpellID(PSJ_ICON_STRING + scale, mContext);
+                                iv_left_water_box.setImageResource(backgroundResId);
+
+                                PreferenceUtil.save(mContext, PreferenceConstant.psj1, bean.getSCKZData() + "");
+                                EventBus.getDefault().post(new IntEvent(IntEvent.Msg_RefreshData));
+
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.PSJYW02)) {
+                                //配水井有点特殊,因为服务端接口 只在生产过程那里返回了字段，但是却又有两个地方使用了数据
+                                tv_PSJYW02.setText("" + bean.getSCKZData());
+
+
+                                //配水井的水位高度
+                                float value = (float) bean.getSCKZData();
+                                int scale = (int) (value * 10 / IntConstant.SUM_VALUE);
+                                int backgroundResId = iconSpellID(PSJ_ICON_STRING + scale, mContext);
+                                iv_right_water_box.setImageResource(backgroundResId);
+
+
+                                PreferenceUtil.save(mContext, PreferenceConstant.psj2, bean.getSCKZData() + "");
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.QSCYW01)) {
+                                tv_QSCYW01.setText("" + bean.getSCKZData());
+
+                            } else if (bean.getSCKZCode().equals(NetWorkConstant.QSCYW02)) {
+                                tv_QSCYW02.setText("" + bean.getSCKZData());
+
+                            }
+                        }
+                    }
+                });
     }
 
     /**
@@ -693,10 +703,9 @@ public class ProductionProcessFragment extends BaseFragment {
 
     /**
      * 获得资源的省份图片
-     *
      */
-    public int iconSpellID(String imgName,Context mContext){
-        if (imgName == null){
+    public int iconSpellID(String imgName, Context mContext) {
+        if (imgName == null) {
             imgName = "icon_water_level_0";
         }
         int spellId = mContext.getResources().getIdentifier(imgName.toLowerCase(), "drawable", mContext.getPackageName());

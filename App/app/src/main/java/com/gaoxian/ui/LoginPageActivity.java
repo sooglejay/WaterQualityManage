@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -18,9 +19,13 @@ import com.gaoxian.R;
 import com.gaoxian.api.User.UserRetrofitUtil;
 import com.gaoxian.api.callback.NetCallback;
 import com.gaoxian.model.NetWorkResultBean;
+import com.gaoxian.model.ProductionData;
+import com.gaoxian.model.ProductionDataPackge;
 import com.gaoxian.model.UserInfo;
 import com.gaoxian.util.PreferenceUtil;
 import com.gaoxian.util.ProgressDialogUtil;
+
+import java.util.List;
 
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -86,13 +91,18 @@ public class LoginPageActivity extends Activity {
                     @Override
                     public void onFailure(RetrofitError error) {
                         progressDialogUtil.hide();
-                        Toast.makeText(LoginPageActivity.this,"用户名或密码有误！",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginPageActivity.this,"无法连接服务器",Toast.LENGTH_SHORT).show();
 
                     }
 
                     @Override
                     public void success(NetWorkResultBean<UserInfo> userInfoNetWorkResultBean, Response response) {
                         progressDialogUtil.hide();
+
+                        UserInfo test = userInfoNetWorkResultBean.getData();
+                        Log.e("jwjw", test.toString());
+
+
                         PreferenceUtil.save(LoginPageActivity.this, PreferenceConstant.AreaCode, userInfoNetWorkResultBean.getData().getAreaCode());
                         Intent intent = new Intent(LoginPageActivity.this, MainActivity.class);
                         startActivity(intent);

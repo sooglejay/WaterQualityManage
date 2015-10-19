@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.Space;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.gaoxian.Constant.StringConstant;
 import com.gaoxian.R;
 import com.gaoxian.api.WQ.WQRetrofitUtil;
 import com.gaoxian.api.callback.NetCallback;
+import com.gaoxian.events.IntEvent;
 import com.gaoxian.model.NetWorkResultBean;
 import com.gaoxian.model.WQinfo;
 import com.gaoxian.model.WQinfoPackge;
@@ -43,6 +45,7 @@ public class WaterQualityInfoFragment extends BaseFragment {
     private LinearLayout J_Gallery;//进水
     private LinearLayout C_Gallery;//出水
     private LayoutInflater mInflater;
+    private Context mContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,8 +54,14 @@ public class WaterQualityInfoFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        mContext = getActivity().getApplicationContext();
         setUp(view, savedInstanceState);
-        getWQInfo(this.getActivity());
+        try {
+            getWQInfo(mContext);
+        } catch (NullPointerException npe) {
+            Log.e("jwjw", "水质信息-空指针！");
+            mContext = getActivity().getApplicationContext();
+        }
     }
 
     private void setUp(View view, Bundle savedInstanceState) {
@@ -72,11 +81,17 @@ public class WaterQualityInfoFragment extends BaseFragment {
             @Override
             public void run() {
                 handler.postDelayed(this, IntConstant.refreshIntervalFiveMinute);//刷新频率为5分钟
-                getWQInfo(getActivity());
+                try {
+                    getWQInfo(mContext);
+                } catch (NullPointerException npe) {
+                    Log.e("jwjw", "水质信息-空指针！");
+                    mContext = getActivity().getApplicationContext();
+                }
             }
         };
         handler.postDelayed(runnable, IntConstant.refreshIntervalFiveMinute);//执行定时操作
     }
+
 
     /**
      * @param wQinfoListDatas 水质信息数据结构
@@ -84,15 +99,15 @@ public class WaterQualityInfoFragment extends BaseFragment {
      */
     public void addView(List<WQinfo> wQinfoListDatas, LinearLayout layoutGroup) {
         layoutGroup.removeAllViews();
-        int marginBottom = (int) UIUtils.dp2px(this.getActivity(),10);
+        int marginBottom = (int) UIUtils.dp2px(this.getActivity(), 10);
         int size = wQinfoListDatas.size();
         int y = size % 4;//对4取余
         int mode = size / 4;//对4取模
         for (int i = 0; i <= mode; i++) {
             LinearLayout horizentalLinearLayout = new LinearLayout(this.getActivity());
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,0,1.0f);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1.0f);
             if (i < mode) {
-                layoutParams.setMargins(0,0,0, marginBottom);
+                layoutParams.setMargins(0, 0, 0, marginBottom);
                 horizentalLinearLayout.setLayoutParams(layoutParams);
                 for (int j = 0; j < 4; j++) {
                     View c_layout = mInflater.inflate(R.layout.item_water_info, layoutGroup, false);
@@ -114,7 +129,7 @@ public class WaterQualityInfoFragment extends BaseFragment {
 
             } else if (i == mode) {
                 //最后一行的不设置bottom
-                layoutParams.setMargins(0,0,0,0);
+                layoutParams.setMargins(0, 0, 0, 0);
                 horizentalLinearLayout.setLayoutParams(layoutParams);
                 int p = 0;
                 while (p < y) {
@@ -142,7 +157,7 @@ public class WaterQualityInfoFragment extends BaseFragment {
                     tv_top_name.setText("");
                     tv_top_digit.setText("无参数");
                     tv_top_unit.setText("");
-                    c_layout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,1.0f));
+                    c_layout.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
                     space1.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 0.2f));
                     horizentalLinearLayout.addView(space1);
                     horizentalLinearLayout.addView(c_layout);
@@ -166,30 +181,52 @@ public class WaterQualityInfoFragment extends BaseFragment {
      * 获取服务端  WQ / 水质信息
      */
     private void getWQInfo(Context context) {
-        WQRetrofitUtil.getWQInfo(context, "511525001", "weiqi", new NetCallback<NetWorkResultBean<WQinfoPackge>>(context) {
+        WQRetrofitUtil.getWQInfo(context, PreferenceUtil.load(mContext, PreferenceConstant.STCD, "511525001"), StringConstant.weiqi, new NetCallback<NetWorkResultBean<WQinfoPackge>>(context) {
             @Override
             public void onFailure(RetrofitError error) {
             }
 
             @Override
             public void success(NetWorkResultBean<WQinfoPackge> wQinfoPackgeNetWorkResultBean, Response response) {
-                setWaterQualityInfo(wQinfoPackgeNetWorkResultBean.getData());
+
+                WQinfoPackge test = wQinfoPackgeNetWorkResultBean.getData();
+                Log.e("jwjw", test.toString());
+                setWaterQualityInfo(test);
             }
         });
     }
 
     /**
      * 设置水质信息
+     *
      * @param bean
      */
     private void setWaterQualityInfo(WQinfoPackge bean) {
-        //进水水质
-        tv_j_water_level_str.setText(getResources().getString(R.string.j_water_level_str) + bean.getJCInfo());
-        addView(bean.getWQJCList(), J_Gallery);
+        try {
+            //进水水质
+            tv_j_water_level_str.setText(mContext.getString(R.string.j_water_level_str) + bean.getJCInfo());
+            addView(bean.getWQJCList(), J_Gallery);
 
-        //出水水质
-        tv_c_water_level_str.setText(getResources().getString(R.string.c_water_level_str) + bean.getJCInfo());
-        addView(bean.getWQCCList(), C_Gallery);
+            //出水水质
+            tv_c_water_level_str.setText(mContext.getString(R.string.c_water_level_str) + bean.getJCInfo());
+            addView(bean.getWQCCList(), C_Gallery);
+        }catch (NullPointerException npe)
+        {
+            Log.e("jwjw","水质信息-setWaterQualityInfo-空指针！");
+        }
     }
 
+
+    public void onEventMainThread(IntEvent event) {
+        switch (event.getMsg()) {
+            case IntEvent.Msg_Enter_Water_Station:
+                try {
+                    getWQInfo(mContext);
+                } catch (NullPointerException npe) {
+                    Log.e("jwjw", "水质信息-空指针！");
+                    mContext = getActivity().getApplicationContext();
+                }
+                break;
+        }
+    }
 }

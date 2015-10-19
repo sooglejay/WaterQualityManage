@@ -1,5 +1,6 @@
 package com.gaoxian.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -92,6 +93,7 @@ public class AddMedicineFragment extends BaseFragment {
 
     private TextView tv_PSJYW01;//配水井1
     private TextView tv_PSJYW02;//配水井2
+    private Context mContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -100,16 +102,34 @@ public class AddMedicineFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        mContext = view.getContext().getApplicationContext();
         setUp(view, savedInstanceState);
         setUpListener();
-        getChlorineDosingData();
-        getChlorineDosingState();
+
+
+        try {
+            getChlorineDosingData();
+            getChlorineDosingState();
+        }catch (NullPointerException npe)
+        {
+            Log.e("jwjw", "加氟加药-空指针！");
+            mContext = getActivity().getApplicationContext();
+        }
+
+
+
         runnable=new Runnable() {
             @Override
             public void run() {
                 handler.postDelayed(this,IntConstant.refreshIntervalOneMinute);//刷新频率为1分钟
-                getChlorineDosingData();
-                getChlorineDosingState();
+                try {
+                    getChlorineDosingData();
+                    getChlorineDosingState();
+                }catch (NullPointerException npe)
+                {
+                    Log.e("jwjw", "加氟加药-空指针！");
+                    mContext = getActivity().getApplicationContext();
+                }
             }
         };
         handler.postDelayed(runnable,IntConstant.refreshIntervalOneMinute);//执行定时操作
@@ -244,8 +264,8 @@ public class AddMedicineFragment extends BaseFragment {
                 break;
             case IntEvent.Msg_RefreshData:
                 if (tv_PSJYW01 != null && isAdded()) {
-                    tv_PSJYW01.setText(PreferenceUtil.load(AddMedicineFragment.this.getActivity(), PreferenceConstant.psj1, "")+"");
-                    tv_PSJYW02.setText(PreferenceUtil.load(AddMedicineFragment.this.getActivity(), PreferenceConstant.psj2, "")+"");
+                    tv_PSJYW01.setText(PreferenceUtil.load(mContext, PreferenceConstant.psj1, "")+"");
+                    tv_PSJYW02.setText(PreferenceUtil.load(mContext, PreferenceConstant.psj2, "")+"");
                 }
                 break;
 
@@ -258,7 +278,7 @@ public class AddMedicineFragment extends BaseFragment {
      * 测试加氟加药
      */
     private void getChlorineDosingData() {
-        GetChlorineDosingDataUtil.getChlorineDosingData(AddMedicineFragment.this.getActivity(), PreferenceUtil.load(AddMedicineFragment.this.getActivity(), PreferenceConstant.AreaCode, ""), StringConstant.weiqi, new NetCallback<NetWorkResultBean<ChlorineDosingDataPackge>>(AddMedicineFragment.this.getActivity()) {
+        GetChlorineDosingDataUtil.getChlorineDosingData(mContext, PreferenceUtil.load(mContext, PreferenceConstant.AreaCode, ""), StringConstant.weiqi, new NetCallback<NetWorkResultBean<ChlorineDosingDataPackge>>(mContext) {
             @Override
             public void onFailure(RetrofitError error) {
 
@@ -305,7 +325,7 @@ public class AddMedicineFragment extends BaseFragment {
      * 获取加氯加药状态信息
      */
     private void getChlorineDosingState() {
-        GetChlorineDosingDataUtil.getChlorineDosingState(AddMedicineFragment.this.getActivity(), PreferenceUtil.load(AddMedicineFragment.this.getActivity(), PreferenceConstant.AreaCode, ""), StringConstant.weiqi, new NetCallback<NetWorkResultBean<ChlorineDosingStatePackge>>(AddMedicineFragment.this.getActivity()) {
+        GetChlorineDosingDataUtil.getChlorineDosingState(mContext, PreferenceUtil.load(mContext, PreferenceConstant.AreaCode, ""), StringConstant.weiqi, new NetCallback<NetWorkResultBean<ChlorineDosingStatePackge>>(mContext) {
             @Override
             public void onFailure(RetrofitError error) {
 

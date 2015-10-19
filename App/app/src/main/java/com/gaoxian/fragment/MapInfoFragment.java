@@ -1,7 +1,9 @@
 package com.gaoxian.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -46,7 +48,7 @@ public class MapInfoFragment extends BaseFragment {
     private static int dialog_offset = -100;
     private static int marker_offset = -1;
 
-
+    private Context mContext;
     private float downX = 0, upX = 0;
     /**
      * MapView 是地图主控件
@@ -74,6 +76,8 @@ public class MapInfoFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        mContext = getActivity().getApplicationContext();
         setUp(view, savedInstanceState);
     }
 
@@ -84,7 +88,12 @@ public class MapInfoFragment extends BaseFragment {
 
     private void setUp(View view, Bundle savedInstanceState) {
         initMapView(view);
-        getWMGetStation();
+        try {
+            getWMGetStation(mContext);
+        } catch (NullPointerException npe) {
+            Log.e("jwjw", "地理信息-空指针！");
+        }
+
     }
 
     /**
@@ -129,6 +138,7 @@ public class MapInfoFragment extends BaseFragment {
             Marker newStationMarker = (Marker) (mBaiduMap.addOverlay(ooB));
             mMarkerList.add(newStationMarker);
 
+
             //定义文字所显示的坐标点
             LatLng waterStation1 = new LatLng(infoList.get(i).getMAPLGTD(), infoList.get(i).getMAPLTTD());
             //构建文字Option对象，用于在地图上添加文字
@@ -156,32 +166,35 @@ public class MapInfoFragment extends BaseFragment {
 
                 //自定义弹出对话框样式的覆盖物
                 mWaterStationDialogInfo = new WaterStationInfoDialog(getActivity());
-                mWaterStationDialogInfo.setLisenter(new WaterStationInfoDialog.OverLayOnClickLisenter() {
-                    @Override
-                    public void onClick(View v) {
-                        String tag = (String) v.getTag();
-                        if (tag.equals(StringConstant.enter)) {
-                            marker.setIcon(mMarkerUnSelected);
-                            mBaiduMap.hideInfoWindow();
-                            EventBus.getDefault().post(new IntEvent(IntEvent.Msg_Enter_Water_Station));
-                        } else if (tag.equals(StringConstant.back)) {
-                            marker.setIcon(mMarkerUnSelected);
-                            mBaiduMap.hideInfoWindow();
-                        }
-                    }
-                });
-
                 for (int i = 0; i < mMarkerList.size(); i++) {
                     if (mMarkerList.get(i) == marker) {
                         mMarkerList.get(i).setIcon(mMarkerSelected);
                         mWaterStationDialogInfo.setStationInfo(mStationList.get(i));
-                        PreferenceUtil.save(MapInfoFragment.this.getActivity(),PreferenceConstant.StationName,mStationList.get(i).getStationName());
+                        final String stcd =  mStationList.get(i).getSTCD();
+                        final String stationName = mStationList.get(i).getStationName();
+                        PreferenceUtil.save(MapInfoFragment.this.getActivity(), PreferenceConstant.StationName,stationName);
+                        PreferenceUtil.save(MapInfoFragment.this.getActivity(), PreferenceConstant.STCD, stcd);
+                        mWaterStationDialogInfo.setLisenter(new WaterStationInfoDialog.OverLayOnClickLisenter() {
+                            @Override
+                            public void onClick(View v) {
+                                PreferenceUtil.save(MapInfoFragment.this.getActivity(), PreferenceConstant.StationName,stationName);
+                                PreferenceUtil.save(MapInfoFragment.this.getActivity(), PreferenceConstant.STCD, stcd);
+                                String tag = (String) v.getTag();
+                                if (tag.equals(StringConstant.enter)) {
+                                    marker.setIcon(mMarkerUnSelected);
+                                    mBaiduMap.hideInfoWindow();
+                                    IntEvent event = new IntEvent(IntEvent.Msg_Enter_Water_Station);
+                                    EventBus.getDefault().post(event);
+                                } else if (tag.equals(StringConstant.back)) {
+                                    marker.setIcon(mMarkerUnSelected);
+                                    mBaiduMap.hideInfoWindow();
+                                }
+                            }
+                        });
                         // 定义用于显示该InfoWindow的坐标点
                         LatLng pt = new LatLng(mStationList.get(i).getMAPLGTD(), mStationList.get(i).getMAPLTTD());
                         // 创建InfoWindow
                         mInfoWindowOverLayDialog = new InfoWindow(mWaterStationDialogInfo, pt, dialog_offset);
-
-
                         // 显示InfoWindow
                         mBaiduMap.showInfoWindow(mInfoWindowOverLayDialog);
                     }
@@ -191,8 +204,8 @@ public class MapInfoFragment extends BaseFragment {
         });
     }
 
-    private void getWMGetStation() {
-        GetStationsUtil.getStations(MapInfoFragment.this.getActivity(), PreferenceUtil.load(this.getActivity(), PreferenceConstant.AreaCode, ""), StringConstant.weiqi, new NetCallback<NetWorkResultBean<StationInfoPackge>>(MapInfoFragment.this.getActivity()) {
+    private void getWMGetStation(Context context) {
+        GetStationsUtil.getStations(context, PreferenceUtil.load(context, PreferenceConstant.AreaCode, ""), StringConstant.weiqi, new NetCallback<NetWorkResultBean<StationInfoPackge>>(context) {
             @Override
             public void onFailure(RetrofitError error) {
 
@@ -201,6 +214,7 @@ public class MapInfoFragment extends BaseFragment {
             @Override
             public void success(NetWorkResultBean<StationInfoPackge> stationInfoPackgeNetWorkResultBean, Response response) {
                 StationInfoPackge infoPackge = stationInfoPackgeNetWorkResultBean.getData();
+                Log.e("jwjw", infoPackge.toString());
                 mStationList = infoPackge.getStationList();
                 initMark(mStationList);
                 setMapLisenter();
