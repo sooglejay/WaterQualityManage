@@ -15,7 +15,7 @@ public class StringConstant {
     public static final String back  = "back";
 
 
-    public static final String apiKey  = "weiqi";
+    public static final String weiqi = "weiqi";
 
 
     public static String defaultStationName = "宜宾高县水厂";

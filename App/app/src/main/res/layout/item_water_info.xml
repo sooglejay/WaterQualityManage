@@ -17,12 +17,14 @@
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:gravity="top|center"
+            android:textColor="@color/black_color"
             android:layout_gravity="top|center_horizontal"
             android:layout_height="wrap_content"
             android:text="高锰酸钾溶液"
             android:textSize="12sp" />
         <TextView
             android:id="@+id/tv_digit"
+            android:textColor="@color/black_color"
             android:layout_width="wrap_content"
             android:gravity="top|center"
             android:layout_gravity="top|center_horizontal"
@@ -31,6 +33,7 @@
             android:textSize="12sp" />
         <TextView
             android:id="@+id/tv_unit"
+            android:textColor="@color/black_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="mg/L"

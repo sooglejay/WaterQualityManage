@@ -4,17 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.Space;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gaoxian.Constant.IntConstant;
 import com.gaoxian.Constant.NetWorkConstant;
@@ -54,6 +50,8 @@ public class ProductionProcessFragment extends BaseFragment {
     //定时操作
     final Handler handler=new Handler();
     private Runnable runnable;
+    
+    private Context mContext;
 
     private TextView tv_JSZD01;//进水浊度
     private TextView tv_WNHD01;//污泥厚度01
@@ -103,12 +101,13 @@ public class ProductionProcessFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        
         return inflater.inflate(R.layout.fragment_1, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        mContext = view.getContext().getApplicationContext();
         setUp(view, savedInstanceState);
         getProductionData();
         getProductionState();
@@ -119,7 +118,7 @@ public class ProductionProcessFragment extends BaseFragment {
         titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(),
                         PreferenceConstant.StationName,
                         StringConstant.defaultStationName),
-                StringConstant.tabAddMedicine);
+                StringConstant.tabProductionProcess);
 
         layout_bottom = (View) view.findViewById(R.id.layout_bottom);
         layout_view = (LinearLayout) view.findViewById(R.id.layout_view);
@@ -172,12 +171,12 @@ public class ProductionProcessFragment extends BaseFragment {
         runnable=new Runnable() {
             @Override
             public void run() {
-                handler.postDelayed(this,60000);//刷新频率为1分钟
+                handler.postDelayed(this,IntConstant.refreshIntervalOneMinute);//刷新频率为1分钟
                 getProductionData();
                 getProductionState();
             }
         };
-        handler.postDelayed(runnable,60000);//执行定时操作
+        handler.postDelayed(runnable,IntConstant.refreshIntervalOneMinute);//执行定时操作
     }
 
     private void setUpLisenter() {
@@ -263,10 +262,10 @@ public class ProductionProcessFragment extends BaseFragment {
      * 获取生产控制信息
      */
     private void getProductionData() {
-        GetProductionDataRetrofitUtil.getProductionData(ProductionProcessFragment.this.getActivity(),PreferenceUtil.load(ProductionProcessFragment.this.getActivity(),
+        GetProductionDataRetrofitUtil.getProductionData(mContext,PreferenceUtil.load(getActivity().getApplicationContext(),
                         PreferenceConstant.AreaCode,""),
-                StringConstant.apiKey,
-                new NetCallback<NetWorkResultBean<ProductionDataPackge>>(ProductionProcessFragment.this.getActivity()) {
+                StringConstant.weiqi,
+                new NetCallback<NetWorkResultBean<ProductionDataPackge>>(mContext) {
             @Override
             public void onFailure(RetrofitError error) {
             }
@@ -299,10 +298,10 @@ public class ProductionProcessFragment extends BaseFragment {
                         //配水井的水位高度
                         float value = (float)bean.getSCKZData();
                         int scale = (int)(value*10/IntConstant.SUM_VALUE);
-                        int backgroundResId = iconSpellID(PSJ_ICON_STRING+scale,ProductionProcessFragment.this.getActivity());
+                        int backgroundResId = iconSpellID(PSJ_ICON_STRING+scale,mContext);
                         iv_left_water_box.setImageResource(backgroundResId);
 
-                        PreferenceUtil.save(ProductionProcessFragment.this.getActivity(), PreferenceConstant.psj1, bean.getSCKZData()+"");
+                        PreferenceUtil.save(mContext, PreferenceConstant.psj1, bean.getSCKZData()+"");
                         EventBus.getDefault().post(new IntEvent(IntEvent.Msg_RefreshData));
 
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.PSJYW02)) {
@@ -313,11 +312,11 @@ public class ProductionProcessFragment extends BaseFragment {
                         //配水井的水位高度
                         float value = (float)bean.getSCKZData();
                         int scale = (int)(value*10/IntConstant.SUM_VALUE);
-                        int backgroundResId = iconSpellID(PSJ_ICON_STRING+scale,ProductionProcessFragment.this.getActivity());
+                        int backgroundResId = iconSpellID(PSJ_ICON_STRING+scale,mContext);
                         iv_right_water_box.setImageResource(backgroundResId);
 
 
-                        PreferenceUtil.save(ProductionProcessFragment.this.getActivity(), PreferenceConstant.psj2, bean.getSCKZData()+"");
+                        PreferenceUtil.save(mContext, PreferenceConstant.psj2, bean.getSCKZData()+"");
                     } else if (bean.getSCKZCode().equals(NetWorkConstant.QSCYW01)) {
                         tv_QSCYW01.setText("" + bean.getSCKZData());
 
@@ -334,11 +333,11 @@ public class ProductionProcessFragment extends BaseFragment {
      * 获取生产控制信息
      */
     private void getProductionState() {
-        GetProductionDataRetrofitUtil.getProductionState(ProductionProcessFragment.this.getActivity(),
-                PreferenceUtil.load(ProductionProcessFragment.this.getActivity(),
+        GetProductionDataRetrofitUtil.getProductionState(mContext,
+                PreferenceUtil.load(mContext,
                         PreferenceConstant.AreaCode, ""),
-                StringConstant.apiKey,
-                new NetCallback<NetWorkResultBean<ProductionStatePackge>>(ProductionProcessFragment.this.getActivity()) {
+                StringConstant.weiqi,
+                new NetCallback<NetWorkResultBean<ProductionStatePackge>>(mContext) {
                     @Override
                     public void onFailure(RetrofitError error) {
 

@@ -23,18 +23,16 @@ import java.util.*;
 public class CarNetCrashHandler implements UncaughtExceptionHandler {
 
     private static final String TAG = "Activity";
-    private static final String FILE_NAME = "gaoxian";
     private Context mContext;
     private static final String SDCARD_ROOT = Environment.getExternalStorageDirectory().toString();
     private static CarNetCrashHandler mInstance = new CarNetCrashHandler();
-//    UserManager mUserManager = null;
 
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
         savaInfoToSD(mContext, ex);
+        showToast(mContext, "发现异常，请联系攻城狮~");
         try {
-//            mUserManager.clearUserInfo();
-            Thread.sleep(100);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -48,10 +46,9 @@ public class CarNetCrashHandler implements UncaughtExceptionHandler {
         return mInstance;
     }
 
-    
+
     public void setCustomCrashHanler(Context context) {
         mContext = context;
-//        mUserManager = new UserManager(context);
         Thread.setDefaultUncaughtExceptionHandler(this);
     }
 
@@ -110,7 +107,7 @@ public class CarNetCrashHandler implements UncaughtExceptionHandler {
         sb.append(obtainExceptionInfo(ex));
 
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-        	File dir = new File(SDCARD_ROOT + File.separator + FILE_NAME+ File.separator);
+            File dir = new File(SDCARD_ROOT + File.separator + "00TimaLog/crash" + File.separator);
             if (!dir.exists()) {
                 dir.mkdirs();
             }

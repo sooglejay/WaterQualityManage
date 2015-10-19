@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.gaoxian.Constant.IntConstant;
 import com.gaoxian.Constant.PreferenceConstant;
 import com.gaoxian.Constant.StringConstant;
 import com.gaoxian.R;
@@ -70,11 +71,11 @@ public class WaterQualityInfoFragment extends BaseFragment {
         runnable = new Runnable() {
             @Override
             public void run() {
-                handler.postDelayed(this, 300000);//刷新频率为5分钟
+                handler.postDelayed(this, IntConstant.refreshIntervalFiveMinute);//刷新频率为5分钟
                 getWQInfo(getActivity());
             }
         };
-        handler.postDelayed(runnable, 300000);//执行定时操作
+        handler.postDelayed(runnable, IntConstant.refreshIntervalFiveMinute);//执行定时操作
     }
 
     /**

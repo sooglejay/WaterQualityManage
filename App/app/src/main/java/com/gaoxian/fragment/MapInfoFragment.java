@@ -7,7 +7,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
@@ -32,7 +31,6 @@ import com.gaoxian.model.NetWorkResultBean;
 import com.gaoxian.model.StationInfo;
 import com.gaoxian.model.StationInfoPackge;
 import com.gaoxian.util.PreferenceUtil;
-import com.gaoxian.widget.TitleBar;
 import com.gaoxian.widget.WaterStationInfoDialog;
 
 import java.util.ArrayList;
@@ -194,7 +192,7 @@ public class MapInfoFragment extends BaseFragment {
     }
 
     private void getWMGetStation() {
-        GetStationsUtil.getStations(MapInfoFragment.this.getActivity(), PreferenceUtil.load(this.getActivity(), PreferenceConstant.AreaCode, ""), StringConstant.apiKey, new NetCallback<NetWorkResultBean<StationInfoPackge>>(MapInfoFragment.this.getActivity()) {
+        GetStationsUtil.getStations(MapInfoFragment.this.getActivity(), PreferenceUtil.load(this.getActivity(), PreferenceConstant.AreaCode, ""), StringConstant.weiqi, new NetCallback<NetWorkResultBean<StationInfoPackge>>(MapInfoFragment.this.getActivity()) {
             @Override
             public void onFailure(RetrofitError error) {
 
@@ -232,9 +230,6 @@ public class MapInfoFragment extends BaseFragment {
         // 在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
         mBaiduMap.clear();
         mMapView.onDestroy();
-        mMapView = null;
-        mWaterStationDialogInfo = null;
-
     }
 
 }

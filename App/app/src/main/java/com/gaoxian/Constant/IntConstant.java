@@ -12,4 +12,8 @@ public class IntConstant {
     public static final int State_close = 1;//关
     public static final int State_error = 2;//错误
 
+
+    public static final int refreshIntervalOneMinute =1 * 60 * 1000;//1分钟刷新
+    public static final int refreshIntervalFiveMinute =5* 60 * 1000;//5分钟刷新
+
 }

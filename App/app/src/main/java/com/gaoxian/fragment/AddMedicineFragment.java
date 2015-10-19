@@ -9,9 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gaoxian.Constant.IntConstant;
 import com.gaoxian.Constant.NetWorkConstant;
@@ -109,12 +107,12 @@ public class AddMedicineFragment extends BaseFragment {
         runnable=new Runnable() {
             @Override
             public void run() {
-                handler.postDelayed(this,60000);//刷新频率为1分钟
+                handler.postDelayed(this,IntConstant.refreshIntervalOneMinute);//刷新频率为1分钟
                 getChlorineDosingData();
                 getChlorineDosingState();
             }
         };
-        handler.postDelayed(runnable,60000);//执行定时操作
+        handler.postDelayed(runnable,IntConstant.refreshIntervalOneMinute);//执行定时操作
     }
 
     private void setUp(View view, Bundle savedInstanceState) {
@@ -260,7 +258,7 @@ public class AddMedicineFragment extends BaseFragment {
      * 测试加氟加药
      */
     private void getChlorineDosingData() {
-        GetChlorineDosingDataUtil.getChlorineDosingData(AddMedicineFragment.this.getActivity(), PreferenceUtil.load(AddMedicineFragment.this.getActivity(), PreferenceConstant.AreaCode, ""), StringConstant.apiKey, new NetCallback<NetWorkResultBean<ChlorineDosingDataPackge>>(AddMedicineFragment.this.getActivity()) {
+        GetChlorineDosingDataUtil.getChlorineDosingData(AddMedicineFragment.this.getActivity(), PreferenceUtil.load(AddMedicineFragment.this.getActivity(), PreferenceConstant.AreaCode, ""), StringConstant.weiqi, new NetCallback<NetWorkResultBean<ChlorineDosingDataPackge>>(AddMedicineFragment.this.getActivity()) {
             @Override
             public void onFailure(RetrofitError error) {
 
@@ -307,7 +305,7 @@ public class AddMedicineFragment extends BaseFragment {
      * 获取加氯加药状态信息
      */
     private void getChlorineDosingState() {
-        GetChlorineDosingDataUtil.getChlorineDosingState(AddMedicineFragment.this.getActivity(), PreferenceUtil.load(AddMedicineFragment.this.getActivity(), PreferenceConstant.AreaCode, ""), StringConstant.apiKey, new NetCallback<NetWorkResultBean<ChlorineDosingStatePackge>>(AddMedicineFragment.this.getActivity()) {
+        GetChlorineDosingDataUtil.getChlorineDosingState(AddMedicineFragment.this.getActivity(), PreferenceUtil.load(AddMedicineFragment.this.getActivity(), PreferenceConstant.AreaCode, ""), StringConstant.weiqi, new NetCallback<NetWorkResultBean<ChlorineDosingStatePackge>>(AddMedicineFragment.this.getActivity()) {
             @Override
             public void onFailure(RetrofitError error) {
 

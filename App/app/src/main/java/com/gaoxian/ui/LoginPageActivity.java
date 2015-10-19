@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,7 +11,9 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.gaoxian.Constant.NetWorkConstant;
 import com.gaoxian.Constant.PreferenceConstant;
+import com.gaoxian.Constant.StringConstant;
 import com.gaoxian.R;
 import com.gaoxian.api.User.UserRetrofitUtil;
 import com.gaoxian.api.callback.NetCallback;
@@ -25,9 +26,9 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class LoginPageActivity extends Activity {
-    private EditText etUserName;
-    private EditText etPassword;
-    private Button btnLogin;
+    private EditText et_user_name;
+    private EditText et_password;
+    private Button bt_login;
     private CheckBox cbRememberUserNameAndPassword;
     private String strUserName,strPassword;
 
@@ -46,18 +47,18 @@ public class LoginPageActivity extends Activity {
      */
     private void setUpView()
     {
-        etUserName=(EditText)findViewById(R.id.username_edittext);
-        etPassword=(EditText)findViewById(R.id.password_edittext);
-        btnLogin =(Button)findViewById(R.id.login_bn);
+        et_user_name =(EditText)findViewById(R.id.et_user_name);
+        et_password =(EditText)findViewById(R.id.et_password);
+        bt_login =(Button)findViewById(R.id.bt_login);
         cbRememberUserNameAndPassword =(CheckBox)findViewById(R.id.rememberpassword_checkbox);
 
         strPassword = PreferenceUtil.load(this,PreferenceConstant.USER_PASSWORD,"");
         strUserName = PreferenceUtil.load(this,PreferenceConstant.USER_NAME,"");
         cbRememberUserNameAndPassword.setChecked(!TextUtils.isEmpty(strUserName));
 
-        etUserName.setText(strUserName);
-        etUserName.setSelection(strUserName.length());
-        etPassword.setText(strPassword);
+        et_user_name.setText(strUserName);
+        et_user_name.setSelection(strUserName.length());
+        et_password.setText(strPassword);
 
         progressDialogUtil = new ProgressDialogUtil(this);
     }
@@ -66,24 +67,36 @@ public class LoginPageActivity extends Activity {
      * 初始化UI事件监听器
      */
     private void setUpLisenter() {
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+               strUserName = et_user_name.getText().toString();
+               strPassword = et_password.getText().toString();
+
+                if(TextUtils.isEmpty(strUserName)||TextUtils.isEmpty(strPassword))
+                {
+                    Toast.makeText(LoginPageActivity.this,"请输入用户名或密码！",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 progressDialogUtil.show("考验网速的时候到了！");
-                UserRetrofitUtil.login(LoginPageActivity.this, "mytest", "123000", "weiqi", new NetCallback<NetWorkResultBean<UserInfo>>(LoginPageActivity.this) {
+                //mytest  123000
+                UserRetrofitUtil.login(LoginPageActivity.this,strUserName, strPassword, StringConstant.weiqi, new NetCallback<NetWorkResultBean<UserInfo>>(LoginPageActivity.this) {
                     @Override
                     public void onFailure(RetrofitError error) {
                         progressDialogUtil.hide();
+                        Toast.makeText(LoginPageActivity.this,"用户名或密码有误！",Toast.LENGTH_SHORT).show();
+
                     }
 
                     @Override
                     public void success(NetWorkResultBean<UserInfo> userInfoNetWorkResultBean, Response response) {
                         progressDialogUtil.hide();
-                        PreferenceUtil.save(LoginPageActivity.this, PreferenceConstant.AreaCode,userInfoNetWorkResultBean.getData().getAreaCode());
+                        PreferenceUtil.save(LoginPageActivity.this, PreferenceConstant.AreaCode, userInfoNetWorkResultBean.getData().getAreaCode());
                         Intent intent = new Intent(LoginPageActivity.this, MainActivity.class);
                         startActivity(intent);
-                        Toast.makeText( LoginPageActivity.this, "登录成功！", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginPageActivity.this, "登录成功！", Toast.LENGTH_LONG).show();
                         LoginPageActivity.this.finish();
                     }
                 });
@@ -94,18 +107,14 @@ public class LoginPageActivity extends Activity {
         cbRememberUserNameAndPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
-                {
-                    strUserName = etUserName.getText().toString();
-                    strPassword = etPassword.getText().toString();
+                if (isChecked) {
+                    strUserName = et_user_name.getText().toString();
+                    strPassword = et_password.getText().toString();
                     PreferenceUtil.save(LoginPageActivity.this, PreferenceConstant.USER_NAME, strUserName);
-                    PreferenceUtil.save(LoginPageActivity.this, PreferenceConstant.USER_PASSWORD,strPassword);
-                    Toast.makeText(LoginPageActivity.this,"hee wordl check",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    PreferenceUtil.save(LoginPageActivity.this, PreferenceConstant.USER_NAME,"");
-                    PreferenceUtil.save(LoginPageActivity.this, PreferenceConstant.USER_PASSWORD,"");
-                    Toast.makeText(LoginPageActivity.this,"not  check",Toast.LENGTH_SHORT).show();
+                    PreferenceUtil.save(LoginPageActivity.this, PreferenceConstant.USER_PASSWORD, strPassword);
+                } else {
+                    PreferenceUtil.save(LoginPageActivity.this, PreferenceConstant.USER_NAME, "");
+                    PreferenceUtil.save(LoginPageActivity.this, PreferenceConstant.USER_PASSWORD, "");
                 }
             }
         });

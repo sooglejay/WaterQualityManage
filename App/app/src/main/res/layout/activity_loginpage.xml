@@ -14,7 +14,7 @@
         android:layout_marginRight="@dimen/most_big_padding"
         android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/username_edittext"
+            android:id="@+id/et_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="请输入用户名"
@@ -30,7 +30,7 @@
             />
 
         <EditText
-            android:id="@+id/password_edittext"
+            android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
@@ -52,7 +52,7 @@
             android:textColor="#00526b"
             android:textSize="18dp" />
         <Button
-            android:id="@+id/login_bn"
+            android:id="@+id/bt_login"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/middle_padding"
             android:layout_height="wrap_content"
