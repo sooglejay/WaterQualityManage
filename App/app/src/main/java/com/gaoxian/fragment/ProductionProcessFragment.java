@@ -12,12 +12,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.gaoxian.Constant.IntConstant;
-import com.gaoxian.Constant.NetWorkConstant;
-import com.gaoxian.Constant.PreferenceConstant;
-import com.gaoxian.Constant.StringConstant;
+import com.gaoxian.constant.IntConstant;
+import com.gaoxian.constant.NetWorkConstant;
+import com.gaoxian.constant.PreferenceConstant;
+import com.gaoxian.constant.StringConstant;
 import com.gaoxian.R;
-import com.gaoxian.api.Production.GetProductionDataRetrofitUtil;
+import com.gaoxian.api.production.GetProductionDataRetrofitUtil;
 import com.gaoxian.api.callback.NetCallback;
 import com.gaoxian.events.IntEvent;
 import com.gaoxian.model.NetWorkResultBean;

@@ -1,4 +1,4 @@
-package com.gaoxian.api.WQ;
+package com.gaoxian.api.wq;
 
 import android.content.Context;
 

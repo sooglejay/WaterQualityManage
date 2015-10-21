@@ -1,4 +1,4 @@
-package com.gaoxian.Constant;
+package com.gaoxian.constant;
 
 /**
  * 网络请求字段

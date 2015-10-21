@@ -12,20 +12,15 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.gaoxian.Constant.NetWorkConstant;
-import com.gaoxian.Constant.PreferenceConstant;
-import com.gaoxian.Constant.StringConstant;
+import com.gaoxian.constant.PreferenceConstant;
+import com.gaoxian.constant.StringConstant;
 import com.gaoxian.R;
 import com.gaoxian.api.User.UserRetrofitUtil;
 import com.gaoxian.api.callback.NetCallback;
 import com.gaoxian.model.NetWorkResultBean;
-import com.gaoxian.model.ProductionData;
-import com.gaoxian.model.ProductionDataPackge;
 import com.gaoxian.model.UserInfo;
 import com.gaoxian.util.PreferenceUtil;
 import com.gaoxian.util.ProgressDialogUtil;
-
-import java.util.List;
 
 import retrofit.RetrofitError;
 import retrofit.client.Response;

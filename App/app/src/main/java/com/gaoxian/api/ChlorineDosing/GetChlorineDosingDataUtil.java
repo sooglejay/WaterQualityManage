@@ -1,4 +1,4 @@
-package com.gaoxian.api.ChlorineDosing;
+package com.gaoxian.api.chlorineDosing;
 
 import android.content.Context;
 

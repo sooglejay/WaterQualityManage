@@ -9,10 +9,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.gaoxian.Constant.StringConstant;
+import com.gaoxian.constant.StringConstant;
 import com.gaoxian.R;
 import com.gaoxian.model.StationInfo;
-import com.gaoxian.util.PreferenceUtil;
 
 /**
  * Created by Administrator on 2015/9/12.

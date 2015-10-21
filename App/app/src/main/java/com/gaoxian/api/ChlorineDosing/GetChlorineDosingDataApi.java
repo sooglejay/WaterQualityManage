@@ -1,6 +1,6 @@
-package com.gaoxian.api.ChlorineDosing;
+package com.gaoxian.api.chlorineDosing;
 
-import com.gaoxian.Constant.NetWorkConstant;
+import com.gaoxian.constant.NetWorkConstant;
 import com.gaoxian.api.callback.NetCallback;
 import com.gaoxian.model.ChlorineDosingDataPackge;
 import com.gaoxian.model.ChlorineDosingStatePackge;

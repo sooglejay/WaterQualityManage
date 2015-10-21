@@ -1,4 +1,4 @@
-package com.gaoxian.Constant;
+package com.gaoxian.constant;
 
 /**
  * Created by Administrator on 2015/9/29.

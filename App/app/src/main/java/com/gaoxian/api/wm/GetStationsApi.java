@@ -1,6 +1,6 @@
-package com.gaoxian.api.WM;
+package com.gaoxian.api.wm;
 
-import com.gaoxian.Constant.NetWorkConstant;
+import com.gaoxian.constant.NetWorkConstant;
 import com.gaoxian.api.callback.NetCallback;
 import com.gaoxian.model.NetWorkResultBean;
 import com.gaoxian.model.StationInfoPackge;

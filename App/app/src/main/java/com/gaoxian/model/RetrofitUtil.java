@@ -1,9 +1,8 @@
 package com.gaoxian.model;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.gaoxian.Constant.NetWorkConstant;
+import com.gaoxian.constant.NetWorkConstant;
 
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;

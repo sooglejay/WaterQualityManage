@@ -1,4 +1,4 @@
-package com.gaoxian.api.WM;
+package com.gaoxian.api.wm;
 
 import android.content.Context;
 
