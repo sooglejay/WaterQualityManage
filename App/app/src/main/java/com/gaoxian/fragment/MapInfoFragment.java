@@ -1,6 +1,7 @@
 package com.gaoxian.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -33,6 +34,7 @@ import com.gaoxian.model.NetWorkResultBean;
 import com.gaoxian.model.StationInfo;
 import com.gaoxian.model.StationInfoPackge;
 import com.gaoxian.util.PreferenceUtil;
+import com.gaoxian.util.UIUtils;
 import com.gaoxian.widget.WaterStationInfoDialog;
 
 import java.util.ArrayList;
@@ -143,10 +145,9 @@ public class MapInfoFragment extends BaseFragment {
             LatLng waterStation1 = new LatLng(infoList.get(i).getMAPLGTD(), infoList.get(i).getMAPLTTD());
             //构建文字Option对象，用于在地图上添加文字
             OverlayOptions textOption1 = new TextOptions()
-                    .bgColor(R.color.green_color)
-                    .fontSize(24)
-                    .fontColor(R.color.light_red)
-                    .text((i + 1) + "号水厂")
+                    .fontSize((int)UIUtils.sp2px(mContext,20))
+                    .fontColor(Color.parseColor("#1f8faf"))
+                    .text(infoList.get(i).getStationName() + "")
                     .rotate(0)
                     .position(waterStation1);
             //在地图上添加该文字对象并显示
