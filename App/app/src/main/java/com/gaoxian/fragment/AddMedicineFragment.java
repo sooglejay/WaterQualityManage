@@ -137,8 +137,7 @@ public class AddMedicineFragment extends BaseFragment {
 
     private void setUp(View view, Bundle savedInstanceState) {
         titleBar = (TitleBar) view.findViewById(R.id.title_bar);
-        titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(), PreferenceConstant.StationName, StringConstant.defaultStationName),
-                StringConstant.tabAddMedicine);
+        titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(), PreferenceConstant.StationName, StringConstant.defaultStationName));
 
         layout_bottom = (View) view.findViewById(R.id.layout_bottom);
         layout_view = (LinearLayout) view.findViewById(R.id.layout_view);

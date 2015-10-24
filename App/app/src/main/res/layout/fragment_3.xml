@@ -7,156 +7,184 @@
     <com.gaoxian.widget.TitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </com.gaoxian.widget.TitleBar>
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_tab_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:background="#e1e1e1"
+        android:gravity="center"
+        android:paddingBottom="@dimen/little_padding"
+        android:paddingLeft="@dimen/middle_padding"
+        android:paddingRight="@dimen/middle_padding"
+        android:paddingTop="@dimen/little_padding"
+        android:text="水质信息"
+        android:textColor="@color/black_color"
+        android:textSize="@dimen/big_textsize" />
+
+
     <LinearLayout
+        android:id="@+id/scrollView_son"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--进水-->
+        <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/middle_padding"
+            android:layout_marginRight="@dimen/middle_padding"
+            android:layout_marginTop="@dimen/middle_padding"
+            android:layout_weight="1"
+            android:background="@drawable/bg_water_info"
+            android:gravity="center|top"
             android:orientation="vertical"
-            android:id="@+id/scrollView_son"
-            android:layout_height="match_parent">
+            android:paddingBottom="@dimen/middle_padding">
 
-            <!--进水-->
-            <LinearLayout
-                android:layout_marginTop="@dimen/middle_padding"
-                android:layout_marginLeft="@dimen/middle_padding"
-                android:layout_marginRight="@dimen/middle_padding"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="进厂水水质"
+                android:textColor="#000200"
+                android:textSize="@dimen/big_textsize" />
+
+            <ScrollView
                 android:layout_width="match_parent"
-                android:background="@drawable/bg_water_info"
-                android:paddingBottom="@dimen/middle_padding"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center|top"
-                android:orientation="vertical">
-                <TextView
-                    android:text="进厂水水质"
-                    android:layout_marginTop="@dimen/small_padding"
-                    android:layout_width="wrap_content"
-                    android:textSize="@dimen/big_textsize"
-                    android:textColor="#000200"
-                    android:layout_height="wrap_content" />
-                <ScrollView
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/small_padding"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/id_j_gallery"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/small_padding"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:scrollbars="none" >
-                    <LinearLayout
-                        android:id="@+id/id_j_gallery"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical" >
-                    </LinearLayout>
-                </ScrollView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="@dimen/middle_padding"
-                android:layout_marginRight="@dimen/middle_padding"
-                android:layout_height="wrap_content">
-                <View
-                    android:layout_width="1dp"
-                    android:layout_marginRight="@dimen/middle_padding"
-                    android:background="@color/light_gray_color"
-                    android:layout_height="match_parent"/>
-                <TextView
-                    android:id="@+id/tv_j_water_level_str"
-                    android:text="@string/j_water_level_str"
-                    android:textColor="#006683"
-                    android:layout_width="0dp"
-                    android:paddingTop="@dimen/small_padding"
-                    android:paddingBottom="@dimen/small_padding"
-                    android:gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content" />
-                <View
-                    android:layout_width="1dp"
-                    android:background="@color/light_gray_color"
-                    android:layout_height="match_parent"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginLeft="@dimen/middle_padding"
-                android:layout_width="match_parent"
-                android:layout_marginRight="@dimen/middle_padding"
-                android:background="@color/light_gray_color"
-                android:layout_height="1dp"/>
-
-            <!--出水-->
-            <LinearLayout
-                android:layout_marginTop="@dimen/middle_padding"
-                android:layout_marginLeft="@dimen/middle_padding"
-                android:layout_marginRight="@dimen/middle_padding"
-                android:layout_width="match_parent"
-                android:background="@drawable/bg_water_info"
-                android:layout_height="0dp"
-                android:paddingBottom="@dimen/middle_padding"
-                android:layout_weight="1"
-                android:gravity="center|top"
-                android:orientation="vertical">
-                <TextView
-                    android:text="出厂水水质"
-                    android:layout_marginTop="@dimen/small_padding"
-                    android:layout_width="wrap_content"
-                    android:textColor="#000200"
-                    android:textSize="@dimen/big_textsize"
-                    android:layout_height="wrap_content" />
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/small_padding"
-                    android:layout_gravity="center"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none" >
-                    <LinearLayout
-                        android:id="@+id/id_c_gallery"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical" >
-                    </LinearLayout>
-                </ScrollView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="@dimen/middle_padding"
-                android:layout_marginRight="@dimen/middle_padding"
-                android:layout_height="wrap_content">
-                <View
-                    android:layout_width="1dp"
-                    android:layout_marginRight="@dimen/middle_padding"
-                    android:background="@color/light_gray_color"
-                    android:layout_height="match_parent"/>
-                <TextView
-                    android:id="@+id/tv_c_water_level_str"
-                    android:text="@string/c_water_level_str"
-                    android:layout_width="0dp"
-                    android:paddingTop="@dimen/small_padding"
-                    android:paddingBottom="@dimen/small_padding"
-                    android:textColor="#006683"
-                    android:gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content" />
-                <View
-                    android:layout_width="1dp"
-                    android:background="@color/light_gray_color"
-                    android:layout_height="match_parent"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginLeft="@dimen/middle_padding"
-                android:layout_width="match_parent"
-                android:layout_marginRight="@dimen/middle_padding"
-                android:layout_marginBottom="@dimen/middle_padding"
-                android:background="@color/light_gray_color"
-                android:layout_height="1dp"/>
-
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"></LinearLayout>
+            </ScrollView>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/middle_padding"
+            android:layout_marginRight="@dimen/middle_padding"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/middle_padding"
+                android:background="@color/light_gray_color" />
+
+            <TextView
+                android:id="@+id/tv_j_water_level_str"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/small_padding"
+                android:paddingTop="@dimen/small_padding"
+                android:text="@string/j_water_level_str"
+                android:textColor="#006683" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/light_gray_color" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/middle_padding"
+            android:layout_marginRight="@dimen/middle_padding"
+            android:background="@color/light_gray_color" />
+
+        <!--出水-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/middle_padding"
+            android:layout_marginRight="@dimen/middle_padding"
+            android:layout_marginTop="@dimen/middle_padding"
+            android:layout_weight="1"
+            android:background="@drawable/bg_water_info"
+            android:gravity="center|top"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/middle_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="出厂水水质"
+                android:textColor="#000200"
+                android:textSize="@dimen/big_textsize" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/small_padding"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/id_c_gallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"></LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/middle_padding"
+            android:layout_marginRight="@dimen/middle_padding"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/middle_padding"
+                android:background="@color/light_gray_color" />
+
+            <TextView
+                android:id="@+id/tv_c_water_level_str"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/small_padding"
+                android:paddingTop="@dimen/small_padding"
+                android:text="@string/c_water_level_str"
+                android:textColor="#006683" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/light_gray_color" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/middle_padding"
+            android:layout_marginLeft="@dimen/middle_padding"
+            android:layout_marginRight="@dimen/middle_padding"
+            android:background="@color/light_gray_color" />
+
+
+    </LinearLayout>
 
 </LinearLayout>

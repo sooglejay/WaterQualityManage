@@ -122,8 +122,7 @@ public class ProductionProcessFragment extends BaseFragment {
         titleBar = (TitleBar) view.findViewById(R.id.title_bar);
         titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(),
                         PreferenceConstant.StationName,
-                        StringConstant.defaultStationName),
-                StringConstant.tabProductionProcess);
+                        StringConstant.defaultStationName));
 
         layout_bottom = (View) view.findViewById(R.id.layout_bottom);
         layout_view = (LinearLayout) view.findViewById(R.id.layout_view);

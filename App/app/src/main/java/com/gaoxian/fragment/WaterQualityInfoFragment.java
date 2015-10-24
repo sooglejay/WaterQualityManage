@@ -66,8 +66,7 @@ public class WaterQualityInfoFragment extends BaseFragment {
 
     private void setUp(View view, Bundle savedInstanceState) {
         titleBar = (TitleBar) view.findViewById(R.id.title_bar);
-        titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(), PreferenceConstant.StationName, StringConstant.defaultStationName),
-                StringConstant.tabWaterQualityInfo);
+        titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(), PreferenceConstant.StationName, StringConstant.defaultStationName));
 
         mInflater = LayoutInflater.from(this.getActivity());
         J_Gallery = (LinearLayout) view.findViewById(R.id.id_j_gallery);
