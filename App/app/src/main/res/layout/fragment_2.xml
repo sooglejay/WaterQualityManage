@@ -79,7 +79,7 @@
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1.4" />
+                        android:layout_weight="1.6" />
                     <!--风扇下面的开关-->
                     <ImageView
                         android:id="@+id/iv_DLSFM02"
@@ -136,7 +136,7 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.12" />
+                    android:layout_weight="0.125" />
 
                 <ImageView
                     android:layout_width="16dp"
@@ -955,7 +955,7 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.03" />
+                    android:layout_weight="0.035" />
 
                 <TextView
                     android:id="@+id/tv_EYHLYE01"
@@ -1044,7 +1044,7 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.407" />
+                    android:layout_weight="0.405" />
 
                 <TextView
                     android:id="@+id/tv_JLBPL01"
@@ -1057,7 +1057,7 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.18" />
+                    android:layout_weight="0.191" />
 
                 <TextView
                     android:id="@+id/tv_JLBPL02"
@@ -1190,7 +1190,7 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.15" />
+                    android:layout_weight="0.165" />
 
 
                 <!--余氟1-->

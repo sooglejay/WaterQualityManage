@@ -134,7 +134,7 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.7" />
+                    android:layout_weight="0.68" />
 
                 <TextView
                     android:id="@+id/tv_JSZD01"
@@ -271,7 +271,7 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.54" />
+                    android:layout_weight="0.525" />
 
                 <TextView
                     android:id="@+id/tv_WNHD01"
@@ -313,7 +313,10 @@
                     android:layout_gravity="bottom"
                     android:layout_weight="1"
                     android:src="@drawable/valve_close" />
-
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.08" />
                 <!-- 10 -->
                 <ImageView
                     android:id="@+id/iv_PWF10"
@@ -322,7 +325,10 @@
                     android:layout_gravity="bottom"
                     android:layout_weight="1"
                     android:src="@drawable/valve_close" />
-
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.05" />
 
                 <!-- 11 -->
                 <ImageView
@@ -332,7 +338,10 @@
                     android:layout_gravity="bottom"
                     android:layout_weight="1"
                     android:src="@drawable/valve_close" />
-
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.05" />
                 <!-- 12 -->
                 <ImageView
                     android:id="@+id/iv_PWF12"
@@ -341,7 +350,10 @@
                     android:layout_gravity="bottom"
                     android:layout_weight="1"
                     android:src="@drawable/valve_close" />
-
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.05" />
                 <!-- 13 -->
                 <ImageView
                     android:id="@+id/iv_PWF13"
@@ -363,7 +375,7 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2.1" />
+                    android:layout_weight="1.98" />
 
                 <!-- 1 -->
                 <ImageView
@@ -373,6 +385,12 @@
                     android:layout_gravity="bottom"
                     android:layout_weight="1"
                     android:src="@drawable/valve_close" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.02" />
+
                 <!-- 2 -->
                 <ImageView
                     android:id="@+id/iv_PWF02"
@@ -381,7 +399,10 @@
                     android:layout_gravity="bottom"
                     android:layout_weight="1"
                     android:src="@drawable/valve_close" />
-
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.05" />
                 <!-- 3 -->
                 <ImageView
                     android:id="@+id/iv_PWF03"
@@ -390,7 +411,10 @@
                     android:layout_gravity="bottom"
                     android:layout_weight="1"
                     android:src="@drawable/valve_close" />
-
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.02" />
                 <!-- 4 -->
                 <ImageView
                     android:id="@+id/iv_PWF04"
@@ -400,6 +424,7 @@
                     android:layout_weight="1"
                     android:src="@drawable/valve_close" />
                 <!-- 5 -->
+
                 <ImageView
                     android:id="@+id/iv_PWF05"
                     android:layout_width="0dp"
@@ -468,6 +493,10 @@
                     android:layout_weight="0.35"
                     android:src="@drawable/valve_close" />
                 <!-- 18 -->
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.02" />
                 <ImageView
                     android:id="@+id/iv_PWF18"
                     android:layout_width="0dp"
@@ -489,7 +518,7 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.30" />
+                    android:layout_weight="0.31" />
 
                 <TextView
                     android:id="@+id/tv_QSCYW01"
@@ -503,7 +532,7 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.450" />
+                    android:layout_weight="0.444" />
                 <!-- 2#清水池 -->
                 <TextView
                     android:id="@+id/tv_QSCYW02"
@@ -551,7 +580,7 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.03" />
+                    android:layout_weight="0.038" />
 
                 <ImageView
                     android:id="@+id/iv_GSB03"
@@ -559,6 +588,11 @@
                     android:layout_height="24dp"
                     android:layout_gravity="bottom"
                     android:src="@drawable/fan_bottom_close" />
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.005" />
+
                 <!-- 出水压力 -->
                 <TextView
                     android:id="@+id/tv_GSYL01"
@@ -584,7 +618,7 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.84" />
+                    android:layout_weight="0.83" />
 
                 <TextView
                     android:id="@+id/tv_CSLL01"
