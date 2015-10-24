@@ -65,6 +65,10 @@ public class AddMedicineFragment extends BaseFragment {
     private TextView tv_CQL02;//二氧化氯产气量02
 
 
+    private TextView tv_right_jsll;//二氧化氯产气量01
+    private TextView tv_left_jsll;//二氧化氯产气量02
+
+
     //图片状态信息   加氟加药状态
     public ImageView iv_QS01;//表格中的两组 ，每组四个图片 ，状态
     public ImageView iv_QS02;//二氧化氯缺水状态02
@@ -183,6 +187,9 @@ public class AddMedicineFragment extends BaseFragment {
         tv_PSJYW01 = (TextView) view.findViewById(R.id.tv_PSJYW01);
         tv_PSJYW02 = (TextView) view.findViewById(R.id.tv_PSJYW02);
 
+        tv_left_jsll = (TextView) view.findViewById(R.id.tv_left_jsll);
+        tv_right_jsll = (TextView) view.findViewById(R.id.tv_right_jsll);
+
 
     }
 
@@ -262,9 +269,18 @@ public class AddMedicineFragment extends BaseFragment {
                 }
                 break;
             case IntEvent.Msg_RefreshData:
-                if (tv_PSJYW01 != null && isAdded()) {
+                if (!isAdded())
+                    return;
+                if (tv_PSJYW01 != null) {
                     tv_PSJYW01.setText(PreferenceUtil.load(mContext, PreferenceConstant.psj1, "")+"");
                     tv_PSJYW02.setText(PreferenceUtil.load(mContext, PreferenceConstant.psj2, "")+"");
+                }
+
+                if(tv_left_jsll != null)
+                {
+                    String strJSLL = PreferenceUtil.load(mContext,PreferenceConstant.JSLL,"")+"";
+                    tv_right_jsll.setText(strJSLL);
+                    tv_left_jsll.setText(strJSLL);
                 }
                 break;
 
@@ -316,6 +332,7 @@ public class AddMedicineFragment extends BaseFragment {
 
                     }
                 }
+
             }
         });
     }
@@ -500,15 +517,15 @@ public class AddMedicineFragment extends BaseFragment {
                     } else if (bean.getJLJYCode().equals(NetWorkConstant.JYSBZT01)) {
                         switch (bean.getJLJYState()) {
                             case IntConstant.State_open:
-                                iv_JLBZT02.setImageResource(R.drawable.circle_flag_green);
+                                iv_JYSBZT01.setImageResource(R.drawable.circle_flag_green);
                                 iv_JYSBZT01_error.setImageResource(R.drawable.circle_flag_green);
                                 break;
                             case IntConstant.State_close:
-                                iv_JLBZT02.setImageResource(R.drawable.circle_flag_red);
+                                iv_JYSBZT01.setImageResource(R.drawable.circle_flag_red);
                                 iv_JYSBZT01_error.setImageResource(R.drawable.circle_flag_green);
                                 break;
                             case IntConstant.State_error:
-                                iv_JLBZT02.setImageResource(R.drawable.circle_flag_red);
+                                iv_JYSBZT01.setImageResource(R.drawable.circle_flag_red);
                                 iv_JYSBZT01_error.setImageResource(R.drawable.circle_flag_red);
                                 break;
                             default:

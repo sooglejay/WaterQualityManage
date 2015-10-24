@@ -295,6 +295,9 @@ public class ProductionProcessFragment extends BaseFragment {
                                 tv_GSYL01.setText("" + bean.getSCKZData());
                             } else if (bean.getSCKZCode().equals(NetWorkConstant.JSLL01)) {
                                 tv_JSLL01.setText("" + bean.getSCKZData());
+                                PreferenceUtil.save(mContext, PreferenceConstant.JSLL, bean.getSCKZData() + "");
+                                EventBus.getDefault().post(new IntEvent(IntEvent.Msg_RefreshData));
+
 
                             } else if (bean.getSCKZCode().equals(NetWorkConstant.CSLL01)) {
                                 tv_CSLL01.setText("" + bean.getSCKZData());

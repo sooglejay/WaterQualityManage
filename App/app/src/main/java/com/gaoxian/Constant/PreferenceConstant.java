@@ -12,4 +12,7 @@ public class PreferenceConstant {
 
     public static String psj1 = "配水井1";
     public static String psj2 = "配水井2";
+
+    public static String JSLL = "进水流量";
+
 }
