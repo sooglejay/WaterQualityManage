@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -69,6 +70,7 @@ public class MapInfoFragment extends BaseFragment {
     //用于显示水厂的具体信息，类似于view
     private WaterStationInfoDialog mWaterStationDialogInfo;
 
+    private String stationNameString = "";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_4, container, false);
@@ -84,6 +86,9 @@ public class MapInfoFragment extends BaseFragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser) {
+            stationNameString = PreferenceUtil.load(this.getActivity(),PreferenceConstant.StationName,"");
+        }
 
     }
 
@@ -224,6 +229,12 @@ public class MapInfoFragment extends BaseFragment {
                 StationInfoPackge infoPackge = stationInfoPackgeNetWorkResultBean.getData();
                 Log.e("jwjw", infoPackge.toString());
                 mStationList = infoPackge.getStationList();
+                if(TextUtils.isEmpty(stationNameString)) {
+                    if (mStationList != null && mStationList.size() > 0) {
+                        PreferenceUtil.save(MapInfoFragment.this.getActivity(), PreferenceConstant.StationName, mStationList.get(0).getStationName());
+                        EventBus.getDefault().post(new IntEvent(IntEvent.Msg_RefreshTitleBar));
+                    }
+                }
                 initMark(mStationList);
                 setMapLisenter();
             }

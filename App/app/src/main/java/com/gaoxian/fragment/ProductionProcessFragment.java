@@ -121,9 +121,11 @@ public class ProductionProcessFragment extends BaseFragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(titleBar!=null)
-        {
-            titleBar.updateTitle(PreferenceUtil.load(this.getActivity(),PreferenceConstant.StationName,StringConstant.defaultStationName));
+        if(isVisibleToUser) {
+            if(titleBar!=null)
+            {
+                titleBar.updateTitle(PreferenceUtil.load(this.getActivity(),PreferenceConstant.StationName,StringConstant.defaultStationName));
+            }
         }
     }
 
@@ -268,6 +270,11 @@ public class ProductionProcessFragment extends BaseFragment {
             case IntEvent.Msg_ResetViewScale:
                 if (layout_view != null) {
                     resetLayoutParams(layout_view, originalScaleX, originalScaleY, originalTranslateX, originalTranslateY);
+                }
+                break;
+              case IntEvent.Msg_RefreshTitleBar:
+                if (titleBar != null) {
+                    titleBar.updateTitle(PreferenceUtil.load(this.getActivity(),PreferenceConstant.StationName,StringConstant.defaultStationName));
                 }
                 break;
             default:

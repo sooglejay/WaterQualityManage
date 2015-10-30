@@ -143,10 +143,11 @@ public class AddMedicineFragment extends BaseFragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-
-        if(titleBar!=null)
-        {
-            titleBar.updateTitle(PreferenceUtil.load(this.getActivity(),PreferenceConstant.StationName,StringConstant.defaultStationName));
+        if(isVisibleToUser) {
+            if(titleBar!=null)
+            {
+                titleBar.updateTitle(PreferenceUtil.load(this.getActivity(),PreferenceConstant.StationName,StringConstant.defaultStationName));
+            }
         }
     }
 
