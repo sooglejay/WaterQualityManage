@@ -40,7 +40,16 @@ public class TitleBar extends FrameLayout {
      * @param title
      */
     public void initTitleBarInfo(String title ) {
-
         mTitleTv.setText(title+"");
     }
+
+    /**
+     * 更新标题
+     * @param title
+     */
+    public void updateTitle(String title ) {
+        mTitleTv.setText(title+"");
+    }
+
+
 }

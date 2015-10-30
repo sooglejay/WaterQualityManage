@@ -118,6 +118,15 @@ public class ProductionProcessFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(titleBar!=null)
+        {
+            titleBar.updateTitle(PreferenceUtil.load(this.getActivity(),PreferenceConstant.StationName,StringConstant.defaultStationName));
+        }
+    }
+
     private void setUp(View view, Bundle savedInstanceState) {
         titleBar = (TitleBar) view.findViewById(R.id.title_bar);
         titleBar.initTitleBarInfo(PreferenceUtil.load(this.getActivity(),

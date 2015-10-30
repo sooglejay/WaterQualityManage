@@ -84,6 +84,7 @@ public class MapInfoFragment extends BaseFragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+
     }
 
     private void setUp(View view, Bundle savedInstanceState) {

@@ -3,7 +3,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="tab_production_process">生产过程</string>
-    <string name="tab_add_medicine">加氟加药</string>
+    <string name="tab_add_medicine">加氯加药</string>
     <string name="tab_water_quality">水质信息</string>
     <string name="tab_map_info">地理信息</string>
 

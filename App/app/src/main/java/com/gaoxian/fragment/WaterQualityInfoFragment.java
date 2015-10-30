@@ -173,8 +173,11 @@ public class WaterQualityInfoFragment extends BaseFragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+        if(titleBar!=null)
+        {
+            titleBar.updateTitle(PreferenceUtil.load(this.getActivity(),PreferenceConstant.StationName,StringConstant.defaultStationName));
+        }
     }
-
 
     /**
      * 获取服务端  WQ / 水质信息

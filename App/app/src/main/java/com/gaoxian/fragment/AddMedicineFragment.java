@@ -132,12 +132,22 @@ public class AddMedicineFragment extends BaseFragment {
                     getChlorineDosingData();
                     getChlorineDosingState();
                 } catch (NullPointerException npe) {
-                    Log.e("jwjw", "加氟加药-空指针！");
+                    Log.e("jwjw", "加氯加药-空指针！");
                     mContext = getActivity().getApplicationContext();
                 }
             }
         };
         handler.postDelayed(runnable, IntConstant.refreshIntervalOneMinute);//执行定时操作
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if(titleBar!=null)
+        {
+            titleBar.updateTitle(PreferenceUtil.load(this.getActivity(),PreferenceConstant.StationName,StringConstant.defaultStationName));
+        }
     }
 
     private void setUp(View view, Bundle savedInstanceState) {
