@@ -12,11 +12,11 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.gaoxian.R;
+import com.gaoxian.api.callback.NetCallback;
+import com.gaoxian.api.user.UserRetrofitUtil;
 import com.gaoxian.constant.PreferenceConstant;
 import com.gaoxian.constant.StringConstant;
-import com.gaoxian.R;
-import com.gaoxian.api.User.UserRetrofitUtil;
-import com.gaoxian.api.callback.NetCallback;
 import com.gaoxian.model.NetWorkResultBean;
 import com.gaoxian.model.UserInfo;
 import com.gaoxian.util.PreferenceUtil;
@@ -80,7 +80,7 @@ public class LoginPageActivity extends Activity {
                     return;
                 }
 
-                progressDialogUtil.show("考验网速的时候到了！");
+                progressDialogUtil.show("正在登陆...");
                 //mytest  123000
                 UserRetrofitUtil.login(LoginPageActivity.this,strUserName, strPassword, StringConstant.weiqi, new NetCallback<NetWorkResultBean<UserInfo>>(LoginPageActivity.this) {
                     @Override

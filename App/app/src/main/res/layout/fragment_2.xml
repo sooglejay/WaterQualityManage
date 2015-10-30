@@ -291,6 +291,7 @@
                             android:background="@color/dark_black_color" />
 
                         <ImageView
+                            android:id="@+id/iv_scgc_zt_1"
                             android:layout_width="wrap_content"
                             android:layout_height="10dp"
                             android:layout_gravity="center"
@@ -667,6 +668,7 @@
                             android:background="@color/dark_black_color" />
 
                         <ImageView
+                            android:id="@+id/iv_scgc_zt_2"
                             android:layout_width="wrap_content"
                             android:layout_height="10dp"
                             android:layout_gravity="center"

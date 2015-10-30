@@ -8,9 +8,9 @@ public class IntConstant {
     public static final int ScrollBaiduMapBoundary = 50;
     public static final int SUM_VALUE = 7;//配水井的总容量，用n/SUM_VALUE 来决定显示哪张配水井图片
 
-    public static final int State_open = 0;//开
-    public static final int State_close = 1;//关
-    public static final int State_error = 2;//错误
+    public static final int State_open = 1;//开
+    public static final int State_close =0;//关
+    public static final int State_error =2;//错误
 
 
     public static final int refreshIntervalOneMinute =1 * 60 * 1000;//1分钟刷新

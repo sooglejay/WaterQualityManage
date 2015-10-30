@@ -310,6 +310,12 @@ public class ProductionProcessFragment extends BaseFragment {
                                 //配水井的水位高度
                                 float value = (float) bean.getSCKZData();
                                 int scale = (int) (value * 10 / IntConstant.SUM_VALUE);
+                                if(scale<0)
+                                {
+                                    scale=0;
+                                }else if(scale>10){
+                                    scale=10;
+                                }
                                 int backgroundResId = iconSpellID(PSJ_ICON_STRING + scale, mContext);
                                 iv_left_water_box.setImageResource(backgroundResId);
 
@@ -324,11 +330,18 @@ public class ProductionProcessFragment extends BaseFragment {
                                 //配水井的水位高度
                                 float value = (float) bean.getSCKZData();
                                 int scale = (int) (value * 10 / IntConstant.SUM_VALUE);
+                                if(scale<0)
+                                {
+                                    scale=0;
+                                }else if(scale>10){
+                                    scale=10;
+                                }
                                 int backgroundResId = iconSpellID(PSJ_ICON_STRING + scale, mContext);
                                 iv_right_water_box.setImageResource(backgroundResId);
 
-
                                 PreferenceUtil.save(mContext, PreferenceConstant.psj2, bean.getSCKZData() + "");
+                                EventBus.getDefault().post(new IntEvent(IntEvent.Msg_RefreshData));
+
                             } else if (bean.getSCKZCode().equals(NetWorkConstant.QSCYW01)) {
                                 tv_QSCYW01.setText("" + bean.getSCKZData());
 

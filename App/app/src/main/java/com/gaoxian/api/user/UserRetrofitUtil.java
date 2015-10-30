@@ -1,4 +1,4 @@
-package com.gaoxian.api.User;
+package com.gaoxian.api.user;
 
 import android.content.Context;
 

@@ -60,10 +60,8 @@ public class MapInfoFragment extends BaseFragment {
 
     List<StationInfo> mStationList = new ArrayList<>();
     private List<Marker> mMarkerList = new ArrayList<>();
-    BitmapDescriptor mMarkerSelected = BitmapDescriptorFactory
-            .fromResource(R.drawable.icon_water_station_selected);
-    BitmapDescriptor mMarkerUnSelected = BitmapDescriptorFactory
-            .fromResource(R.drawable.icon_water_station);
+    private BitmapDescriptor mMarkerSelected ;
+    private BitmapDescriptor mMarkerUnSelected;
 
     //用于包裹水厂信息的覆盖物，类似于controller
     private InfoWindow mInfoWindowOverLayDialog;
@@ -104,6 +102,14 @@ public class MapInfoFragment extends BaseFragment {
      * @param view
      */
     private void initMapView(View view) {
+
+        mMarkerSelected = BitmapDescriptorFactory
+                .fromResource(R.drawable.icon_water_station_selected);
+        mMarkerUnSelected = BitmapDescriptorFactory
+                .fromResource(R.drawable.icon_water_station);
+
+
+
         MapStatusUpdate u1 = MapStatusUpdateFactory.newLatLng(GEO_CHENDU);
         mMapView = (MapView) view.findViewById(R.id.id_bmapView);
         mBaiduMap = mMapView.getMap();

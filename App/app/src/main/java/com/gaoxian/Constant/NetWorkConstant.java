@@ -91,4 +91,7 @@ public class NetWorkConstant {
     public static final String DLSFM01 = "DLSFM01";//动力水阀门01
     public static final String DLSFM02 = "DLSFM02";//动力水阀门02
 
+    public static final String FSQYXZT01 = "FSQYXZT01";//二氧化氯发生器运行状态01
+    public static final String FSQYXZT02 = "FSQYXZT02";//二氧化氯发生器运行状态02
+
 }

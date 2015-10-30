@@ -47,7 +47,7 @@ public class AddMedicineFragment extends BaseFragment {
     private View layout_bottom;//this layout is a bottom of  the imageView background
 
     //定时操作
-    final Handler handler=new Handler();
+    final Handler handler = new Handler();
     private Runnable runnable;
 
     //数字信息    加氟加药数据
@@ -94,10 +94,14 @@ public class AddMedicineFragment extends BaseFragment {
     public ImageView iv_JYSBZT01;//加药设备运行状态01  只有一个设置
     public ImageView iv_JYSBZT01_error;//加药设备运行状态01  如果出现故障，下面的故障灯要变红
 
+    public ImageView iv_scgc_zt_1;//二氧化氯运行状态01 和二氧化氯运行状态02
+    public ImageView iv_scgc_zt_2;//
+
 
     private TextView tv_PSJYW01;//配水井1
     private TextView tv_PSJYW02;//配水井2
     private Context mContext;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -114,29 +118,26 @@ public class AddMedicineFragment extends BaseFragment {
         try {
             getChlorineDosingData();
             getChlorineDosingState();
-        }catch (NullPointerException npe)
-        {
+        } catch (NullPointerException npe) {
             Log.e("jwjw", "加氟加药-空指针！");
             mContext = getActivity().getApplicationContext();
         }
 
 
-
-        runnable=new Runnable() {
+        runnable = new Runnable() {
             @Override
             public void run() {
-                handler.postDelayed(this,IntConstant.refreshIntervalOneMinute);//刷新频率为1分钟
+                handler.postDelayed(this, IntConstant.refreshIntervalOneMinute);//刷新频率为1分钟
                 try {
                     getChlorineDosingData();
                     getChlorineDosingState();
-                }catch (NullPointerException npe)
-                {
+                } catch (NullPointerException npe) {
                     Log.e("jwjw", "加氟加药-空指针！");
                     mContext = getActivity().getApplicationContext();
                 }
             }
         };
-        handler.postDelayed(runnable,IntConstant.refreshIntervalOneMinute);//执行定时操作
+        handler.postDelayed(runnable, IntConstant.refreshIntervalOneMinute);//执行定时操作
     }
 
     private void setUp(View view, Bundle savedInstanceState) {
@@ -182,6 +183,9 @@ public class AddMedicineFragment extends BaseFragment {
         iv_JLBZT02 = (ImageView) view.findViewById(R.id.iv_JLBZT02);
         iv_JYSBZT01 = (ImageView) view.findViewById(R.id.iv_JYSBZT01);
         iv_JYSBZT01_error = (ImageView) view.findViewById(R.id.iv_JYSBZT01_error);
+
+        iv_scgc_zt_1 = (ImageView) view.findViewById(R.id.iv_scgc_zt_1);
+        iv_scgc_zt_2 = (ImageView) view.findViewById(R.id.iv_scgc_zt_2);
 
 
         tv_PSJYW01 = (TextView) view.findViewById(R.id.tv_PSJYW01);
@@ -269,16 +273,12 @@ public class AddMedicineFragment extends BaseFragment {
                 }
                 break;
             case IntEvent.Msg_RefreshData:
-                if (!isAdded())
-                    return;
                 if (tv_PSJYW01 != null) {
-                    tv_PSJYW01.setText(PreferenceUtil.load(mContext, PreferenceConstant.psj1, "")+"");
-                    tv_PSJYW02.setText(PreferenceUtil.load(mContext, PreferenceConstant.psj2, "")+"");
+                    tv_PSJYW01.setText(PreferenceUtil.load(mContext, PreferenceConstant.psj1, "") + "");
+                    tv_PSJYW02.setText(PreferenceUtil.load(mContext, PreferenceConstant.psj2, "") + "");
                 }
-
-                if(tv_left_jsll != null)
-                {
-                    String strJSLL = PreferenceUtil.load(mContext,PreferenceConstant.JSLL,"")+"";
+                if (tv_left_jsll != null) {
+                    String strJSLL = PreferenceUtil.load(mContext, PreferenceConstant.JSLL, "") + "";
                     tv_right_jsll.setText(strJSLL);
                     tv_left_jsll.setText(strJSLL);
                 }
@@ -531,7 +531,30 @@ public class AddMedicineFragment extends BaseFragment {
                             default:
                                 break;
                         }
+                    } else if (bean.getJLJYCode().equals(NetWorkConstant.FSQYXZT01)) {
+                        switch (bean.getJLJYState()) {
+                            case IntConstant.State_open:
+                                iv_scgc_zt_1.setImageResource(R.drawable.circle_flag_green);
+                                break;
+                            case IntConstant.State_close:
+                                iv_scgc_zt_1.setImageResource(R.drawable.circle_flag_red);
+                                break;
+                            default:
+                                break;
+                        }
+                    } else if (bean.getJLJYCode().equals(NetWorkConstant.FSQYXZT02)) {
+                        switch (bean.getJLJYState()) {
+                            case IntConstant.State_open:
+                                iv_scgc_zt_2.setImageResource(R.drawable.circle_flag_green);
+                                break;
+                            case IntConstant.State_close:
+                                iv_scgc_zt_2.setImageResource(R.drawable.circle_flag_red);
+                                break;
+                            default:
+                                break;
+                        }
                     }
+
                 }
             }
 
