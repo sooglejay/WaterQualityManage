@@ -212,7 +212,7 @@ public class WaterQualityInfoFragment extends BaseFragment {
             addView(bean.getWQJCList(), J_Gallery);
 
             //出水水质
-            tv_c_water_level_str.setText(mContext.getString(R.string.c_water_level_str) + bean.getJCInfo());
+            tv_c_water_level_str.setText(mContext.getString(R.string.c_water_level_str) + bean.getCCinfo());
             addView(bean.getWQCCList(), C_Gallery);
         }catch (NullPointerException npe)
         {
