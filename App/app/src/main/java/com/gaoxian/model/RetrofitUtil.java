@@ -26,7 +26,7 @@ public class RetrofitUtil {
 
             }
         };
-        RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(NetWorkConstant.API_SERVER_URL).setRequestInterceptor(requestInterceptor).setLogLevel(RestAdapter.LogLevel.FULL).build();
+        RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(NetWorkConstant.API_SERVER_URL).setRequestInterceptor(requestInterceptor).setLogLevel(RestAdapter.LogLevel.NONE).build();
         return restAdapter;
     }
 
