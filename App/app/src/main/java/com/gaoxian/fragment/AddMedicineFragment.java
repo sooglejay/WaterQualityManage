@@ -29,7 +29,6 @@ import com.gaoxian.util.DoubleClickListener;
 import com.gaoxian.util.PreferenceUtil;
 import com.gaoxian.widget.ScaleView.MultiTouchListener;
 import com.gaoxian.widget.TitleBar;
-import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 import java.util.Timer;
@@ -107,16 +106,6 @@ public class AddMedicineFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_2, container, false);
-    }
-
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onPageStart("AddMedicineFragment"); //统计页面
-    }
-
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPageEnd("AddMedicineFragment");
     }
 
     @Override

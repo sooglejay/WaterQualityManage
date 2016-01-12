@@ -25,7 +25,6 @@ import com.gaoxian.model.WQinfoPackge;
 import com.gaoxian.util.PreferenceUtil;
 import com.gaoxian.util.UIUtils;
 import com.gaoxian.widget.TitleBar;
-import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -234,6 +233,4 @@ public class WaterQualityInfoFragment extends BaseFragment {
                 break;
         }
     }
-
-
 }

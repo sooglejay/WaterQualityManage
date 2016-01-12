@@ -37,7 +37,6 @@ import com.gaoxian.model.StationInfoPackge;
 import com.gaoxian.util.PreferenceUtil;
 import com.gaoxian.util.UIUtils;
 import com.gaoxian.widget.WaterStationInfoDialog;
-import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -249,7 +248,6 @@ public class MapInfoFragment extends BaseFragment {
         super.onResume();
         // 在activity执行onResume时执行mMapView. onResume ()，实现地图生命周期管理
         mMapView.onResume();
-        MobclickAgent.onPageStart("MapInfoFragment"); //统计页面
 
     }
 
@@ -258,7 +256,6 @@ public class MapInfoFragment extends BaseFragment {
         super.onPause();
         // 在activity执行onPause时执行mMapView. onPause ()，实现地图生命周期管理
         mMapView.onPause();
-        MobclickAgent.onPageEnd("MapInfoFragment");
     }
 
     @Override

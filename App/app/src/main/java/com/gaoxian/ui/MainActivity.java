@@ -19,8 +19,7 @@ import com.gaoxian.fragment.WaterQualityInfoFragment;
 import com.gaoxian.widget.CustomViewPager.JazzyViewPager;
 import com.gaoxian.widget.ScrollableViewPager;
 import com.gaoxian.widget.TabBar;
-import com.umeng.analytics.MobclickAgent;
-import com.umeng.update.UmengUpdateAgent;
+
 
 import de.greenrobot.event.EventBus;
 
@@ -42,8 +41,6 @@ public class MainActivity extends BaseActivity {
         lineView = findViewById(R.id.line_view);
         tabBar = (TabBar) findViewById(R.id.home_bottomBar);
         initViewPager();
-        UmengUpdateAgent.setUpdateOnlyWifi(false);
-        UmengUpdateAgent.update(this);
     }
 
     /**
@@ -157,16 +154,6 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);       //统计时长
-    }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
-    }
 
 }
